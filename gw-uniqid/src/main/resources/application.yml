@@ -9,15 +9,7 @@ spring:
         server-addr: 127.0.0.1:8848
   main:
     allow-bean-definition-overriding: true
-#feign:
-#  client:
-#    config:
-#      default:
-#        loggerLevel: full
-#        requestInterceptors:
-#          - com.tuling.tulingmall.feignapi.interceptor.HeaderInterceptor
-#        readTimeout: 3000
-#        connectTimeout: 3000
+
 #logging:
 #  level:
 #    com:

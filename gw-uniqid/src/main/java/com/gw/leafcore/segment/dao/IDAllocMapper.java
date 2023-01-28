@@ -1,6 +1,6 @@
 package com.gw.leafcore.segment.dao;
 
-import com.tuling.leafcore.segment.model.LeafAlloc;
+import com.gw.leafcore.segment.model.LeafAlloc;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
