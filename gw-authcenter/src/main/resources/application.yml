@@ -1,0 +1,36 @@
+#server:
+#  port: 9999
+#spring:
+#  application:
+#    name: gw-authcenter
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: 127.0.0.1:8848
+##        namespace: df75feb0-a93b-4dd8-a7cd-faa98382887e
+#  datasource:
+#    url: jdbc:mysql://127.0.0.1:3306/tl_mall_user?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+#    username: root
+#    password: wu123
+#    druid:
+#      initial-size: 5 #连接池初始化大小
+#      min-idle: 10
+#      max-active: 20
+#      web-stat-filter:
+#        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*" #不统计这些请求数据
+#      stat-view-servlet:
+#        login-username: druid
+#        login-password: druid
+#
+#
+#mybatis:
+#  mapper-locations:
+#    - classpath:dao/*.xml
+#    - classpath*:com/**/mapper/*.xml
+#
+#gw:
+#  jwt:
+#    keyPairName: standardjwt.jks
+#    keyPairAlias: jwt
+#    keyPairSecret: 123123
+#    keyPairStoreSecret: 123123

@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: gw-authcenter
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      config:
+        namespace: df75feb0-a93b-4dd8-a7cd-faa98382887e
+        server-addr: 127.0.0.1:8848
+        file-extension: yml #配置文件结尾的配置
+        shared-configs[0]:
+          data-id: gw-nacos.yml
+          group: DEFAULT_GROUP
+          refresh: true
+        shared-configs[1]:
+          data-id: gw-db-common.yml
+          group: DEFAULT_GROUP
+          refresh: true
+logging:
+  level:
+    com:
+      alibaba:
+        cloud:
+          nacos:
+            client: warn
