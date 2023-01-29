@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.gw.mall</groupId>
+    <groupId>com.gw.gwmall</groupId>
     <artifactId>gw-mall</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
@@ -15,6 +15,7 @@
         <module>gw-common</module>
         <module>gw-core</module>
         <module>gw-member</module>
+        <module>gw-redis-comm</module>
     </modules>
 
     <properties>
@@ -85,23 +86,23 @@
             <!--mall通用模块-->
 
             <dependency>
-                <groupId>com.gw</groupId>
+                <groupId>com.gw.gwmall</groupId>
                 <artifactId>gw-common</artifactId>
                 <version>${gw-common.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.gw</groupId>
+                <groupId>com.gw.gwmall</groupId>
                 <artifactId>gw-core</artifactId>
                 <version>${gw-core.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.gw</groupId>
+                <groupId>com.gw.gwmall</groupId>
                 <artifactId>gw-redis-comm</artifactId>
                 <version>${gw-redis-comm.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.gw</groupId>
+                <groupId>com.gw.gwmall</groupId>
                 <artifactId>gw-redis-multi</artifactId>
                 <version>${gw-redis-multi.version}</version>
             </dependency>

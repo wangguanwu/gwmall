@@ -1,0 +1,35 @@
+server:
+  port: 8877
+
+spring:
+  data:
+    mongodb:
+      host: 218.76.8.107
+      port: 27017
+      database: micromall
+      password: 123456
+      username: root
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+
+jwt:
+  tokenHeader: Authorization #JWT存储的请求头
+  secret: mall-portal-secret #JWT加解密使用的密钥
+  expiration: 604800 #JWT的超期限时间(60*60*24)
+  tokenHead: bearer #JWT负载中拿到开头
+
+redis:
+  key:
+    prefix:
+      authCode: "portal:authCode:"
+      orderId: "portal:orderId:"
+    expire:
+      authCode: 90 # 验证码超期时间
+
