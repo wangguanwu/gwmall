@@ -2,6 +2,7 @@ package com.gw.gwmall.service.impl;
 
 
 import com.gw.gwmall.dao.PortalMemberInfoDao;
+import com.gw.gwmall.domain.PortalMemberInfo;
 import com.gw.gwmall.service.UmsMemberCenterService;
 
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,8 +1,8 @@
 package com.gw.gwmall.controller;
 
+import com.gw.gwmall.common.api.CommonResult;
 import com.gw.gwmall.domain.MemberProductCollection;
 import com.gw.gwmall.service.MemberCollectionService;
-import com.tuling.tulingmall.common.api.CommonResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

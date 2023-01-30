@@ -1,14 +1,17 @@
 package com.gw.gwmall.controller;
 
+import com.gw.gwmall.common.api.CommonResult;
+import com.gw.gwmall.common.api.TokenInfo;
+import com.gw.gwmall.common.constant.RedisMemberPrefix;
+import com.gw.gwmall.model.UmsMember;
+import com.gw.gwmall.model.UmsMemberReceiveAddress;
+import com.gw.gwmall.rediscomm.util.RedisOpsExtUtil;
 import com.gw.gwmall.service.UmsMemberCenterService;
 import com.gw.gwmall.service.UmsMemberReceiveAddressService;
 import com.gw.gwmall.service.UmsMemberService;
 import com.ramostear.captcha.HappyCaptcha;
 import com.ramostear.captcha.support.CaptchaStyle;
 import com.ramostear.captcha.support.CaptchaType;
-import com.tuling.tulingmall.common.api.CommonResult;
-import com.tuling.tulingmall.common.api.TokenInfo;
-import com.tuling.tulingmall.common.constant.RedisMemberPrefix;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;

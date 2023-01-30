@@ -1,13 +1,13 @@
 package com.gw.gwmall.service;
 
 
-import com.tuling.tulingmall.domain.MemberReadHistory;
+
+import com.gw.gwmall.domain.MemberReadHistory;
 
 import java.util.List;
 
 /**
  * 会员浏览记录管理Service
- * Created by macro on 2018/8/3.
  */
 public interface MemberReadHistoryService {
     /**

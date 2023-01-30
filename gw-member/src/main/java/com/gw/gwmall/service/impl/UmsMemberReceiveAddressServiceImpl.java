@@ -1,10 +1,10 @@
 package com.gw.gwmall.service.impl;
 
-import com.tuling.tulingmall.mapper.UmsMemberReceiveAddressMapper;
-import com.tuling.tulingmall.model.UmsMemberReceiveAddress;
-import com.tuling.tulingmall.model.UmsMemberReceiveAddressExample;
-import com.tuling.tulingmall.service.UmsMemberReceiveAddressService;
-import com.tuling.tulingmall.service.UmsMemberService;
+import com.gw.gwmall.mapper.UmsMemberReceiveAddressMapper;
+import com.gw.gwmall.model.UmsMemberReceiveAddress;
+import com.gw.gwmall.model.UmsMemberReceiveAddressExample;
+import com.gw.gwmall.service.UmsMemberReceiveAddressService;
+import com.gw.gwmall.service.UmsMemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -13,7 +13,6 @@ import java.util.List;
 
 /**
  * 用户地址管理Service实现类
- * Created by macro on 2018/8/28.
  */
 @Service
 public class UmsMemberReceiveAddressServiceImpl implements UmsMemberReceiveAddressService {
@@ -35,7 +34,7 @@ public class UmsMemberReceiveAddressServiceImpl implements UmsMemberReceiveAddre
     }
 
     @Override
-    public int update(Long id, UmsMemberReceiveAddress address,Long memberId) {
+    public int update(Long id, UmsMemberReceiveAddress address, Long memberId) {
         address.setId(null);
         UmsMemberReceiveAddressExample example = new UmsMemberReceiveAddressExample();
         example.createCriteria().andMemberIdEqualTo(memberId).andIdEqualTo(id);

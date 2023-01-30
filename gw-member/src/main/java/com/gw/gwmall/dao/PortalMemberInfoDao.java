@@ -1,7 +1,7 @@
 package com.gw.gwmall.dao;
 
 
-import com.tuling.tulingmall.domain.PortalMemberInfo;
+import com.gw.gwmall.domain.PortalMemberInfo;
 
 /**
 

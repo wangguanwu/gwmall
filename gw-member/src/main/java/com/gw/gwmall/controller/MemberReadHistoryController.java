@@ -1,8 +1,8 @@
 package com.gw.gwmall.controller;
 
+import com.gw.gwmall.common.api.CommonResult;
 import com.gw.gwmall.domain.MemberReadHistory;
 import com.gw.gwmall.service.MemberReadHistoryService;
-import com.tuling.tulingmall.common.api.CommonResult;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

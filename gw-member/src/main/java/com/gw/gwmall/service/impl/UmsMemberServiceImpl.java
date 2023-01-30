@@ -1,13 +1,16 @@
 package com.gw.gwmall.service.impl;
 
+import com.gw.gwmall.common.api.CommonResult;
+import com.gw.gwmall.common.api.TokenInfo;
 import com.gw.gwmall.constant.MDA;
 import com.gw.gwmall.mapper.UmsMemberLevelMapper;
 import com.gw.gwmall.mapper.UmsMemberMapper;
+import com.gw.gwmall.model.UmsMember;
 import com.gw.gwmall.model.UmsMemberExample;
+import com.gw.gwmall.model.UmsMemberLevel;
+import com.gw.gwmall.model.UmsMemberLevelExample;
 import com.gw.gwmall.service.RedisService;
 import com.gw.gwmall.service.UmsMemberService;
-import com.tuling.tulingmall.common.api.CommonResult;
-import com.tuling.tulingmall.common.api.TokenInfo;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

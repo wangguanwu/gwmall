@@ -1,5 +1,6 @@
 package com.gw.gwmall;
 
+import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
@@ -8,10 +9,10 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
  * @author guanwu
  */
 
-@SpringBootApplication
+@SpringBootApplication(exclude = DruidDataSourceAutoConfigure.class)
 @EnableRedisHttpSession// 开启spring session
-public class GeMallMemberApplication {
+public class GwMallMemberApplication {
     public static void main(String[] args) {
-        SpringApplication.run(GeMallMemberApplication.class, args);
+        SpringApplication.run(GwMallMemberApplication.class, args);
     }
 }

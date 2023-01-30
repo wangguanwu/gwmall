@@ -1,7 +1,7 @@
 package com.gw.gwmall.controller;
 
+import com.gw.gwmall.common.api.TokenInfo;
 import com.gw.gwmall.service.UmsMemberService;
-import com.tuling.tulingmall.common.api.TokenInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +16,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * Created by smlz on 2020/4/19.
+ *
  */
 @Slf4j
 @RestController

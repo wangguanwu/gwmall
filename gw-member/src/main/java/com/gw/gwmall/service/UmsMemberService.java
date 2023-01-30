@@ -1,5 +1,7 @@
 package com.gw.gwmall.service;
 
+import com.gw.gwmall.common.api.CommonResult;
+import com.gw.gwmall.common.api.TokenInfo;
 import com.gw.gwmall.model.UmsMember;
 
 import org.springframework.transaction.annotation.Transactional;

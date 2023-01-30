@@ -21,12 +21,12 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.gw.mall</groupId>
+            <groupId>com.gw.gwmall</groupId>
             <artifactId>gw-common</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>com.gw.mall</groupId>
+            <groupId>com.gw.gwmall</groupId>
             <artifactId>gw-redis-comm</artifactId>
         </dependency>
 

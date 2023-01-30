@@ -1,10 +1,10 @@
 package com.gw.gwmall.controller;
 
+import com.gw.gwmall.common.api.CommonResult;
 import com.gw.gwmall.domain.PortalMemberInfo;
 import com.gw.gwmall.model.UmsMember;
 import com.gw.gwmall.service.UmsMemberCenterService;
 import com.gw.gwmall.service.UmsMemberService;
-import com.tuling.tulingmall.common.api.CommonResult;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

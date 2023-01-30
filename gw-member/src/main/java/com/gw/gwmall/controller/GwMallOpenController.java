@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
 import com.gw.gwmall.model.UmsMember;
 import com.gw.gwmall.service.UmsMemberService;
-import com.tuling.tulingmall.model.UmsMember;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,7 +17,7 @@ import java.util.Map;
  * @desc 响应电商服务开放平台的请求。
  */
 @RestController
-public class TlmallOpenController {
+public class GwMallOpenController {
 
     @Resource
     private UmsMemberService umsMemberService;
