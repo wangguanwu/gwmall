@@ -45,6 +45,7 @@
         <jjwt.version>0.9.0</jjwt.version>
         <aliyun-oss.version>2.5.0</aliyun-oss.version>
         <logstash-logback.version>5.3</logstash-logback.version>
+        <lombok.version>1.18.24</lombok.version>
         <gw-common.version>${project.version}</gw-common.version>
         <gw-admin.version>${project.version}</gw-admin.version>
         <gw-core.version>${project.version}</gw-core.version>
@@ -218,6 +219,12 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-mongodb</artifactId>
                 <version>${mongodb-spring-boot-starter.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
