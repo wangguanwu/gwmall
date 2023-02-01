@@ -7,6 +7,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@MapperScan({"com.gw.gwmall.mall.mapper"})
+@MapperScan({"com.gw.gwmall.mall.mapper", "com.gw.gwmall.dao"})
 public class MyBatisConfig {
 }

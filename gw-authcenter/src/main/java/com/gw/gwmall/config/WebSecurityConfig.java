@@ -42,16 +42,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring().antMatchers("/assets/**", "/css/**", "/images/**");
     }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.formLogin().permitAll()
-                .and().authorizeRequests()
-                .antMatchers("/oauth/**").permitAll()
-                .anyRequest()
-                .authenticated()
-                .and().logout().permitAll()
-                .and().csrf().disable();
-    }
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http.formLogin().permitAll()
+//                .and().authorizeRequests()
+//                .antMatchers("/oauth/**").permitAll()
+//                .anyRequest()
+//                .authenticated()
+//                .and().logout().permitAll()
+//                .and().csrf().disable();
+//    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -63,9 +63,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
-    public static void main(String[] args) {
-        System.out.println(new BCryptPasswordEncoder().encode("test"));
-    }
+//    public static void main(String[] args) {
+//        System.out.println(new BCryptPasswordEncoder().encode("123456"));
+//    }
 
 }
 

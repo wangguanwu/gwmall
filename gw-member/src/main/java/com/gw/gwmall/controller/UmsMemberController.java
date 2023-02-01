@@ -77,9 +77,9 @@ public class UmsMemberController {
                               @RequestParam String password,
                               @RequestParam String verifyCode,
                               HttpServletRequest request) {
-        if(!HappyCaptcha.verification(request, verifyCode, true)){
-            return CommonResult.failed("请填入正确的验证码");
-        }
+//        if(!HappyCaptcha.verification(request, verifyCode, true)){
+//            return CommonResult.failed("请填入正确的验证码");
+//        }
         TokenInfo tokenInfo = memberService.login(username, password);
         if (tokenInfo == null) {
             return CommonResult.validateFailed("用户名或密码错误");

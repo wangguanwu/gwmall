@@ -4,11 +4,13 @@ server:
 spring:
   data:
     mongodb:
-      host: 218.76.8.107
+#      host: 218.76.8.107
+      host: 127.0.0.1
       port: 27017
       database: micromall
       password: 123456
-      username: root
+#      username: root
+      username: gwmall
 
 management:
   endpoints:

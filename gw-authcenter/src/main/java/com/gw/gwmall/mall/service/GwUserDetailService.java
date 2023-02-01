@@ -1,6 +1,8 @@
 package com.gw.gwmall.mall.service;
 
+import com.gw.gwmall.common.api.CommonResult;
 import com.gw.gwmall.mall.domain.MemberDetails;
+import com.gw.gwmall.mall.feign.UmsMemberFeignService;
 import com.gw.gwmall.mall.mapper.UmsMemberMapper;
 import com.gw.gwmall.mall.model.UmsMember;
 import com.gw.gwmall.mall.model.UmsMemberExample;
@@ -23,9 +25,8 @@ public class GwUserDetailService implements UserDetailsService {
     /**
      * 方法实现说明:用户登陆
      */
-
     @Autowired
-    private UmsMemberMapper memberMapper;
+    private UmsMemberFeignService umsMemberFeignService;
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
@@ -43,22 +44,20 @@ public class GwUserDetailService implements UserDetailsService {
 
         log.info("根据用户名:{}获取用户登陆信息:{}",userName,umsMember);
 
-        MemberDetails memberDetails = new MemberDetails(umsMember);
-
-        return memberDetails;
+        return new MemberDetails(umsMember);
     }
 
     /**
      * 方法实现说明:根据用户名获取用户信息
      */
     public UmsMember getByUsername(String username) {
-        UmsMemberExample example = new UmsMemberExample();
-        example.createCriteria().andUsernameEqualTo(username);
-        //todo 可以改成openfeign远程调用member微服务
-        List<UmsMember> memberList = memberMapper.selectByExample(example);
-        if (!CollectionUtils.isEmpty(memberList)) {
-            return memberList.get(0);
-        }
-        return null;
+//        UmsMemberExample example = new UmsMemberExample();
+//        example.createCriteria().andUsernameEqualTo(username);
+//        List<UmsMember> memberList = memberMapper.selectByExample(example);
+//        if (!CollectionUtils.isEmpty(memberList)) {
+//            return memberList.get(0);
+//        }
+        CommonResult<UmsMember> umsMemberCommonResult = umsMemberFeignService.loadUserByUsername(username);
+        return umsMemberCommonResult.getData();
     }
 }
