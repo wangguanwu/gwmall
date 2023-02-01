@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: gw-gateway  #微服务的名称
+
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848  #配置中心的地址
+#        namespace: 6cd8d896-4d19-4e33-9840-26e4bee9a618
+        namespace: df75feb0-a93b-4dd8-a7cd-faa98382887e
+        # dataid 为 yml 的文件扩展名配置方式
+        # `${spring.application.name}.${file-extension:properties}`
+        file-extension: yml
+
+        #通用配置
+        shared-configs[0]:
+          data-id: gw-nacos.yml
+          group: DEFAULT_GROUP
+          refresh: true
+
+  #profile粒度的配置
+  #`${spring.application.name}-${profile}.${file-extension:properties}`
+  profiles:
+    active: dev

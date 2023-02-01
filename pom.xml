@@ -16,6 +16,7 @@
         <module>gw-core</module>
         <module>gw-member</module>
         <module>gw-redis-comm</module>
+        <module>gw-gateway</module>
     </modules>
 
     <properties>
