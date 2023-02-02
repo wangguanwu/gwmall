@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gw.gwmall.promotion.dao.MiaoShaStockDao">
+
+    <!--扣减库存 防止库存超卖-->
+    <update id="descStock">
+        UPDATE sms_flash_promotion_product_relation
+        SET flash_promotion_count = flash_promotion_count - #{stock}
+        WHERE
+        id = #{id} and flash_promotion_count >= #{stock}
+    </update>
+
+    <update id="incStock">
+        UPDATE sms_flash_promotion_product_relation
+        SET flash_promotion_count = flash_promotion_count + #{stock}
+        WHERE
+        id = #{id}
+    </update>
+
+    <select id="getStock" resultType="java.lang.Integer">
+        select flash_promotion_count from sms_flash_promotion_product_relation where id=#{id}
+    </select>
+
+</mapper>

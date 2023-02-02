@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: gw-promotion
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848   #配置中心的地址
+        namespace: df75feb0-a93b-4dd8-a7cd-faa98382887e
+        file-extension: yml #配置文件结尾的配置
+        shared-configs[0]:
+          data-id: gw-nacos.yml
+          group: DEFAULT_GROUP
+          refresh: true
+        shared-configs[1]:
+          data-id: gw-redis.yml # redis服务集群配置
+          group: DEFAULT_GROUP
+          refresh: true
+        shared-configs[2]:
+          data-id: gw-redis-key-dev.yml #在多个服务之间共享redis的key
+          group: DEFAULT_GROUP
+          refresh: true
+
+  profiles:
+    active: dev

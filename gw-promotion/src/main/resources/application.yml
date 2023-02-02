@@ -1,0 +1,21 @@
+server:
+  port: 8822
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: gw-promotion
+  cloud:
+#    discovery:  #discovery配置，设置流量染色的元数据
+#      metadata:
+#        group: discovery-group
+#        version: 1.0
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: df75feb0-a93b-4dd8-a7cd-faa98382887e
+
+
+
+

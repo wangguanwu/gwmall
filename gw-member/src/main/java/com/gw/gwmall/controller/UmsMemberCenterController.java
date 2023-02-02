@@ -2,6 +2,8 @@ package com.gw.gwmall.controller;
 
 import com.gw.gwmall.common.api.CommonResult;
 import com.gw.gwmall.domain.PortalMemberInfo;
+import com.gw.gwmall.feign.CouponsFeignService;
+import com.gw.gwmall.model.SmsCouponHistory;
 import com.gw.gwmall.model.UmsMember;
 import com.gw.gwmall.service.UmsMemberCenterService;
 import com.gw.gwmall.service.UmsMemberService;
@@ -12,6 +14,7 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -66,5 +69,16 @@ public class UmsMemberCenterController {
             return CommonResult.success(null);
         }
         return CommonResult.failed();
+    }
+
+    @Autowired
+    private CouponsFeignService couponsFeignService;
+
+    @RequestMapping(value = "/coupons", method = RequestMethod.GET)
+    public CommonResult<List<SmsCouponHistory>> getCoupons(@RequestParam(value = "useStatus", required = false) Integer useStatus
+            , @RequestHeader("memberId") Long memberId){
+
+        // 通过openfeign从远程微服务gwmall-coupons获取优惠券信息
+        return couponsFeignService.list(useStatus, memberId);
     }
 }
