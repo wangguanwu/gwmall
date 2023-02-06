@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 /*系统启动时进行缓存预热*/
 @Component
 @Slf4j
-public class preheatCache implements CommandLineRunner {
+public class PreheatCacheCommandLineRunner implements CommandLineRunner {
 
     @Autowired
     private HomePromotionService homePromotionService;

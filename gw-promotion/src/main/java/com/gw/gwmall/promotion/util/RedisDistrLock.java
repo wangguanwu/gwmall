@@ -46,8 +46,9 @@ public class RedisDistrLock {
      */
     private void loadRedisScript(DefaultRedisScript<Long> redisScript, String luaName) {
         try {
-            List<Boolean> results = redisTemplate.getConnectionFactory().getConnection()
+            List<Boolean> results = Objects.requireNonNull(redisTemplate.getConnectionFactory()).getConnection()
                     .scriptExists(redisScript.getSha1());
+            assert results != null;
             if (Boolean.FALSE.equals(results.get(0))) {
                 String sha = redisTemplate.getConnectionFactory().getConnection()
                         .scriptLoad(redisScript.getScriptAsString().getBytes(StandardCharsets.UTF_8));

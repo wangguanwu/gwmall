@@ -132,10 +132,10 @@ public class HomePromotionServiceImpl implements HomePromotionService {
     }
 
     /*获取推荐品牌*/
-    private void getRecommendBrand(HomeContentResult result){
+    private void getRecommendBrand(HomeContentResult result) {
         final String brandKey = promotionRedisKey.getBrandKey();
         List<PmsBrand> recommendBrandList = redisOpsExtUtil.getListAll(brandKey, PmsBrand.class);
-        if(CollectionUtils.isEmpty(recommendBrandList)){
+        if (CollectionUtils.isEmpty(recommendBrandList)) {
             redisDistrLock.lock(promotionRedisKey.getDlBrandKey(),promotionRedisKey.getDlTimeout());
             try {
                 PageHelper.startPage(0,ConstantPromotion.HOME_RECOMMEND_PAGESIZE,"sort desc");
@@ -151,17 +151,17 @@ public class HomePromotionServiceImpl implements HomePromotionService {
             }
             result.setBrandList(recommendBrandList);
             log.info("品牌推荐信息存入缓存，键{}" ,brandKey);
-        }else{
+        } else {
             log.info("品牌推荐信息已在缓存，键{}" ,brandKey);
             result.setBrandList(recommendBrandList);
         }
     }
 
     /*获取人气推荐产品*/
-    private void getRecommendProducts(HomeContentResult result){
+    private void getRecommendProducts(HomeContentResult result) {
         final String recProductKey = promotionRedisKey.getRecProductKey();
         List<PmsProduct> recommendProducts = redisOpsExtUtil.getListAll(recProductKey, PmsProduct.class);
-        if(CollectionUtils.isEmpty(recommendProducts)){
+        if (CollectionUtils.isEmpty(recommendProducts)) {
             redisDistrLock.lock(promotionRedisKey.getDlRecProductKey(),promotionRedisKey.getDlTimeout());
             try {
                 PageHelper.startPage(0,ConstantPromotion.HOME_RECOMMEND_PAGESIZE,"sort desc");
@@ -175,7 +175,7 @@ public class HomePromotionServiceImpl implements HomePromotionService {
             }
             log.info("人气推荐商品信息存入缓存，键{}" ,recProductKey);
             result.setHotProductList(recommendProducts);
-        }else{
+        } else {
             log.info("人气推荐商品信息已在缓存，键{}" ,recProductKey);
             result.setHotProductList(recommendProducts);
         }

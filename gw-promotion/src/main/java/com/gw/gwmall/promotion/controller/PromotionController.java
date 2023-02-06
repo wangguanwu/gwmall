@@ -64,17 +64,6 @@ public class PromotionController {
 //        return value;
 //    }
 
-//    @ApiOperation("获取用户购物车商品的相关优惠券")
-//    @ApiImplicitParam(name = "type", value = "使用可用:0->不可用；1->可用",
-//            defaultValue = "1", allowableValues = "0,1", paramType = "query", dataType = "integer")
-//    @RequestMapping(value = "/list/cart/{type}", method = RequestMethod.GET)
-//    @ResponseBody
-//    public CommonResult<List<SmsCouponHistoryDetail>> listCartCoupons(@PathVariable Integer type,
-//                                                                      @RequestHeader("memberId") Long memberId) {
-//        List<CartPromotionItem> cartPromotionItemList = omsCartItemClientApi.listPromotionByMemberId().getData();
-//        List<SmsCouponHistoryDetail> couponHistoryList = userCouponService.listCart(cartPromotionItemList, type,memberId);
-//        return CommonResult.success(couponHistoryList);
-//    }
 
     @ApiOperation("获取用户购物车商品的相关优惠券")
     @ApiImplicitParam(name = "type", value = "使用可用:0->不可用；1->可用",

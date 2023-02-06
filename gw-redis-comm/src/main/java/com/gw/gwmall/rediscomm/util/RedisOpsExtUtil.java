@@ -14,7 +14,7 @@ public class RedisOpsExtUtil {
 
     @Autowired
     @Qualifier("redisCluster")
-    private RedisTemplate redisTemplate;
+    private RedisTemplate<String, Object> redisTemplate;
 
     public void set(String key,Object value){
         redisTemplate.opsForValue().set(key,value);
@@ -66,15 +66,15 @@ public class RedisOpsExtUtil {
                 .opsForValue().increment(key,delta);
     }
 
-    public boolean expire(String key,long timeout,TimeUnit unit){
+    public Boolean expire(String key,long timeout,TimeUnit unit){
         return redisTemplate.expire(key,timeout, unit);
     }
 
-    public boolean delete(String key){
+    public Boolean delete(String key){
         return redisTemplate.delete(key);
     }
 
-    public boolean hasKey(String key){
+    public Boolean hasKey(String key){
         return redisTemplate.hasKey(key);
     }
 

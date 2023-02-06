@@ -1,0 +1,74 @@
+server:
+  port: 8866
+spring:
+  application:
+    name: gw-product
+
+mybatis:
+  mapper-locations:
+    - classpath:com/**/mapper/*.xml
+    - classpath:dao/*.xml
+
+management: #开启SpringBoot Admin的监控
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+#  cloud:
+#    sentinel:
+#      transport:
+#        dashboard: 127.0.0.1:8096
+#      datasource:
+#        flow-rules:
+#          nacos:
+#            server-addr: 127.0.0.1:8848
+#            dataId: ${spring.application.name}‐flow‐rules
+#            groupId: SENTINEL_GROUP
+#            data‐type: json
+#            rule‐type: flow
+#        degrade-rules:
+#          nacos:
+#            server-addr: 127.0.0.1:8848
+#            dataId: ${spring.application.name}‐degrade‐rules
+#            groupId: SENTINEL_GROUP
+#            data‐type: json
+#            rule‐type: degrade
+#        param‐flow‐rules:
+#          nacos:
+#            server-addr: 127.0.0.1:8848
+#            dataId: ${spring.application.name}‐param‐flow‐rules
+#            groupId: SENTINEL_GROUP
+#            data‐type: json
+#            rule‐type: param‐flow
+#        authority‐rules:
+#          nacos:
+#            server-addr: 127.0.0.1:8848
+#            dataId: ${spring.application.name}‐authority‐rules
+#            groupId: SENTINEL_GROUP
+#            data‐type: json
+#            rule‐type: authority
+#        system‐rules:
+#          nacos:
+#            server-addr: 127.0.0.1:8848
+#            dataId: ${spring.application.name}‐system‐rules
+#            groupId: SENTINEL_GROUP
+#            data‐type: json
+#            rule‐type: system
+
+
+#seata:
+#  config:
+#    nacos:
+#      server-addr: 127.0.0.1:8848
+#    type: nacos
+#  registry:
+#    type: nacos
+#  tx-service-group: tlmall_tx_group
+#  client:
+#    support:
+#      spring:
+#        datasource-autoproxy: true
+
