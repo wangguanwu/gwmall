@@ -46,5 +46,5 @@ public interface StockManageService {
      * @return:
      * @exception:
      */
-    CommonResult lockStock(List<CartPromotionItem> cartPromotionItemList);
+    CommonResult<Boolean> lockStock(List<CartPromotionItem> cartPromotionItemList);
 }

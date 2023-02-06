@@ -64,14 +64,10 @@ public class StockManageController {
     }
 
     /**
-    * @vlog: 高于生活，源于生活
-    * @desc: 类的描述:锁定库存
-    * @author: smlz
-    * @createDate: 2020/3/16 19:31
-    * @version: 1.0
+    * 锁定库存
     */
     @RequestMapping("/lockStock")
-    public CommonResult lockStock(@RequestBody List<CartPromotionItem> cartPromotionItemList) {
+    public CommonResult<Boolean> lockStock(@RequestBody List<CartPromotionItem> cartPromotionItemList) {
         return stockManageService.lockStock(cartPromotionItemList);
     }
 }

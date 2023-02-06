@@ -25,7 +25,7 @@ public interface PmsProductFeignApi {
     CommonResult<List<PromotionProduct>> getPromotionProductList(@RequestParam("productIds") List<Long> ids);
 
     @RequestMapping("/stock/lockStock")
-    CommonResult lockStock(@RequestBody List<CartPromotionItem> cartPromotionItemList);
+    CommonResult<Integer> lockStock(@RequestBody List<CartPromotionItem> cartPromotionItemList);
 
     @RequestMapping(value = "/pms/productInfo/{id}", method = RequestMethod.GET)
     @ResponseBody

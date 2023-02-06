@@ -2,7 +2,6 @@ package com.gw.gwmall.cart.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.gw.gwmall.common.constant.RedisKeyPrefixConst;
-import com.gw.gwmall.cart.component.LocalCache;
 import com.gw.gwmall.cart.dao.FlashPromotionProductDao;
 import com.gw.gwmall.cart.dao.PortalProductDao;
 import com.gw.gwmall.cart.domain.*;
@@ -54,8 +53,6 @@ public class PmsProductServiceImpl implements PmsProductService {
 
     private Map<String, PmsProductParam> cacheMap = new ConcurrentHashMap<>();
 
-    @Autowired
-    private LocalCache cache;
 
     @Autowired
     RedissonClient redission;

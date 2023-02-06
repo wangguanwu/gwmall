@@ -8,7 +8,6 @@ import com.gw.gwmall.cart.domain.ConfirmOrderResult;
 import com.gw.gwmall.cart.model.OmsCartItem;
 import com.gw.gwmall.cart.service.OmsCartItemService;
 import com.gw.gwmall.cart.service.OmsPortalOrderService;
-import com.gw.gwmall.cart.service.SecKillOrderService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -16,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -26,9 +24,6 @@ import java.util.List;
 @RequestMapping("/cart")
 @Api(tags = "CartItemController")
 public class CartItemController {
-
-    @Resource
-    private SecKillOrderService secKillOrderService;
 
     @Autowired
     private OmsCartItemService cartItemService;
@@ -46,20 +41,7 @@ public class CartItemController {
         return CommonResult.success(confirmOrderResult);
     }
 
-    /**
-     * 秒杀订单确认页
-     * @param productId
-     * @param memberId
-     * @return
-     * @throws BusinessException
-     */
-    @RequestMapping(value = "/miaosha/generateConfirmOrder",method = RequestMethod.POST)
-    @ResponseBody
-    public CommonResult<ConfirmOrderResult> generateMiaoShaConfirmOrder(@RequestParam("productId") Long productId,
-                                                    String token,
-                                                    @RequestHeader("memberId") Long memberId) throws BusinessException {
-        return secKillOrderService.generateConfirmMiaoShaOrder(productId,memberId,token);
-    }
+
 
     @ApiOperation(value = "添加商品到购物车", notes = "修改购物逻辑,数据不必全都从前台传")
     @RequestMapping(value = "/add",method = RequestMethod.POST)
