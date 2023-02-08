@@ -1,0 +1,130 @@
+server:
+  port: 8844
+mybatis:
+  mapper-locations:
+    - classpath:dao/*.xml
+    - classpath:mapper/*.xml
+spring:
+  application:
+    name: gw-order-current
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+
+  #分库分表配置
+  shardingsphere:
+    #数据源配置
+    datasource:
+      names: ds-master,ds-slave
+      ds-master:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://127.0.0.1:3306/tl_mall_order?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
+        initialSize: 5
+        minIdle: 10
+        maxActive: 30
+        validationQuery: SELECT 1 FROM DUAL
+        username: root
+        password: wu123
+      # 模拟从库
+      ds-slave:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://127.0.0.1:3306/tl_mall_order?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
+        initialSize: 5
+        minIdle: 10
+        maxActive: 30
+        validationQuery: SELECT 1 FROM DUAL
+        username: root
+        password: wu123
+    sharding:
+      default-data-source-name: ds-master
+      default-database-strategy:
+        none:
+      tables:
+        oms_order:
+          actual-data-nodes: ds_ms.oms_order_$->{0..31}
+          table-strategy:
+            complex:
+              sharding-columns: id,member_id
+              algorithm-class-name: com.gw.gwmall.ordercurrent.sharding.OmsOrderShardingAlgorithm
+        oms_order_item:
+          actual-data-nodes: ds_ms.oms_order_item_$->{0..31}
+          table-strategy:
+            complex:
+              sharding-columns: order_id
+              algorithm-class-name: com.gw.gwmall.ordercurrent.sharding.OmsOrderItemShardingAlgorithm
+      binding-tables:
+        - oms_order,oms_order_item
+      broadcastTables:
+        - oms_company_address
+        - oms_order_operate_history
+        - oms_order_return_apply
+        - oms_order_return_reason
+        - oms_order_setting
+      #读写分离配置
+      master-slave-rules:
+        ds_ms:
+          master-data-sourceName: ds-master
+          slave-data-sourceNames:
+            - ds-slave
+          load-balance-algorithmType: ROUND_ROBIN
+    props:
+      sql:
+        show: true
+  redis:
+    cluster:
+      nodes: 127.0.0.1:8001,127.0.0.1:8002,127.0.0.1:8003,127.0.0.1:8004,127.0.0.1:8005,127.0.0.1:8006
+    #      nodes: 192.168.65.153:6379,192.168.65.222:6379,192.168.65.218:6379,192.168.65.186:6379,192.168.65.111:6379,192.168.65.162:6379
+    lettuce:
+      pool:
+        max-active: 8 # 连接池最大连接数（使用负值表示没有限制）
+        max-wait: -1ms # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-idle: 8 # 连接池中的最大空闲连接
+        min-idle: 0 # 连接池中的最小空闲连接
+    timeout: 3000ms # 连接超时时间（毫秒）
+#    password: noop
+
+  main:
+    allow-bean-definition-overriding: true
+
+logging:
+  level:
+    com:
+      gw:
+        gwmall:
+          ordercurrent:
+            service:
+              impl: debug
+          feignapi:
+            ums:
+              UmsMemberReceiveAddressFeignApi: debug
+# logging:
+#   config: classpath:logback-spring.xml
+
+#支付-当面付qrcode存储与访问路径设置
+trade:
+  zhifu:
+    qrcode:
+      aliPayPath: /alipay
+      weChatPath: /wechat
+      storePath: /app/gwmall/qr-code
+      httpBasePath: /static/qrcode
+      #      这个回调地址需要自己弄 Ngrok了解一下
+      paySuccessCallBack: http://218.76.8.107:8844/order/paySuccess
+      #paySuccessCallBack: http://roykingw.free.idcfengye.com/order/paySuccess
+
+rocketmq:
+#  name-server: 192.168.65.164:9876 #连接超时时间
+  name-server: 127.0.0.1:9876
+  producer:
+    send-message-timeout: 30000 #发送消息超时时间
+    group: order-group
+  gwmall:
+    scheduleTopic: order-status-check #定时任务
+    cancelGroup: cancel-order #消费组业务逻辑,取消超时未支付订单
+    transGroup: cart-delete #事务消息群组
+    transTopic: order-cart #订单-购物车主题
+    asyncOrderTopic: async-order #异步订单topic
+    asyncOrderGroup: async-order-group #异步下单消息消费

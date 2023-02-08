@@ -20,6 +20,7 @@
         <module>gw-promotion</module>
         <module>gw-product</module>
         <module>gw-cart</module>
+        <module>gw-order</module>
     </modules>
 
     <properties>
