@@ -36,7 +36,7 @@ public class UserCouponServiceImpl implements UserCouponService {
     private SmsCouponHistoryDao smsCouponHistoryDao;
     @Transactional
     @Override
-    public CommonResult activelyGet(Long couponId, Long memberId, String nickName) {
+    public CommonResult<String> activelyGet(Long couponId, Long memberId, String nickName, Integer getType) {
 
         //获取优惠券信息，判断数量
         SmsCoupon coupon = smsCouponMapper.selectByPrimaryKey(couponId);
@@ -64,8 +64,11 @@ public class UserCouponServiceImpl implements UserCouponService {
         couponHistory.setCreateTime(now);
         couponHistory.setMemberId(memberId);
         couponHistory.setMemberNickname(nickName);
+        if (getType < 0 || getType > 1) {
+            throw new IllegalArgumentException("getType值非法");
+        }
         //主动领取
-        couponHistory.setGetType(ConstantPromotion.USER_COUPON_GET_TYPE_PROACTIVE);
+        couponHistory.setGetType(getType);
         //未使用
         couponHistory.setUseStatus(ConstantPromotion.USER_COUPON_USE_STATE_UNUSE);
         smsCouponHistoryMapper.insert(couponHistory);

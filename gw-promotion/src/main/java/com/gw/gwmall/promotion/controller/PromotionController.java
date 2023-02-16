@@ -6,12 +6,14 @@ import com.gw.gwmall.promotion.domain.CartPromotionItem;
 import com.gw.gwmall.promotion.domain.SmsCouponHistoryDetail;
 import com.gw.gwmall.promotion.model.SmsCouponHistory;
 import com.gw.gwmall.promotion.service.UserCouponService;
+import com.gw.gwmall.promotion.service.impl.ConstantPromotion;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,10 +32,11 @@ public class PromotionController {
     @ApiOperation("用户领取指定优惠券")
     @RequestMapping(value = "/add/{couponId}", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult userActivelyGet(@PathVariable("couponId") Long couponId,
+    public CommonResult<String> userActivelyGet(@PathVariable("couponId") Long couponId,
                                         @RequestHeader(value = "memberId") Long memberId,
-                                        @RequestHeader(value = "nickName") String nickName) {
-        return userCouponService.activelyGet(couponId,memberId,nickName);
+                                        @RequestHeader(value = "nickName") String nickName,
+                                        @RequestParam(value = "getType", defaultValue = ""+ConstantPromotion.USER_COUPON_GET_TYPE_GIFT) Integer getType) {
+        return userCouponService.activelyGet(couponId,memberId,nickName, getType);
     }
 
     @ApiOperation("获取用户优惠券列表")

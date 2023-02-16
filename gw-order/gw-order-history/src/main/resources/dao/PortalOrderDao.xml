@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gw.gwmall.history.dao.PortalOrderDao">
+    <resultMap id="orderDetailMap" type="com.gw.gwmall.history.domain.OmsOrderDetail"
+               extends="com.gw.gwmall.history.mapper.OmsOrderMapper.BaseResultMap">
+        <collection property="orderItemList" columnPrefix="ot_"
+                    resultMap="com.gw.gwmall.history.mapper.OmsOrderItemMapper.BaseResultMap">
+        </collection>
+    </resultMap>
+    <select id="getRangeOrders" resultMap="orderDetailMap">
+        SELECT
+        o.id,
+        o.member_id,
+        o.coupon_id,
+        o.order_sn,
+        o.create_time,
+        o.member_username,
+        o.total_amount,
+        o.pay_amount,
+        o.freight_amount,
+        o.promotion_amount,
+        o.integration_amount,
+        o.coupon_amount,
+        o.discount_amount,
+        o.pay_type,
+        o.source_type,
+        o.status,
+        o.order_type,
+        o.delivery_company,
+        o.delivery_sn,
+        o.auto_confirm_day,
+        o.integration,
+        o.growth,
+        o.promotion_info,
+        o.bill_type,
+        o.bill_header,
+        o.bill_content,
+        o.bill_receiver_phone,
+        o.bill_receiver_email,
+        o.receiver_name,
+        o.receiver_phone,
+        o.receiver_post_code,
+        o.receiver_province,
+        o.receiver_city,
+        o.receiver_region,
+        o.receiver_detail_address,
+        o.note,
+        o.confirm_status,
+        o.delete_status,
+        o.use_integration,
+        o.payment_time,
+        o.delivery_time,
+        o.receive_time,
+        o.comment_time,
+        o.modify_time,
+        o.qrcode,
+        o.gmt_create,
+        o.gmt_modified,
+        o.version,
+        ot.id ot_id,
+        ot.order_id ot_order_id,
+        ot.order_sn ot_order_sn,
+        ot.product_id ot_product_id,
+        ot.product_pic ot_product_pic,
+        ot.product_name ot_product_name,
+        ot.product_brand ot_product_brand,
+        ot.product_sn ot_product_sn,
+        ot.product_price ot_product_price,
+        ot.product_quantity ot_product_quantity,
+        ot.product_sku_id ot_product_sku_id,
+        ot.product_sku_code ot_product_sku_code,
+        ot.product_category_id ot_product_category_id,
+        ot.sp1 ot_sp1,
+        ot.sp2 ot_sp2,
+        ot.sp3 ot_sp3,
+        ot.promotion_name ot_promotion_name,
+        ot.promotion_amount ot_promotion_amount,
+        ot.coupon_amount ot_coupon_amount,
+        ot.integration_amount ot_integration_amount,
+        ot.real_amount ot_real_amount,
+        ot.gift_integration ot_gift_integration,
+        ot.gift_growth ot_gift_growth,
+        ot.product_attr ot_ot_product_attr,
+        ot.gmt_create ot_gmt_create,
+        ot.gmt_modified ot_gmt_modified
+        FROM
+        ${orderTableName} o
+        LEFT JOIN
+        ${orderItemTableName} ot
+        ON o.id = ot.order_id
+        WHERE o.id >= #{orderId} and o.gmt_create &lt; #{gmtCreate}
+        order by o.id limit #{fetchRecordNumbers}
+    </select>
+
+    <delete id="deleteMigrateOrdersItems">
+        delete from ${orderItemTableName} ot
+        WHERE ot.order_id >= #{minOrderId} and ot.order_id &lt;= #{maxOrderId}
+    </delete>
+
+    <delete id="deleteMigrateOrders">
+        delete from ${orderTableName} o
+        WHERE o.id >= #{minOrderId} and o.id &lt;= #{maxOrderId}
+    </delete>
+
+</mapper>

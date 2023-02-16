@@ -4,6 +4,10 @@ spring:
   application:
     name: gw-product
 
+  datasource:
+    dynamic:
+      primary: goods
+
 mybatis:
   mapper-locations:
     - classpath:com/**/mapper/*.xml
@@ -59,16 +63,39 @@ management: #开启SpringBoot Admin的监控
 #            rule‐type: system
 
 
-#seata:
-#  config:
-#    nacos:
-#      server-addr: 127.0.0.1:8848
-#    type: nacos
-#  registry:
-#    type: nacos
-#  tx-service-group: tlmall_tx_group
-#  client:
-#    support:
-#      spring:
-#        datasource-autoproxy: true
+seata:
+  tx-service-group: gw-order-group
+  application-id: ${spring.application.name}
+  registry:
+    type: nacos
+    nacos:
+      application: seata-server
+      group: SEATA_GROUP
+      server-addr: 127.0.0.1:8848
 
+  config:
+    type: nacos
+    nacos:
+      server-addr: 127.0.0.1:8848
+      namespace: seata-ns
+      group: SEATA_GROUP
+      data-id: seataServer.properties
+
+  client:
+    support:
+      spring:
+        datasource-autoproxy: true
+
+logging:
+  level:
+    com:
+      gw:
+        gwmall:
+          mapper: debug
+          dao: debug
+
+rocketmq:
+  name-server: 127.0.0.1:9876 #连接超时时间
+  gwmall:
+    couponConsumerGroup: coupon-give-away-consumer-group #事务消息群组
+    transCouponTopic: trans-coupon-topic #

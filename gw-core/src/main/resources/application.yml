@@ -1,0 +1,32 @@
+spring:
+  datasource:
+    dynamic:
+      primary: user
+      # 未匹配到数据源时，true抛异常，false使用默认数据源
+      strict: false
+      datasource:
+        user:
+          url: jdbc:mysql://127.0.0.1::3306/tl_mall_user?characterEncoding=utf-8&useSSL=false
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          username: root
+          password: wu123
+        goods:
+          url: jdbc:mysql://127.0.0.1::3306/tl_mall_goods?characterEncoding=utf-8&useSSL=false
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          username: root
+          password: wu123
+        promotion:
+          url: jdbc:mysql://127.0.0.1::3306/tl_mall_promotion?characterEncoding=utf-8&useSSL=false
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          username: root
+          password: wu123
+        normal:
+          url: jdbc:mysql://127.0.0.1::3306/tl_mall_normal?characterEncoding=utf-8&useSSL=false
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          username: root
+          password: wu123
+        order:
+          url: jdbc:mysql://127.0.0.1:3306/tl_mall_order?characterEncoding=utf-8&useSSL=false
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          username: root
+          password: wu123

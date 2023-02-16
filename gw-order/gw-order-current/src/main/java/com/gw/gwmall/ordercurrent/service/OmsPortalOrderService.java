@@ -23,7 +23,7 @@ public interface OmsPortalOrderService {
      * 根据提交信息生成订单
      */
     @Transactional
-    @ShardingTransactionType(TransactionType.XA)
+    @ShardingTransactionType(TransactionType.BASE)
     CommonResult generateOrder(OrderParam orderParam,Long memberId);
 
     /**

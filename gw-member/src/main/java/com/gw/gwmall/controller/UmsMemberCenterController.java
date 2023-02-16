@@ -71,14 +71,15 @@ public class UmsMemberCenterController {
         return CommonResult.failed();
     }
 
-    @Autowired
-    private CouponsFeignService couponsFeignService;
+//    @Autowired
+//    private CouponsFeignService couponsFeignService;
 
     @RequestMapping(value = "/coupons", method = RequestMethod.GET)
     public CommonResult<List<SmsCouponHistory>> getCoupons(@RequestParam(value = "useStatus", required = false) Integer useStatus
             , @RequestHeader("memberId") Long memberId){
 
         // 通过openfeign从远程微服务gwmall-coupons获取优惠券信息
-        return couponsFeignService.list(useStatus, memberId);
+//        return null; couponsFeignService.list(useStatus, memberId);
+        return null;
     }
 }

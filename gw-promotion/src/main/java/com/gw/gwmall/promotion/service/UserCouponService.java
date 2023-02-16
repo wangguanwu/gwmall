@@ -17,7 +17,7 @@ public interface UserCouponService {
      * 会员添加优惠券
      */
     @Transactional
-    CommonResult activelyGet(Long couponId, Long memberId, String nickName);
+    CommonResult<String> activelyGet(Long couponId, Long memberId, String nickName, Integer getType);
 
     /**
      * 获取优惠券列表

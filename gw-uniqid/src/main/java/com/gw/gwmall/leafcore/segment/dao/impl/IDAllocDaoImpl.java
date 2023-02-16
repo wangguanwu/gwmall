@@ -31,7 +31,7 @@ public class IDAllocDaoImpl implements IDAllocDao {
     public List<LeafAlloc> getAllLeafAllocs() {
         SqlSession sqlSession = sqlSessionFactory.openSession(false);
         try {
-            return sqlSession.selectList("com.tuling.leafcore.segment.dao.IDAllocMapper.getAllLeafAllocs");
+            return sqlSession.selectList("com.gw.gwmall.leafcore.segment.dao.IDAllocMapper.getAllLeafAllocs");
         } finally {
             sqlSession.close();
         }
@@ -41,8 +41,8 @@ public class IDAllocDaoImpl implements IDAllocDao {
     public LeafAlloc updateMaxIdAndGetLeafAlloc(String tag) {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         try {
-            sqlSession.update("com.gw.leafcore.segment.dao.IDAllocMapper.updateMaxId", tag);
-            LeafAlloc result = sqlSession.selectOne("com.gw.leafcore.segment.dao.IDAllocMapper.getLeafAlloc", tag);
+            sqlSession.update("com.gw.gwmall.leafcore.segment.dao.IDAllocMapper.updateMaxId", tag);
+            LeafAlloc result = sqlSession.selectOne("com.gw.gwmall.leafcore.segment.dao.IDAllocMapper.getLeafAlloc", tag);
             sqlSession.commit();
             return result;
         } finally {
@@ -54,8 +54,8 @@ public class IDAllocDaoImpl implements IDAllocDao {
     public LeafAlloc updateMaxIdByCustomStepAndGetLeafAlloc(LeafAlloc leafAlloc) {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         try {
-            sqlSession.update("com.gw.leafcore.segment.dao.IDAllocMapper.updateMaxIdByCustomStep", leafAlloc);
-            LeafAlloc result = sqlSession.selectOne("com.gw.leafcore.segment.dao.IDAllocMapper.getLeafAlloc", leafAlloc.getKey());
+            sqlSession.update("com.gw.gwmall.leafcore.segment.dao.IDAllocMapper.updateMaxIdByCustomStep", leafAlloc);
+            LeafAlloc result = sqlSession.selectOne("com.gw.gwmall.leafcore.segment.dao.IDAllocMapper.getLeafAlloc", leafAlloc.getKey());
             sqlSession.commit();
             return result;
         } finally {
@@ -67,7 +67,7 @@ public class IDAllocDaoImpl implements IDAllocDao {
     public List<String> getAllTags() {
         SqlSession sqlSession = sqlSessionFactory.openSession(false);
         try {
-            return sqlSession.selectList("com.gw.leafcore.segment.dao.IDAllocMapper.getAllTags");
+            return sqlSession.selectList("com.gw.gwmall.leafcore.segment.dao.IDAllocMapper.getAllTags");
         } finally {
             sqlSession.close();
         }

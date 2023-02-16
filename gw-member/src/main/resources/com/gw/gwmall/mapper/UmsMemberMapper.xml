@@ -115,8 +115,8 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.gw.gwmall.model.UmsMember">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+  <insert id="insert" parameterType="com.gw.gwmall.model.UmsMember" useGeneratedKeys="true">
+    <selectKey  keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into ums_member (member_level_id, username, password, 

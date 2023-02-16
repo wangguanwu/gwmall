@@ -1,7 +1,11 @@
 package com.gw.gwmall.service.impl;
 
 import com.gw.gwmall.common.api.CommonResult;
+import com.gw.gwmall.common.api.ResultCode;
 import com.gw.gwmall.common.api.TokenInfo;
+import com.gw.gwmall.common.domain.UserCoupon;
+import com.gw.gwmall.common.exception.GwRuntimeException;
+import com.gw.gwmall.component.rocketmq.MemberMessageSender;
 import com.gw.gwmall.constant.MDA;
 import com.gw.gwmall.mapper.UmsMemberLevelMapper;
 import com.gw.gwmall.mapper.UmsMemberMapper;
@@ -14,7 +18,6 @@ import com.gw.gwmall.service.UmsMemberService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -25,6 +28,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestTemplate;
 
+import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -36,20 +40,23 @@ import java.util.Random;
 public class UmsMemberServiceImpl implements UmsMemberService {
     private static final Logger LOGGER = LoggerFactory.getLogger(UmsMemberServiceImpl.class);
 
-    @Autowired
+    @Resource
     private RestTemplate restTemplate;
 
-    @Autowired
+    @Resource
     private PasswordEncoder passwordEncoder;
 
-    @Autowired
+    @Resource
     private UmsMemberMapper memberMapper;
 
-    @Autowired
+    @Resource
     private UmsMemberLevelMapper memberLevelMapper;
 
-    @Autowired
+    @Resource
     private RedisService redisService;
+
+    @Resource
+    private MemberMessageSender memberMessageSender;
 
     @Value("${redis.key.prefix.authCode}")
     private String REDIS_KEY_PREFIX_AUTH_CODE;
@@ -79,9 +86,9 @@ public class UmsMemberServiceImpl implements UmsMemberService {
     @Override
     public CommonResult register(String username, String password, String telephone, String authCode) {
         //验证验证码
-        if(!verifyAuthCode(authCode,telephone)){
-            return CommonResult.failed("验证码错误");
-        }
+//        if(!verifyAuthCode(authCode,telephone)){
+//            return CommonResult.failed("验证码错误");
+//        }
         //查询是否已有该用户
         UmsMemberExample example = new UmsMemberExample();
         example.createCriteria().andUsernameEqualTo(username);
@@ -97,6 +104,7 @@ public class UmsMemberServiceImpl implements UmsMemberService {
         umsMember.setPassword(passwordEncoder.encode(password));
         umsMember.setCreateTime(new Date());
         umsMember.setStatus(1);
+        umsMember.setNickname("");
         //获取默认会员等级并设置
         UmsMemberLevelExample levelExample = new UmsMemberLevelExample();
         levelExample.createCriteria().andDefaultStatusEqualTo(1);
@@ -105,7 +113,20 @@ public class UmsMemberServiceImpl implements UmsMemberService {
             umsMember.setMemberLevelId(memberLevelList.get(0).getId());
         }
         memberMapper.insert(umsMember);
+        //全品类优惠券id
+        final long fullProductCouponId = 2;
+        UserCoupon userCoupon = new UserCoupon();
+        userCoupon.setNick(umsMember.getUsername());
+        userCoupon.setType(0);
+        userCoupon.setMemberId(umsMember.getId());
+        userCoupon.setCouponId(fullProductCouponId);
+        //todo 异步处理？
+        boolean sendOk = memberMessageSender.sendTransactionMessage(userCoupon);
+        if (!sendOk) {
+            throw new GwRuntimeException((int)ResultCode.COUPON_SEND_FAILED.getCode());
+        }
         umsMember.setPassword(null);
+
         return CommonResult.success(null,"注册成功");
     }
 

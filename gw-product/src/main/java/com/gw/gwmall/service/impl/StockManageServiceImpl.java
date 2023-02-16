@@ -15,6 +15,7 @@ import com.gw.gwmall.service.StockManageService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 
 import java.util.Date;
@@ -74,6 +75,7 @@ public class StockManageServiceImpl implements StockManageService {
             skuStockMapper.updateByPrimaryKeySelective(skuStock);
     这里是先查再减，会有并发问题。
     * 实际扣减时也要判断商品库存是否足够扣减，否则会出现超卖*/
+    @Transactional
     @Override
     public CommonResult<Boolean>  lockStock(List<CartPromotionItem> cartPromotionItemList) {
         try {
@@ -82,9 +84,12 @@ public class StockManageServiceImpl implements StockManageService {
                 pmsSkuStockExample.createCriteria()
                         .andIdEqualTo(cartPromotionItem.getProductSkuId())
                         .andStockGreaterThanOrEqualTo(cartPromotionItem.getQuantity());
-                skuStockMapper.lockStockByExample(cartPromotionItem.getQuantity(),pmsSkuStockExample);
+                int res = skuStockMapper.lockStockByExample(cartPromotionItem.getQuantity(),pmsSkuStockExample);
+                if (res <= 0) {
+                    throw new RuntimeException("扣减库存失败");
+                }
             }
-            /*这里我们做了简单化处理，认为所有商品的库存锁定在业务上都可以成功，
+            /*这里做了简单化处理，认为所有商品的库存锁定在业务上都可以成功，
             也就是商品库存一定足够扣减。
             实际要检查SQL操作返回行数，以供后续处理每个商品的锁定结果*/
             return CommonResult.success(true);
@@ -95,6 +100,7 @@ public class StockManageServiceImpl implements StockManageService {
     }
 
     /*订单支付后，实际扣减库存*/
+    @Transactional
     @Override
     public CommonResult<Integer> reduceStock(List<StockChanges> stockChangesList) {
         try {
@@ -113,6 +119,7 @@ public class StockManageServiceImpl implements StockManageService {
     }
 
     /*订单取消后，恢复库存*/
+    @Transactional
     @Override
     public CommonResult<Boolean>  recoverStock(List<StockChanges> stockChangesList) {
         try {

@@ -13,6 +13,7 @@ import com.gw.gwmall.cart.service.OmsCartItemService;
 import com.gw.gwmall.cart.service.OmsPromotionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
@@ -177,6 +178,7 @@ public class OmsCartItemServiceImpl implements OmsCartItemService {
     }
 
     @Override
+    @Transactional
     public int delete(Long memberId, List<Long> ids) {
         OmsCartItem record = new OmsCartItem();
         record.setDeleteStatus(1);

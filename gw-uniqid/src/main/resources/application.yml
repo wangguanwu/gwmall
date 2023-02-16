@@ -2,7 +2,7 @@ server:
   port: 8833
 spring:
   application:
-    name: gwmall-unqid
+    name: gw-unqid
   cloud:
     nacos:
       discovery:

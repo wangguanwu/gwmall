@@ -35,3 +35,12 @@ redis:
     expire:
       authCode: 90 # 验证码超期时间
 
+
+rocketmq:
+  name-server: 127.0.0.1:9876 #连接超时时间
+  producer:
+    send-message-timeout: 30000 #发送消息超时时间
+    group: member-producer-group
+  gwmall:
+    couponConsumerGroup: coupon-give-away-consumer-group #事务消息群组
+    transCouponTopic: trans-coupon-topic #

@@ -12,7 +12,7 @@ import java.util.List;
 /**
 * @desc: 类的描述: 订单服务用于调用商品服务锁定库存
 */
-@FeignClient(value = "tulingmall-product",path = "/stock")
+@FeignClient(value = "gw-product",path = "/stock")
 public interface PmsProductStockFeignApi {
 
 

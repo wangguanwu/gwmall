@@ -17,7 +17,9 @@ public enum ResultCode implements IErrorCode {
     TOMANY_REQUEST_ERROR(429,"后端服务触发流控"),
     BACKGROUD_DEGRADE_ERROR(604,"后端服务触发降级"),
     BAD_GATEWAY(502,"网关服务异常"),
-    FORBIDDEN(403, "没有相关权限");
+    FORBIDDEN(403, "没有相关权限"),
+
+    COUPON_SEND_FAILED(700, "赠送优惠券失败");
     private long code;
     private String message;
 

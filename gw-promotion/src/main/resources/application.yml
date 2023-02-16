@@ -19,6 +19,11 @@ mybatis:
       discovery:
         server-addr: 127.0.0.1:8848
 
+rocketmq:
+  name-server: 127.0.0.1:9876 #连接超时时间
+  gwmall:
+    couponConsumerGroup: coupon-give-away-consumer-group #事务消息群组
+    transCouponTopic: trans-coupon-topic #
 
 
 

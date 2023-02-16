@@ -11,4 +11,9 @@ public class MqCancelOrder {
     private Long orderId;
 
     private Long memberId;
+
+    @Override
+    public String toString() {
+        return orderId + ":" + memberId;
+    }
 }

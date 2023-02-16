@@ -5,7 +5,7 @@ import com.alipay.api.internal.util.AlipaySignature;
 import com.google.common.collect.Maps;
 import com.gw.gwmall.common.api.CommonResult;
 import com.gw.gwmall.common.exception.BusinessException;
-import com.gw.gwmall.ordercurrent.component.rocketmq.OrderMessageSender;
+import com.gw.gwmall.ordercurrent.component.rocketmq.pay.OrderMessageSender;
 import com.gw.gwmall.ordercurrent.component.trade.alipay.config.Configs;
 import com.gw.gwmall.ordercurrent.domain.MqCancelOrder;
 import com.gw.gwmall.ordercurrent.domain.OmsOrderDetail;

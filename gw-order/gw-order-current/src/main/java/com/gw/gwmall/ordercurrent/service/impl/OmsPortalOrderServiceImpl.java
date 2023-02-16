@@ -3,6 +3,7 @@ package com.gw.gwmall.ordercurrent.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.gw.gwmall.common.api.CommonResult;
 import com.gw.gwmall.common.api.ResultCode;
+import com.gw.gwmall.common.exception.BusinessException;
 import com.gw.gwmall.ordercurrent.component.CancelOrderSender;
 import com.gw.gwmall.ordercurrent.dao.PortalOrderDao;
 import com.gw.gwmall.ordercurrent.dao.PortalOrderItemDao;
@@ -18,6 +19,8 @@ import com.gw.gwmall.ordercurrent.mapper.OmsOrderSettingMapper;
 import com.gw.gwmall.ordercurrent.model.*;
 import com.gw.gwmall.ordercurrent.service.OmsPortalOrderService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.shardingsphere.transaction.annotation.ShardingTransactionType;
+import org.apache.shardingsphere.transaction.core.TransactionType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -148,6 +151,7 @@ public class OmsPortalOrderServiceImpl implements OmsPortalOrderService {
     @Override
     //@GlobalTransactional(name = "generateOrder",rollbackFor = Exception.class)
     @Transactional
+    @ShardingTransactionType(TransactionType.BASE)
     public CommonResult generateOrder(OrderParam orderParam, Long memberId) {
         log.debug("接受参数OrderParam：{} memberId：{}",orderParam,memberId);
         if(null == orderParam || null == memberId){
@@ -272,8 +276,7 @@ public class OmsPortalOrderServiceImpl implements OmsPortalOrderService {
         omsOrderMapper.insert(order);
         orderItemDao.insertList(orderItemList);
 
-        //TODO 分布式事务 删除购物车中的下单商品
-//        deleteCartItemList(cartPromotionItemList, memberId);
+        deleteCartItemList(cartPromotionItemList, memberId);
         Map<String, Object> result = new HashMap<>();
         result.put("order", order);
         result.put("orderItemList", orderItemList);
@@ -407,7 +410,12 @@ public class OmsPortalOrderServiceImpl implements OmsPortalOrderService {
         for (CartPromotionItem cartPromotionItem : cartPromotionItemList) {
             ids.add(cartPromotionItem.getId());
         }
-        //TODO cartItemService.delete(memberId, ids);
+
+//        cartItemService.delete(memberId, ids);
+        CommonResult<Integer> result = cartFeignApi.cartDelete(ids);
+        if (result.getCode() != ResultCode.SUCCESS.getCode()) {
+            throw new RuntimeException("清空购物车失败");
+        }
     }
 
 //    /**

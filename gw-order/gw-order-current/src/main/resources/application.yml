@@ -109,7 +109,7 @@ trade:
     qrcode:
       aliPayPath: /alipay
       weChatPath: /wechat
-      storePath: /app/gwmall/qr-code
+      storePath: /Users/guanwu/gwmall/qr-code
       httpBasePath: /static/qrcode
       #      这个回调地址需要自己弄 Ngrok了解一下
       paySuccessCallBack: http://218.76.8.107:8844/order/paySuccess
@@ -128,3 +128,31 @@ rocketmq:
     transTopic: order-cart #订单-购物车主题
     asyncOrderTopic: async-order #异步订单topic
     asyncOrderGroup: async-order-group #异步下单消息消费
+
+
+# seata配置
+seata:
+  application-id: ${spring.application.name}
+  tx-service-group: gw-order-group
+  registry:
+    type: nacos
+    nacos:
+      application: seata-server
+      server-addr: 127.0.0.1:8848
+      group: SEATA_GROUP
+      username:
+      password:
+
+
+  config:
+    type: nacos
+    nacos:
+      server-addr: 127.0.0.1:8848
+      namespace: seata-ns
+      group: SEATA_GROUP
+      data-id: seataServer.properties
+      username:
+      password:
+  #      关闭数据源自动代理，由sharding-jdbc代理
+  enable-auto-data-source-proxy: false
+
