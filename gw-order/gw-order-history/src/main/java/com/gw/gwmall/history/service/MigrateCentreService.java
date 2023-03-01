@@ -5,14 +5,14 @@ package com.gw.gwmall.history.service;
  */
 public interface MigrateCentreService {
     /*单表迁移*/
-    String migrateSingleTableOrders(int tableNo);
+    String migrateSingleOrderTable(int tableNo);
 
     /*全部迁移*/
-    String migrateTablesOrders();
+    String migrateAllOrderTables();
 
     /*停止迁移*/
-    public void stopMigrate();
+    void stop();
 
     /*恢复迁移*/
-    public void recoverMigrate();
+    void recover();
 }

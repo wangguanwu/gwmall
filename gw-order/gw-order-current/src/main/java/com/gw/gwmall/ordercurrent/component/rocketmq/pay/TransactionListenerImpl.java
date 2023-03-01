@@ -9,6 +9,7 @@ import com.gw.gwmall.ordercurrent.service.impl.OrderConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.rocketmq.spring.annotation.RocketMQMessageListener;
+import org.apache.rocketmq.spring.annotation.RocketMQTransactionListener;
 import org.apache.rocketmq.spring.core.RocketMQLocalTransactionListener;
 import org.apache.rocketmq.spring.core.RocketMQLocalTransactionState;
 import org.apache.rocketmq.spring.support.RocketMQHeaders;
@@ -25,7 +26,7 @@ import java.util.Date;
  */
 @Slf4j
 @Component
-@RocketMQMessageListener(consumerGroup = "CancelOrderGroup", topic = "${rocketmq.gwmall.asyncOrderTopic}")
+@RocketMQTransactionListener()
 public class TransactionListenerImpl implements RocketMQLocalTransactionListener {
     //由于要做微服务负载均衡，检查次数就不能在本地记录了。
 //    private ConcurrentHashMap<String, Integer> localTrans = new ConcurrentHashMap<>();

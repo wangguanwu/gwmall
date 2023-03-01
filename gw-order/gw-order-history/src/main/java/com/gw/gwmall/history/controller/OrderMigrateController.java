@@ -26,26 +26,31 @@ public class OrderMigrateController {
     @ApiOperation("指定数据表执行数据迁移")
     @RequestMapping(value = "/specificTableMigrate",method = {RequestMethod.POST,RequestMethod.GET})
     public String migrateSpecificTable(@RequestParam int tableNo){
-        return migrateCentreService.migrateSingleTableOrders(tableNo);
+        return migrateCentreService.migrateSingleOrderTable(tableNo);
     }
 
     @ApiOperation("全部数据表进行迁移")
     @RequestMapping(value = "/migrateTables",method = {RequestMethod.POST,RequestMethod.GET})
     public String migrateTables(){
-        return migrateCentreService.migrateTablesOrders();
+        return migrateCentreService.migrateAllOrderTables();
     }
 
     @ApiOperation("停止迁移")
     @RequestMapping(value = "/stopMigrate",method = {RequestMethod.POST,RequestMethod.GET})
     public String stopRoundMigrate(){
-        migrateCentreService.stopMigrate();
+        migrateCentreService.stop();
         return OrderConstant.MIGRATE_SUCCESS;
     }
 
+    /**
+     * 接口已废弃，迁移开始时，会自动调用recover方法恢复迁移
+     * @return
+     */
+    @Deprecated
     @ApiOperation("恢复迁移")
     @RequestMapping(value = "/recoverMigrate",method = {RequestMethod.POST,RequestMethod.GET})
     public String recoverMigrate(){
-        migrateCentreService.recoverMigrate();
+        migrateCentreService.recover();
         return OrderConstant.MIGRATE_SUCCESS;
     }
 }

@@ -1,0 +1,23 @@
+mybatis:
+  mapper-locations:
+    - classpath:dao/*.xml
+    - classpath*:com/**/mapper/*.xml
+feign:
+  client:
+    config:
+      default:
+        loggerLevel: full
+        requestInterceptors:
+          - com.gw.gwmall.common.component.interceptor.HeaderInterceptor
+        readTimeout: 3000
+        connectTimeout: 3000
+
+logging:
+  level:
+    root: info
+server:
+  port: 8887
+promotion:
+  demo:
+    allowLocalCache: true
+    allowRemoteCache: true

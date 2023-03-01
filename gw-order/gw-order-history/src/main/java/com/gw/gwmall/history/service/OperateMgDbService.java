@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface OperateMgDbService {
 
-    @Transactional(value = "mongoTransactionManager",rollbackFor = Throwable.class)
+    @Transactional(transactionManager = "mongoTransactionManager",rollbackFor = Throwable.class)
     void saveToMgDb(List<OmsOrderDetail> orders,long curMaxOrderId,String tableName);
 
     long getMaxOrderId(String tableName);

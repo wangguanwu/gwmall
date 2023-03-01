@@ -21,7 +21,7 @@ public class CancelOrderSender implements InitializingBean {
     @Resource
     private RocketMQTemplate rocketMQTemplate;
 
-    @Value("${rocketmq.gwmall.async-order}")
+    @Value("${rocketmq.gwmall.asyncOrderTopic}")
     private String asyncOrderTopic;
 
     public void sendMessage(MqCancelOrder mqCancelOrder, final long delayTimes){

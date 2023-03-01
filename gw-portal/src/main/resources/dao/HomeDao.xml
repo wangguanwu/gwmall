@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gw.gwmall.portal.dao.HomeDao">
+    <select id="getRecommendBrandList" resultMap="com.gw.gwmall.mapper.PmsBrandMapper.BaseResultMap">
+        SELECT b.*
+        FROM
+            tl_mall_promotion.sms_home_brand hb
+            LEFT JOIN tl_mall_goods.pms_brand b ON hb.brand_id = b.id
+        WHERE
+            hb.recommend_status = 1
+            AND b.show_status = 1
+        ORDER BY
+            hb.sort DESC
+        LIMIT #{offset}, #{limit}
+    </select>
+
+    <select id="getNewProductList" resultMap="com.gw.gwmall.mapper.PmsProductMapper.BaseResultMap">
+        SELECT p.*
+        FROM
+            tl_mall_promotion.sms_home_new_product hp
+            LEFT JOIN tl_mall_goods.pms_product p ON hp.product_id = p.id
+        WHERE
+            hp.recommend_status = 1
+            AND p.publish_status = 1
+        ORDER BY
+            hp.sort DESC
+        LIMIT #{offset}, #{limit};
+    </select>
+
+    <select id="getHotProductList" resultMap="com.gw.gwmall.mapper.PmsProductMapper.BaseResultMap">
+        SELECT p.*
+        FROM
+            tl_mall_promotion.sms_home_recommend_product hp
+            LEFT JOIN tl_mall_goods.pms_product p ON hp.product_id = p.id
+        WHERE
+            hp.recommend_status = 1
+            AND p.publish_status = 1
+        ORDER BY
+            hp.sort DESC
+        LIMIT #{offset}, #{limit};
+    </select>
+
+    <select id="getRecommendSubjectList" resultMap="com.gw.gwmall.mapper.CmsSubjectMapper.BaseResultMap">
+        SELECT s.*
+        FROM
+            tl_mall_promotion.sms_home_recommend_subject hs
+            LEFT JOIN tl_mall_normal.cms_subject s ON hs.subject_id = s.id
+        WHERE
+            hs.recommend_status = 1
+            AND s.show_status = 1
+        ORDER BY
+            hs.sort DESC
+        LIMIT #{offset}, #{limit};
+    </select>
+</mapper>

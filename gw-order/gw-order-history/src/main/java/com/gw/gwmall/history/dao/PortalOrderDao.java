@@ -17,7 +17,7 @@ public interface PortalOrderDao {
             @Param("orderTableName") String orderTableName,
             @Param("orderItemTableName") String orderItemTableName,
             @Param("orderId") Long maxOrderId,
-            @Param("gmtCreate") Date gmtCreate,
+            @Param("createTime") Date gmtCreate,
             @Param("fetchRecordNumbers") int fetchRecordNumbers);
 
     int deleteMigrateOrdersItems(@Param("orderItemTableName") String orderItemTableName,

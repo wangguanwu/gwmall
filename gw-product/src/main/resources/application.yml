@@ -1,5 +1,5 @@
 server:
-  port: 8866
+  port: 8867
 spring:
   application:
     name: gw-product

@@ -7,6 +7,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.util.CollectionUtils;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
@@ -32,8 +33,15 @@ public class RedisOpsExtUtil {
         }
     }
 
-    public <T> T getListAll(String key,Class<?> T){
-        return (T)redisTemplate.opsForList().range(key,0,-1);
+
+    public <T> List<T>getListAll(String key,Class<?> T){
+        Object s = redisTemplate.opsForList().range(key,0,-1);
+        return (List<T>)s;
+    }
+
+    public <T> List<List<T>>getAllList(String key,Class<T> clazz){
+        Object s = redisTemplate.opsForList().range(key,0,-1);
+        return (List<List<T>>)s;
     }
 
     public <T> T get(String key,Class<?> T){

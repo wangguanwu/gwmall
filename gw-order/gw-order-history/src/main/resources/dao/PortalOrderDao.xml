@@ -88,7 +88,7 @@
         LEFT JOIN
         ${orderItemTableName} ot
         ON o.id = ot.order_id
-        WHERE o.id >= #{orderId} and o.gmt_create &lt; #{gmtCreate}
+        WHERE o.id >= #{orderId} and o.create_time &lt; #{createTime}
         order by o.id limit #{fetchRecordNumbers}
     </select>
 
