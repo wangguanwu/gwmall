@@ -3,19 +3,29 @@ package com.gw.gwmall.rediscomm.util;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.redis.connection.RedisConnection;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.core.RedisConnectionUtils;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.util.CollectionUtils;
 
+import javax.annotation.PostConstruct;
 import java.util.Collection;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
-public class RedisOpsExtUtil {
+public class RedisSingleUtil {
 
     @Autowired
-    @Qualifier("redisCluster")
-    private RedisTemplate<String, Object> redisTemplate;
+    @Qualifier("redisSingleTemplate")
+    private RedisTemplate redisTemplate;
+
+    @PostConstruct
+    public void init(){
+        RedisConnectionFactory factory = redisTemplate.getConnectionFactory();
+        RedisConnection conn = RedisConnectionUtils.getConnection(factory);
+        log.info("Redis服务器信息：{}",conn.info().toString());
+    }
 
     public void set(String key,Object value){
         redisTemplate.opsForValue().set(key,value);
@@ -33,15 +43,8 @@ public class RedisOpsExtUtil {
         }
     }
 
-
-    public <T> List<T> getListAll(String key,Class<?> T){
-        Object s = redisTemplate.opsForList().range(key,0,-1);
-        return (List<T>)s;
-    }
-
-    public <T> List<List<T>>getAllList(String key,Class<T> clazz){
-        Object s = redisTemplate.opsForList().range(key,0,-1);
-        return (List<List<T>>)s;
+    public <T> T getListAll(String key,Class<?> T){
+        return (T)redisTemplate.opsForList().range(key,0,-1);
     }
 
     public <T> T get(String key,Class<?> T){
@@ -74,15 +77,15 @@ public class RedisOpsExtUtil {
                 .opsForValue().increment(key,delta);
     }
 
-    public Boolean expire(String key,long timeout,TimeUnit unit){
+    public boolean expire(String key,long timeout,TimeUnit unit){
         return redisTemplate.expire(key,timeout, unit);
     }
 
-    public Boolean delete(String key){
+    public boolean delete(String key){
         return redisTemplate.delete(key);
     }
 
-    public Boolean hasKey(String key){
+    public boolean hasKey(String key){
         return redisTemplate.hasKey(key);
     }
 

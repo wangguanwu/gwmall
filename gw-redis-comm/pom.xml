@@ -43,6 +43,11 @@
             <artifactId>redisson</artifactId>
             <version>3.6.5</version>
         </dependency>
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
