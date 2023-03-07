@@ -1,0 +1,54 @@
+server:
+  port: 8856
+spring:
+  application:
+    name: gw-canal
+#  data:
+#    elasticsearch:
+#      rest:
+#        uris: 127.0.0.1:9200
+ 
+  redis:
+    cluster:
+      nodes: 127.0.0.1:8001,127.0.0.1:8002,127.0.0.1:8003
+    lettuce:
+      pool:
+        max-active: 8 # 连接池最大连接数（使用负值表示没有限制）
+        max-wait: -1ms # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-idle: 8 # 连接池中的最大空闲连接
+        min-idle: 0 # 连接池中的最小空闲连接
+    timeout: 3000ms # 连接超时时间（毫秒）
+
+    single:
+      enable: true
+      host: 127.0.0.1
+      port: 8008
+      max-active: 8 # 连接池最大连接数（使用负值表示没有限制）
+      max-wait: -1 # 连接池最大阻塞等待时间（使用负值表示没有限制）
+      max-idle: 8 # 连接池中的最大空闲连接
+      min-idle: 0 # 连接池中的最小空闲连接
+      timeout: 3000ms # 连接超时时间（毫秒）
+
+canal:
+  server:
+    ip: 127.0.0.1
+    port: 9933
+  #  product:
+  #    destination: product
+  #    indexName: product_db
+  #    batchSize: 1000
+  promotion:
+    destination: promotion
+    batchSize: 1000
+  seckill:
+    destination: seckill
+    batchSize: 1000
+
+feign:
+  client:
+    config:
+      default:
+        loggerLevel: full
+        readTimeout: 3000
+        connectTimeout: 3000
+

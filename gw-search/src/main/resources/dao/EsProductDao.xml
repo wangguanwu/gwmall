@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gw.gwmall.search.dao.EsProductDao">
+    <resultMap id="esProductListMap" type="com.gw.gwmall.search.domain.EsProduct">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="brand_id" property="brandId"/>
+        <result column="brand_name" property="brandName"/>
+        <result column="category_id" property="categoryId"/>
+        <result column="category_name" property="categoryName"/>
+        <result column="pic" property="pic"/>
+        <result column="sub_title" property="subTitle"/>
+        <result column="price" property="price"/>
+        <result column="sale" property="sale"/>
+        <result column="new_status" property="newStatus"/>
+        <result column="recommend_status" property="recommendStatus"/>
+        <result column="promotion_type" property="promotionType"/>
+        <result column="stock" property="stock"/>
+        <result column="keywords" property="keywords"/>
+        <result column="sort" property="sort"/>
+        <result column="brand_img" property="brandImg"/>
+        <result column="brand_big_pic" property="brandBigPic"/>
+        <collection property="attrs" columnPrefix="attribute_" ofType="com.gw.gwmall.search.domain.EsProductAttributeValue">
+            <id column="id" property="id" jdbcType="BIGINT"/>
+            <result column="attr_id" property="attrId" jdbcType="BIGINT"/>
+            <result column="attr_value" property="attrValue" jdbcType="VARCHAR"/>
+            <result column="attr_type" property="attrType"/>
+            <result column="attr_name" property="attrName"/>
+        </collection>
+    </resultMap>
+    <select id="getAllEsProductList" resultMap="esProductListMap">
+        select
+            p.id id,
+            p.brand_id ,
+            p.brand_name ,
+            p.product_category_id category_id,
+            p.product_category_name category_name,
+            p.pic pic,
+            p.name name,
+            p.sub_title sub_title,
+            p.price price,
+            p.sale sale,
+            p.new_status ,
+            p.recommand_status ,
+            p.promotion_type
+            p.stock stock,
+            p.keywords keywords,
+            p.sort sort,
+            pav.id attribute_id,
+            pav.value attribute_attr_value,
+            pav.product_attribute_id attribute_attr_id,
+            pa.type attribute_attr_type,
+            pa.name attribute_attr_name
+        from tl_mall_goods.pms_product p
+        left join tl_mall_goods.pms_product_attribute_value pav on p.id = pav.product_id
+        left join tl_mall_goods.pms_product_attribute pa on pav.product_attribute_id= pa.id
+        where delete_status = 0 and publish_status = 1
+        <if test="id!=null">
+            and p.id=#{id}
+        </if>
+    </select>
+
+    <select id="getAllProductList" resultMap="esProductListMap">
+        SELECT product.id              as id,
+               product.name            as name,
+               product.keywords,
+               product.new_status,
+               product.pic pic,
+               product.sub_title sub_title,
+               product.price,
+               product.promotion_price as promotion_price,
+               product.original_price,
+               product.sale,
+               product.stock,
+               brand.id                as brand_id,
+               brand.name              as brand_name,
+               brand.logo              as brand_img,
+               product.product_category_id as
+                                          category_id,
+               category.name           as category_name,
+               brand.big_pic           as brand_big_pic,
+               attribute.id            as attribute_attr_id,
+               attribute.name          as attribute_attr_name,
+               attribute.type as attribute_attr_type,
+               attr_value.value        as attribute_attr_value,
+               attr_value.id           as attribute_id
+        FROM tl_mall_goods.pms_product product
+                 join
+             pms_brand brand on product.brand_id = brand.id
+                 join pms_product_category category on product.product_category_id = category.id
+                 left join pms_product_attribute_value attr_value on product.id = attr_value.product_id
+                 left join pms_product_attribute attribute on attribute.id = attr_value.product_attribute_id
+                 left join pms_product_attribute_category attribute_category
+                           on attribute_category.id = attribute.product_attribute_category_id
+                where delete_status = 0 and publish_status = 1
+    </select>
+</mapper>

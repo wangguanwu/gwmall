@@ -22,6 +22,7 @@
         <module>gw-cart</module>
         <module>gw-order</module>
         <module>gw-portal</module>
+        <module>gw-search</module>
     </modules>
 
     <properties>

@@ -1,0 +1,550 @@
+PUT /product_db/_doc/1
+{
+  "id": "26",
+  "name": "小米 11 手机",
+  "keywords": "小米手机",
+  "subTitle": "AI智慧全面屏 6GB +64GB 亮黑色 全网通版 移动联通电信4G手机 双卡双待 双卡双待",
+  "price": "3999",
+  "promotionPrice": "2999",
+  "originalPrice": "5999",
+  "pic": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180615/xiaomi.jpg",
+  "sale": 999,
+  "hasStock": true,
+  "salecount":999,
+  "putawayDate":"2021-04-01",
+  "brandId": 6,
+  "brandName": "小米",
+  "brandImg": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20190129/1e34aef2a409119018a4c6258e39ecfb_222_222.png",
+  "categoryId": 19,
+  "categoryName": "手机通讯",
+  "attrs": [
+    {
+      "attrId": 1,
+      "attrName": "cpu",
+      "attrValue": "2核"
+    },
+    {
+      "attrId": 2,
+      "attrName": "颜色",
+      "attrValue": "黑色"
+    }
+  ]
+}
+
+PUT /product_db/_doc/2
+{
+  "id": "27",
+  "name": "小米 10 手机",
+  "keywords": "小米手机",
+  "subTitle": "AI智慧全面屏 4GB +64GB 亮白色 全网通版 移动联通电信4G手机 双卡双待 双卡双待",
+  "price": "2999",
+  "promotionPrice": "1999",
+  "originalPrice": "3999",
+  "pic": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180615/xiaomi.jpg",
+  "sale": 999,
+  "hasStock": false,
+  "salecount":99,
+  "putawayDate":"2021-04-02",
+  "brandId": 6,
+  "brandName": "小米",
+  "brandImg": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20190129/1e34aef2a409119018a4c6258e39ecfb_222_222.png",
+  "categoryId": 19,
+  "categoryName": "手机通讯",
+  "attrs": [
+    {
+      "attrId": 1,
+      "attrName": "cpu",
+      "attrValue": "4核"
+    },
+    {
+      "attrId": 2,
+      "attrName": "颜色",
+      "attrValue": "白色"
+    }
+  ]
+}
+PUT /product_db/_doc/3
+{
+  "id": "28",
+  "name": "小米  手机",
+  "keywords": "小米手机",
+  "subTitle": "AI智慧全面屏 4GB +64GB 亮蓝色 全网通版 移动联通电信4G手机 双卡双待 双卡双待",
+  "price": "2999",
+  "promotionPrice": "1999",
+  "originalPrice": "3999",
+  "pic": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180615/xiaomi.jpg",
+  "sale": 999,
+  "hasStock": true,
+  "salecount":199,
+  "putawayDate":"2021-04-03",
+  "brandId": 6,
+  "brandName": "小米",
+  "brandImg": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20190129/1e34aef2a409119018a4c6258e39ecfb_222_222.png",
+  "categoryId": 19,
+  "categoryName": "手机通讯",
+  "attrs": [
+    {
+      "attrId": 1,
+      "attrName": "cpu",
+      "attrValue": "2核"
+    },
+    {
+      "attrId": 2,
+      "attrName": "颜色",
+      "attrValue": "蓝色"
+    }
+  ]
+}
+PUT /product_db/_doc/4
+{
+  "id": "29",
+  "name": "Apple iPhone 8 Plus 64GB 金色特别版 移动联通电信4G手机",
+  "keywords": "苹果手机",
+  "subTitle": "苹果手机 Apple产品年中狂欢节，好物尽享，美在智慧！速来 >> 勾选[保障服务][原厂保2年]，获得AppleCare+全方位服务计划，原厂延保售后无忧。",
+  "price": "5999",
+  "promotionPrice": "4999",
+  "originalPrice": "7999",
+  "pic": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180615/5acc5248N6a5f81cd.jpg",
+  "sale": 999,
+  "hasStock": true,
+  "salecount":1199,
+  "putawayDate":"2021-04-04",
+  "brandId": 51,
+  "brandName": "苹果",
+  "brandImg": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180607/timg.jpg",
+  "categoryId": 19,
+  "categoryName": "手机通讯",
+  "attrs": [
+    {
+      "attrId": 1,
+      "attrName": "cpu",
+      "attrValue": "4核"
+    },
+    {
+      "attrId": 2,
+      "attrName": "颜色",
+      "attrValue": "金色"
+    }
+  ]
+}
+PUT /product_db/_doc/5
+{
+  "id": "30",
+  "name": "HLA海澜之家简约动物印花短袖T恤",
+  "keywords": "海澜之家衣服",
+  "subTitle": "HLA海澜之家短袖T恤",
+  "price": "199",
+  "promotionPrice": "99",
+  "originalPrice": "299",
+  "pic": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180615/5ad83a4fN6ff67ecd.jpg!cc_350x449.jpg",
+  "sale": 999,
+  "hasStock": true,
+  "salecount":19,
+  "putawayDate":"2021-04-05",
+  "brandId": 50,
+  "brandName": "海澜之家",
+  "brandImg": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20190129/99d3279f1029d32b929343b09d3c72de_222_222.jpg",
+  "categoryId": 8,
+  "categoryName": "T恤",
+  "attrs": [
+    {
+      "attrId": 3,
+      "attrName": "尺寸",
+      "attrValue": "M"
+    },
+    {
+      "attrId": 4,
+      "attrName": "颜色",
+      "attrValue": "黑色"
+    }
+  ]
+}
+PUT /product_db/_doc/6
+{
+  "id": "31",
+  "name": "HLA海澜之家蓝灰花纹圆领针织布短袖T恤",
+  "keywords": "海澜之家衣服",
+  "subTitle": "HLA海澜之家短袖T恤",
+  "price": "299",
+  "promotionPrice": "199",
+  "originalPrice": "299",
+  "pic": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180615/5ac98b64N70acd82f.jpg!cc_350x449.jpg",
+  "sale": 999,
+  "hasStock": true,
+  "salecount":399,
+  "putawayDate":"2021-04-06",
+  "brandId": 50,
+  "brandName": "海澜之家",
+  "brandImg": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20190129/99d3279f1029d32b929343b09d3c72de_222_222.jpg",
+  "categoryId": 8,
+  "categoryName": "T恤",
+  "attrs": [
+    {
+      "attrId": 3,
+      "attrName": "尺寸",
+      "attrValue": "X"
+    },
+    {
+      "attrId": 4,
+      "attrName": "颜色",
+      "attrValue": "蓝灰"
+    }
+  ]
+}
+PUT /product_db/_doc/7
+{
+  "id": "32",
+  "name": "HLA海澜之家短袖T恤男基础款",
+  "keywords": "海澜之家衣服",
+  "subTitle": "HLA海澜之家短袖T恤",
+  "price": "269",
+  "promotionPrice": "169",
+  "originalPrice": "399",
+  "pic": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180615/5a51eb88Na4797877.jpg",
+  "sale": 999,
+  "hasStock": true,
+  "salecount":399,
+  "putawayDate":"2021-04-07",
+  "brandId": 50,
+  "brandName": "海澜之家",
+  "brandImg": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20190129/99d3279f1029d32b929343b09d3c72de_222_222.jpg",
+  "categoryId": 8,
+  "categoryName": "T恤",
+  "attrs": [
+    {
+      "attrId": 3,
+      "attrName": "尺寸",
+      "attrValue": "L"
+    },
+    {
+      "attrId": 4,
+      "attrName": "颜色",
+      "attrValue": "蓝色"
+    }
+  ]
+}
+PUT /product_db/_doc/8
+{
+  "id": "33",
+  "name": "小米（MI）小米电视4A ",
+  "keywords": "小米电视机家用电器",
+  "subTitle": "小米（MI）小米电视4A 55英寸 L55M5-AZ/L55M5-AD 2GB+8GB HDR 4K超高清 人工智能网络液晶平板电视",
+  "price": "2269",
+  "promotionPrice": "2169",
+  "originalPrice": "2399",
+  "pic": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180615/5b02804dN66004d73.jpg",
+  "sale": 999,
+  "hasStock": true,
+  "salecount":132,
+  "putawayDate":"2021-04-09",
+  "brandId": 6,
+  "brandName": "小米",
+  "brandImg": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20190129/1e34aef2a409119018a4c6258e39ecfb_222_222.png",
+  "categoryId": 35,
+  "categoryName": "手机数码",
+  "attrs": [
+    {
+      "attrId": 5,
+      "attrName": "屏幕尺寸",
+      "attrValue": "52"
+    },
+    {
+      "attrId": 6,
+      "attrName": "机身颜色",
+      "attrValue": "黑色"
+    }
+  ]
+}
+PUT /product_db/_doc/9
+{
+  "id": "34",
+  "name": "小米（MI）小米电视4A 65英寸",
+  "keywords": "小米电视机家用电器",
+  "subTitle": "小米（MI）小米电视4A 65英寸 L55M5-AZ/L55M5-AD 2GB+8GB HDR 4K超高清 人工智能网络液晶平板电视",
+  "price": "3269",
+  "promotionPrice": "3169",
+  "originalPrice": "3399",
+  "pic": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180615/5b028530N51eee7d4.jpg",
+  "sale": 999,
+  "hasStock": true,
+  "salecount":999,
+  "putawayDate":"2021-04-10",
+  "brandId": 6,
+  "brandName": "小米",
+  "brandImg": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20190129/1e34aef2a409119018a4c6258e39ecfb_222_222.png",
+  "categoryId": 35,
+  "categoryName": "手机数码",
+  "attrs": [
+    {
+      "attrId": 5,
+      "attrName": "屏幕尺寸",
+      "attrValue": "65"
+    },
+    {
+      "attrId": 6,
+      "attrName": "机身颜色",
+      "attrValue": "金色"
+    }
+  ]
+}
+PUT /product_db/_doc/10
+{
+  "id": "35",
+  "name": "耐克NIKE 男子 休闲鞋 ROSHE RUN 运动鞋 511881-010黑色41码",
+  "keywords": "耐克运动鞋 鞋子",
+  "subTitle": "耐克NIKE 男子 休闲鞋 ROSHE RUN 运动鞋 511881-010黑色41码",
+  "price": "569",
+  "promotionPrice": "369",
+  "originalPrice": "899",
+  "pic": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180615/5b235bb9Nf606460b.jpg",
+  "sale": 999,
+  "hasStock": true,
+  "salecount":399,
+  "putawayDate":"2021-04-11",
+  "brandId": 58,
+  "brandName": "NIKE",
+  "brandImg": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180615/timg (51).jpg",
+  "categoryId": 29,
+  "categoryName": "男鞋",
+  "attrs": [
+    {
+      "attrId": 7,
+      "attrName": "尺码",
+      "attrValue": "42"
+    },
+    {
+      "attrId": 8,
+      "attrName": "颜色",
+      "attrValue": "黑色"
+    }
+  ]
+}
+PUT /product_db/_doc/11
+{
+  "id": "36",
+  "name": "耐克NIKE 男子 气垫 休闲鞋 AIR MAX 90 ESSENTIAL 运动鞋 AJ1285-101白色41码",
+  "keywords": "耐克运动鞋 鞋子",
+  "subTitle": "AIR MAX 90 ESSENTIAL 运动鞋 AJ1285-101白色",
+  "price": "769",
+  "promotionPrice": "469",
+  "originalPrice": "999",
+  "pic": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180615/5b19403eN9f0b3cb8.jpg",
+  "sale": 999,
+  "hasStock": true,
+  "salecount":499,
+  "putawayDate":"2021-04-13",
+  "brandId": 58,
+  "brandName": "NIKE",
+  "brandImg": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180615/timg (51).jpg",
+  "categoryId": 29,
+  "categoryName": "男鞋",
+  "attrs": [
+    {
+      "attrId": 7,
+      "attrName": "尺码",
+      "attrValue": "44"
+    },
+    {
+      "attrId": 8,
+      "attrName": "颜色",
+      "attrValue": "白色"
+    }
+  ]
+}
+PUT /product_db/_doc/12
+{
+  "id": "37",
+  "name": "(华为)HUAWEI MateBook X Pro 2019款 13.9英寸3K触控全面屏 轻薄笔记本",
+  "keywords": "轻薄笔记本华为 笔记本电脑",
+  "subTitle": "轻薄华为笔记本 电脑",
+  "price": "4769",
+  "promotionPrice": "4469",
+  "originalPrice": "4999",
+  "pic": "http://tuling-mall.oss-cn-shenzhen.aliyuncs.com/tulingmall/images/20200317/800_800_1555752016264mp.png",
+  "sale": 999,
+  "hasStock": true,
+  "salecount":699,
+  "putawayDate":"2021-04-14",
+  "brandId": 3,
+  "brandName": "华为",
+  "brandImg": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20190129/17f2dd9756d9d333bee8e60ce8c03e4c_222_222.jpg",
+  "categoryId": 19,
+  "categoryName": "手机通讯",
+  "attrs": [
+    {
+      "attrId": 9,
+      "attrName": "容量",
+      "attrValue": "16G"
+    },
+    {
+      "attrId": 10,
+      "attrName": "网络",
+      "attrValue": "4G"
+    }
+  ]
+}
+PUT /product_db/_doc/13
+{
+  "id": "38",
+  "name": "华为nova6se 手机 绮境森林 全网通（8G+128G)",
+  "keywords": "轻薄笔记本华为 手机",
+  "subTitle": "华为nova6se 手机",
+  "price": "6769",
+  "promotionPrice": "6469",
+  "originalPrice": "6999",
+  "pic": "http://tuling-mall.oss-cn-shenzhen.aliyuncs.com/tulingmall/images/20200311/78_78_42B09549789695A42D621CF87DC53B5EBE9385772DC61FB9mp.png",
+  "sale": 999,
+  "hasStock": true,
+  "salecount":899,
+  "putawayDate":"2021-04-15",
+  "brandId": 3,
+  "brandName": "华为",
+  "brandImg": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20190129/17f2dd9756d9d333bee8e60ce8c03e4c_222_222.jpg",
+  "categoryId": 19,
+  "categoryName": "手机通讯",
+  "attrs": [
+    {
+      "attrId": 9,
+      "attrName": "容量",
+      "attrValue": "64G"
+    },
+    {
+      "attrId": 10,
+      "attrName": "网络",
+      "attrValue": "5G"
+    }
+  ]
+}
+PUT /product_db/_doc/14
+{
+  "id": "39",
+  "name": "iPhone7/6s/8钢化膜苹果8Plus全屏复盖抗蓝光防窥防偷看手机膜",
+  "keywords": "手机膜",
+  "subTitle": "iPhone7/6s/8钢化膜苹果8Plus全屏复盖抗蓝光防窥防偷看手机膜",
+  "price": "29",
+  "promotionPrice": "39",
+  "originalPrice": "49",
+  "pic": "http://tuling-mall.oss-cn-shenzhen.aliyuncs.com/tulingmall/images/20200311/6df99dab78bb2014.jpg",
+  "sale": 999,
+  "hasStock": true,
+  "salecount":799,
+  "putawayDate":"2021-04-16",
+  "brandId": 51,
+  "brandName": "苹果",
+  "brandImg": "http://tuling-mall.oss-cn-shenzhen.aliyuncs.com/tulingmall/images/20200311/2b84746650fc122d67749a876c453619.png",
+  "categoryId": 30,
+  "categoryName": "手机配件",
+  "attrs": [
+    {
+      "attrId": 11,
+      "attrName": "手机膜-材料",
+      "attrValue": "钢化"
+    },
+    {
+      "attrId": 12,
+      "attrName": "手机膜-颜色",
+      "attrValue": "白色"
+    }
+  ]
+}
+PUT /product_db/_doc/15
+{
+  "id": "40",
+  "name": "七匹狼短袖T恤男纯棉舒适春夏修身运动休闲短袖三条装 圆领3条装",
+  "keywords": "七匹狼服装 衣服",
+  "subTitle": "七匹狼短袖T恤男纯棉舒适春夏修身运动休闲短袖三条装 圆领3条装",
+  "price": "129",
+  "promotionPrice": "139",
+  "originalPrice": "149",
+  "pic": "http://tuling-mall.oss-cn-shenzhen.aliyuncs.com/tulingmall/images/20200311/19e846e727dff337.jpg",
+  "sale": 999,
+  "hasStock": true,
+  "salecount":199,
+  "putawayDate":"2021-04-20",
+  "brandId": 49,
+  "brandName": "七匹狼",
+  "brandImg": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20190129/18d8bc3eb13533fab466d702a0d3fd1f40345bcd.jpg",
+  "categoryId": 8,
+  "categoryName": "T恤",
+  "attrs": [
+    {
+      "attrId": 3,
+      "attrName": "尺寸",
+      "attrValue": "M"
+    },
+    {
+      "attrId": 4,
+      "attrName": "颜色",
+      "attrValue": "白色"
+    },
+     {
+      "attrId": 13,
+      "attrName": "适用季节",
+      "attrValue": "春季"
+    }
+  ]
+}
+PUT /product_db/_doc/16
+{
+  "id": "41",
+  "name": "华为P40 Pro手机",
+  "keywords": "华为手机",
+  "subTitle": "华为P40 Pro手机",
+  "price": "2129",
+  "promotionPrice": "2139",
+  "originalPrice": "2149",
+  "pic": "http://tuling-mall.oss-cn-shenzhen.aliyuncs.com/tulingmall/images/20200327/1_DE7F785A7E0C276D3A1F40A5C6D82B07D2AED60CE1F73795mp.png",
+  "sale": 999,
+  "hasStock": true,
+  "salecount":199,
+  "putawayDate":"2021-05-03",
+  "brandId": 3,
+  "brandName": "华为",
+  "brandImg": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20190129/17f2dd9756d9d333bee8e60ce8c03e4c_222_222.jpg",
+  "categoryId": 19,
+  "categoryName": "手机通讯",
+  "attrs": [
+    {
+      "attrId": 9,
+      "attrName": "容量",
+      "attrValue": "128G"
+    },
+    {
+      "attrId": 10,
+      "attrName": "网络",
+      "attrValue": "5G"
+    }
+  ]
+}
+PUT /product_db/_doc/17
+{
+  "id": "42",
+  "name": "朵唯智能手机 4G全网通 老人学生双卡双待手机",
+  "keywords": "朵唯手机",
+  "subTitle": "朵唯手机后置双摄，国产虎贲芯片！优化散热结构！浅薄机身！朵唯4月特惠！",
+  "price": "3129",
+  "promotionPrice": "3139",
+  "originalPrice": "3249",
+  "pic": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180615/xiaomi.jpg",
+  "sale": 999,
+  "hasStock": true,
+  "salecount":1199,
+  "putawayDate":"2021-06-01",
+  "brandId": 59,
+  "brandName": "朵唯",
+  "brandImg": "http://tuling-mall.oss-cn-shenzhen.aliyuncs.com/tulingmall/images/20200311/2b84746650fc122d67749a876c453619.png",
+  "categoryId": 19,
+  "categoryName": "手机通讯",
+  "attrs": [
+    {
+      "attrId": 9,
+      "attrName": "容量",
+      "attrValue": "32G"
+    },
+    {
+      "attrId": 10,
+      "attrName": "网络",
+      "attrValue": "4G"
+    }
+  ]
+}

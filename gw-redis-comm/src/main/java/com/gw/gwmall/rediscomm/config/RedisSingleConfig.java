@@ -40,17 +40,17 @@ public class RedisSingleConfig {
         return config;
     }
 
-    @Bean("redisSingleConfig")
-    public RedisStandaloneConfiguration redisSingleConfig() {
-        return new RedisStandaloneConfiguration(redisSingleProperties.getHort(),
+    @Bean("redisStandaloneConfiguration")
+    public RedisStandaloneConfiguration redisStandaloneConfiguration() {
+        return new RedisStandaloneConfiguration(redisSingleProperties.getHost(),
                 Convert.toInt(redisSingleProperties.getPort()));
     }
 
     @Bean("redisFactorySingle")
     public LettuceConnectionFactory redisFactorySingle(@Qualifier("redisSinglePool") GenericObjectPoolConfig config,
-                                                       @Qualifier("redisSingleConfig") RedisStandaloneConfiguration redisSingleConfig) {//注意传入的对象名和类型RedisStandaloneConfiguration
+                                                       @Qualifier("redisStandaloneConfiguration") RedisStandaloneConfiguration redisStandaloneConfiguration) {//注意传入的对象名和类型RedisStandaloneConfiguration
         LettuceClientConfiguration clientConfiguration = LettucePoolingClientConfiguration.builder().poolConfig(config).build();
-        return new LettuceConnectionFactory(redisSingleConfig, clientConfiguration);
+        return new LettuceConnectionFactory(redisStandaloneConfiguration, clientConfiguration);
     }
 
     /**
