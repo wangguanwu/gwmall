@@ -7,6 +7,7 @@
         <result column="brand_name" property="brandName"/>
         <result column="category_id" property="categoryId"/>
         <result column="category_name" property="categoryName"/>
+        <result column="name" property="name"/>
         <result column="pic" property="pic"/>
         <result column="sub_title" property="subTitle"/>
         <result column="price" property="price"/>

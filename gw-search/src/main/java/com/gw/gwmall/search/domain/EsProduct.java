@@ -46,6 +46,8 @@ public class EsProduct implements Serializable {
     private BigDecimal originalPrice;
     private Integer sort;
     private String brandBigPic;
+    @Field(name = "hasStock", type = FieldType.Boolean)
+    private String hasStock = "true";
     @Field(type =FieldType.Nested)
     private List<EsProductAttributeValue> attrs;
 
@@ -220,5 +222,13 @@ public class EsProduct implements Serializable {
 
     public void setBrandBigPic(String brandBigPic) {
         this.brandBigPic = brandBigPic;
+    }
+
+    public String getHasStock() {
+        return stock > 0 ? "true" : "false";
+    }
+
+    public void setHasStock(String hasStock) {
+        this.hasStock = hasStock;
     }
 }

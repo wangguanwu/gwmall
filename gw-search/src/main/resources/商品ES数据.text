@@ -1,0 +1,1087 @@
+
+
+[
+    {
+        "id": 26,
+        "brandId": 6,
+        "brandName": "小米",
+        "brandImg": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20190129/1e34aef2a409119018a4c6258e39ecfb_222_222.png",
+        "categoryId": 19,
+        "categoryName": "手机通讯",
+        "pic": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180607/5ac1bf58Ndefaac16.jpg",
+        "name": null,
+        "subTitle": "AI智慧全面屏 6GB +64GB 亮黑色 全网通版 移动联通电信4G手机 双卡双待手机 双卡双待",
+        "keywords": "小米手机",
+        "price": 3788.00,
+        "sale": 0,
+        "stock": 1000,
+        "newStatus": 0,
+        "recommendStatus": null,
+        "promotionType": null,
+        "promotionPrice": null,
+        "originalPrice": null,
+        "sort": null,
+        "brandBigPic": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180518/5afd7778Nf7800b75.jpg",
+        "attrs": [
+            {
+                "id": 364,
+                "attrId": 48,
+                "attrName": "电池容量",
+                "attrValue": "4500ma",
+                "attrType": 1
+            },
+            {
+                "id": 363,
+                "attrId": 45,
+                "attrName": "屏幕尺寸",
+                "attrValue": "6.0",
+                "attrType": 1
+            },
+            {
+                "id": 362,
+                "attrId": 43,
+                "attrName": "颜色",
+                "attrValue": "黑色",
+                "attrType": 0
+            },
+            {
+                "id": 361,
+                "attrId": 47,
+                "attrName": "系统",
+                "attrValue": "Android",
+                "attrType": 1
+            },
+            {
+                "id": 360,
+                "attrId": 46,
+                "attrName": "网络",
+                "attrValue": "4G,5G",
+                "attrType": 1
+            },
+            {
+                "id": 299,
+                "attrId": 50,
+                "attrName": "手机膜-厚度",
+                "attrValue": null,
+                "attrType": 1
+            }
+        ]
+    },
+    {
+        "id": 27,
+        "brandId": 6,
+        "brandName": "小米",
+        "brandImg": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20190129/1e34aef2a409119018a4c6258e39ecfb_222_222.png",
+        "categoryId": 19,
+        "categoryName": "手机通讯",
+        "pic": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180615/xiaomi.jpg",
+        "name": null,
+        "subTitle": "骁龙845处理器，红外人脸解锁，AI变焦双摄，AI语音助手小米6X低至1299，点击抢购",
+        "keywords": "小米手机",
+        "price": 2699.00,
+        "sale": 0,
+        "stock": 100,
+        "newStatus": 0,
+        "recommendStatus": null,
+        "promotionType": null,
+        "promotionPrice": null,
+        "originalPrice": null,
+        "sort": null,
+        "brandBigPic": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180518/5afd7778Nf7800b75.jpg",
+        "attrs": [
+            {
+                "id": 217,
+                "attrId": 48,
+                "attrName": "电池容量",
+                "attrValue": "3000ma",
+                "attrType": 1
+            },
+            {
+                "id": 216,
+                "attrId": 47,
+                "attrName": "系统",
+                "attrValue": "Android",
+                "attrType": 1
+            },
+            {
+                "id": 215,
+                "attrId": 46,
+                "attrName": "网络",
+                "attrValue": "4G",
+                "attrType": 1
+            },
+            {
+                "id": 214,
+                "attrId": 45,
+                "attrName": "屏幕尺寸",
+                "attrValue": "5.8",
+                "attrType": 1
+            },
+            {
+                "id": 213,
+                "attrId": 43,
+                "attrName": "颜色",
+                "attrValue": "黑色,蓝色",
+                "attrType": 0
+            }
+        ]
+    },
+    {
+        "id": 28,
+        "brandId": 6,
+        "brandName": "小米",
+        "brandImg": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20190129/1e34aef2a409119018a4c6258e39ecfb_222_222.png",
+        "categoryId": 19,
+        "categoryName": "手机通讯",
+        "pic": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180615/5a9d248cN071f4959.jpg",
+        "name": null,
+        "subTitle": "8天超长待机，137g轻巧机身，高通骁龙处理器小米6X低至1299，点击抢购",
+        "keywords": "小米手机",
+        "price": 649.00,
+        "sale": 0,
+        "stock": 100,
+        "newStatus": 0,
+        "recommendStatus": null,
+        "promotionType": null,
+        "promotionPrice": null,
+        "originalPrice": null,
+        "sort": null,
+        "brandBigPic": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180518/5afd7778Nf7800b75.jpg",
+        "attrs": [
+            {
+                "id": 352,
+                "attrId": 52,
+                "attrName": "cpu",
+                "attrValue": "2核",
+                "attrType": null
+            },
+            {
+                "id": 222,
+                "attrId": 48,
+                "attrName": "电池容量",
+                "attrValue": "2800ml",
+                "attrType": 1
+            },
+            {
+                "id": 221,
+                "attrId": 47,
+                "attrName": "系统",
+                "attrValue": "Android",
+                "attrType": 1
+            },
+            {
+                "id": 220,
+                "attrId": 46,
+                "attrName": "网络",
+                "attrValue": "4G",
+                "attrType": 1
+            },
+            {
+                "id": 219,
+                "attrId": 45,
+                "attrName": "屏幕尺寸",
+                "attrValue": "5.0",
+                "attrType": 1
+            },
+            {
+                "id": 218,
+                "attrId": 43,
+                "attrName": "颜色",
+                "attrValue": "金色,银色",
+                "attrType": 0
+            }
+        ]
+    },
+    {
+        "id": 29,
+        "brandId": 51,
+        "brandName": "苹果",
+        "brandImg": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180607/timg.jpg",
+        "categoryId": 19,
+        "categoryName": "手机通讯",
+        "pic": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180615/5acc5248N6a5f81cd.jpg",
+        "name": null,
+        "subTitle": "【限时限量抢购】Apple产品年中狂欢节，好物尽享，美在智慧！速来 >> 勾选[保障服务][原厂保2年]，获得AppleCare+全方位服务计划，原厂延保售后无忧。",
+        "keywords": "",
+        "price": 5499.00,
+        "sale": 0,
+        "stock": 100,
+        "newStatus": 0,
+        "recommendStatus": null,
+        "promotionType": null,
+        "promotionPrice": null,
+        "originalPrice": null,
+        "sort": null,
+        "brandBigPic": null,
+        "attrs": [
+            {
+                "id": 351,
+                "attrId": 52,
+                "attrName": "cpu",
+                "attrValue": "4核",
+                "attrType": null
+            },
+            {
+                "id": 227,
+                "attrId": 48,
+                "attrName": "电池容量",
+                "attrValue": "1960ml",
+                "attrType": 1
+            },
+            {
+                "id": 226,
+                "attrId": 47,
+                "attrName": "系统",
+                "attrValue": "IOS",
+                "attrType": 1
+            },
+            {
+                "id": 225,
+                "attrId": 46,
+                "attrName": "网络",
+                "attrValue": "4G",
+                "attrType": 1
+            },
+            {
+                "id": 224,
+                "attrId": 45,
+                "attrName": "屏幕尺寸",
+                "attrValue": "4.7",
+                "attrType": 1
+            },
+            {
+                "id": 223,
+                "attrId": 43,
+                "attrName": "颜色",
+                "attrValue": "金色,银色",
+                "attrType": 0
+            }
+        ]
+    },
+    {
+        "id": 30,
+        "brandId": 50,
+        "brandName": "海澜之家",
+        "brandImg": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20190129/99d3279f1029d32b929343b09d3c72de_222_222.jpg",
+        "categoryId": 8,
+        "categoryName": "T恤",
+        "pic": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180615/5ad83a4fN6ff67ecd.jpg!cc_350x449.jpg",
+        "name": null,
+        "subTitle": "2018夏季新品微弹舒适新款短T男生 6月6日-6月20日，满300减30，参与互动赢百元礼券，立即分享赢大奖",
+        "keywords": "",
+        "price": 98.00,
+        "sale": 0,
+        "stock": 100,
+        "newStatus": 0,
+        "recommendStatus": null,
+        "promotionType": null,
+        "promotionPrice": null,
+        "originalPrice": null,
+        "sort": null,
+        "brandBigPic": "",
+        "attrs": [
+            {
+                "id": 350,
+                "attrId": 7,
+                "attrName": "颜色",
+                "attrValue": "黑色",
+                "attrType": 0
+            },
+            {
+                "id": 349,
+                "attrId": 1,
+                "attrName": "尺寸",
+                "attrValue": "M",
+                "attrType": 0
+            },
+            {
+                "id": 244,
+                "attrId": 39,
+                "attrName": "袖长",
+                "attrValue": "短袖",
+                "attrType": 1
+            },
+            {
+                "id": 243,
+                "attrId": 38,
+                "attrName": "上市时间",
+                "attrValue": "2018年夏",
+                "attrType": 1
+            },
+            {
+                "id": 242,
+                "attrId": 37,
+                "attrName": "适用人群",
+                "attrValue": "青年",
+                "attrType": 1
+            },
+            {
+                "id": 241,
+                "attrId": 25,
+                "attrName": "适用季节",
+                "attrValue": "夏季",
+                "attrType": 1
+            },
+            {
+                "id": 240,
+                "attrId": 24,
+                "attrName": "商品编号",
+                "attrValue": null,
+                "attrType": 1
+            },
+            {
+                "id": 239,
+                "attrId": 7,
+                "attrName": "颜色",
+                "attrValue": "红色",
+                "attrType": 0
+            }
+        ]
+    },
+    {
+        "id": 31,
+        "brandId": 50,
+        "brandName": "海澜之家",
+        "brandImg": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20190129/99d3279f1029d32b929343b09d3c72de_222_222.jpg",
+        "categoryId": 8,
+        "categoryName": "T恤",
+        "pic": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180615/5ac98b64N70acd82f.jpg!cc_350x449.jpg",
+        "name": null,
+        "subTitle": "2018夏季新品短袖T恤男HNTBJ2E080A 蓝灰花纹80 175/92A/L80A 蓝灰花纹80 175/92A/L",
+        "keywords": "",
+        "price": 98.00,
+        "sale": 0,
+        "stock": 100,
+        "newStatus": 0,
+        "recommendStatus": null,
+        "promotionType": null,
+        "promotionPrice": null,
+        "originalPrice": null,
+        "sort": null,
+        "brandBigPic": "",
+        "attrs": [
+            {
+                "id": 348,
+                "attrId": 7,
+                "attrName": "颜色",
+                "attrValue": "蓝灰",
+                "attrType": 0
+            },
+            {
+                "id": 347,
+                "attrId": 1,
+                "attrName": "尺寸",
+                "attrValue": "X",
+                "attrType": 0
+            },
+            {
+                "id": 187,
+                "attrId": 39,
+                "attrName": "袖长",
+                "attrValue": "短袖",
+                "attrType": 1
+            },
+            {
+                "id": 186,
+                "attrId": 38,
+                "attrName": "上市时间",
+                "attrValue": "2018年夏",
+                "attrType": 1
+            },
+            {
+                "id": 185,
+                "attrId": 37,
+                "attrName": "适用人群",
+                "attrValue": "青年",
+                "attrType": 1
+            },
+            {
+                "id": 184,
+                "attrId": 25,
+                "attrName": "适用季节",
+                "attrValue": "夏季",
+                "attrType": 1
+            },
+            {
+                "id": 183,
+                "attrId": 24,
+                "attrName": "商品编号",
+                "attrValue": null,
+                "attrType": 1
+            }
+        ]
+    },
+    {
+        "id": 32,
+        "brandId": 50,
+        "brandName": "海澜之家",
+        "brandImg": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20190129/99d3279f1029d32b929343b09d3c72de_222_222.jpg",
+        "categoryId": 8,
+        "categoryName": "T恤",
+        "pic": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180615/5a51eb88Na4797877.jpg",
+        "name": null,
+        "subTitle": "HLA海澜之家短袖T恤男基础款简约圆领HNTBJ2E153A藏青(F3)175/92A(50)",
+        "keywords": "",
+        "price": 68.00,
+        "sale": 0,
+        "stock": 100,
+        "newStatus": 0,
+        "recommendStatus": null,
+        "promotionType": null,
+        "promotionPrice": null,
+        "originalPrice": null,
+        "sort": null,
+        "brandBigPic": "",
+        "attrs": [
+            {
+                "id": 346,
+                "attrId": 7,
+                "attrName": "颜色",
+                "attrValue": "蓝色",
+                "attrType": 0
+            },
+            {
+                "id": 345,
+                "attrId": 1,
+                "attrName": "尺寸",
+                "attrValue": "L",
+                "attrType": 0
+            },
+            {
+                "id": 339,
+                "attrId": 38,
+                "attrName": "上市时间",
+                "attrValue": "短袖",
+                "attrType": 1
+            },
+            {
+                "id": 338,
+                "attrId": 37,
+                "attrName": "适用人群",
+                "attrValue": "2018年夏",
+                "attrType": 1
+            },
+            {
+                "id": 337,
+                "attrId": null,
+                "attrName": null,
+                "attrValue": "青年",
+                "attrType": null
+            },
+            {
+                "id": 336,
+                "attrId": 25,
+                "attrName": "适用季节",
+                "attrValue": "夏季",
+                "attrType": 1
+            },
+            {
+                "id": 335,
+                "attrId": 24,
+                "attrName": "商品编号",
+                "attrValue": null,
+                "attrType": 1
+            }
+        ]
+    },
+    {
+        "id": 33,
+        "brandId": 6,
+        "brandName": "小米",
+        "brandImg": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20190129/1e34aef2a409119018a4c6258e39ecfb_222_222.png",
+        "categoryId": 35,
+        "categoryName": "电视",
+        "pic": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180615/5b02804dN66004d73.jpg",
+        "name": null,
+        "subTitle": "小米（MI）小米电视4A 55英寸 L55M5-AZ/L55M5-AD 2GB+8GB HDR 4K超高清 人工智能网络液晶平板电视",
+        "keywords": "小米电视",
+        "price": 2499.00,
+        "sale": 0,
+        "stock": 100,
+        "newStatus": 0,
+        "recommendStatus": null,
+        "promotionType": null,
+        "promotionPrice": null,
+        "originalPrice": null,
+        "sort": null,
+        "brandBigPic": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180518/5afd7778Nf7800b75.jpg",
+        "attrs": [
+            {
+                "id": 342,
+                "attrId": 43,
+                "attrName": "颜色",
+                "attrValue": "黑色",
+                "attrType": 0
+            },
+            {
+                "id": 341,
+                "attrId": 45,
+                "attrName": "屏幕尺寸",
+                "attrValue": "52英寸",
+                "attrType": 1
+            }
+        ]
+    },
+    {
+        "id": 34,
+        "brandId": 6,
+        "brandName": "小米",
+        "brandImg": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20190129/1e34aef2a409119018a4c6258e39ecfb_222_222.png",
+        "categoryId": 35,
+        "categoryName": "电视",
+        "pic": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180615/5b028530N51eee7d4.jpg",
+        "name": null,
+        "subTitle": " L65M5-AZ/L65M5-AD 2GB+8GB HDR 4K超高清 人工智能网络液晶平板电视",
+        "keywords": "小米电视",
+        "price": 3999.00,
+        "sale": 0,
+        "stock": 100,
+        "newStatus": 0,
+        "recommendStatus": null,
+        "promotionType": null,
+        "promotionPrice": null,
+        "originalPrice": null,
+        "sort": null,
+        "brandBigPic": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180518/5afd7778Nf7800b75.jpg",
+        "attrs": [
+            {
+                "id": 344,
+                "attrId": 43,
+                "attrName": "颜色",
+                "attrValue": "金色",
+                "attrType": 0
+            },
+            {
+                "id": 343,
+                "attrId": 45,
+                "attrName": "屏幕尺寸",
+                "attrValue": "65英寸",
+                "attrType": 1
+            }
+        ]
+    },
+    {
+        "id": 35,
+        "brandId": 58,
+        "brandName": "NIKE",
+        "brandImg": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180615/timg (51).jpg",
+        "categoryId": 29,
+        "categoryName": "男鞋",
+        "pic": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180615/5b235bb9Nf606460b.jpg",
+        "name": null,
+        "subTitle": "耐克NIKE 男子 休闲鞋 ROSHE RUN 运动鞋 511881-010黑色41码",
+        "keywords": "",
+        "price": 369.00,
+        "sale": 0,
+        "stock": 100,
+        "newStatus": 0,
+        "recommendStatus": null,
+        "promotionType": null,
+        "promotionPrice": null,
+        "originalPrice": null,
+        "sort": null,
+        "brandBigPic": "",
+        "attrs": [
+            {
+                "id": 367,
+                "attrId": 35,
+                "attrName": "颜色",
+                "attrValue": "黑色",
+                "attrType": 0
+            },
+            {
+                "id": 366,
+                "attrId": 40,
+                "attrName": "尺码",
+                "attrValue": "42",
+                "attrType": 0
+            }
+        ]
+    },
+    {
+        "id": 36,
+        "brandId": 58,
+        "brandName": "NIKE",
+        "brandImg": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180615/timg (51).jpg",
+        "categoryId": 29,
+        "categoryName": "男鞋",
+        "pic": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180615/5b19403eN9f0b3cb8.jpg",
+        "name": null,
+        "subTitle": "耐克NIKE 男子 气垫 休闲鞋 AIR MAX 90 ESSENTIAL 运动鞋 AJ1285-101白色41码",
+        "keywords": "",
+        "price": 499.00,
+        "sale": 0,
+        "stock": 100,
+        "newStatus": 1,
+        "recommendStatus": null,
+        "promotionType": null,
+        "promotionPrice": null,
+        "originalPrice": null,
+        "sort": null,
+        "brandBigPic": "",
+        "attrs": [
+            {
+                "id": 369,
+                "attrId": 35,
+                "attrName": "颜色",
+                "attrValue": "白色",
+                "attrType": 0
+            },
+            {
+                "id": 368,
+                "attrId": 40,
+                "attrName": "尺码",
+                "attrValue": "44",
+                "attrType": 0
+            }
+        ]
+    },
+    {
+        "id": 37,
+        "brandId": 3,
+        "brandName": "华为",
+        "brandImg": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20190129/17f2dd9756d9d333bee8e60ce8c03e4c_222_222.jpg",
+        "categoryId": 19,
+        "categoryName": "手机通讯",
+        "pic": "http://tuling-mall.oss-cn-shenzhen.aliyuncs.com/tulingmall/images/20200317/800_800_1555752016264mp.png",
+        "name": null,
+        "subTitle": "(华为)HUAWEI MateBook X Pro 2019款 13.9英寸3K触控全面屏 轻薄笔记本",
+        "keywords": "HUAWEI MateBook X Pro 2019款 13.9英寸",
+        "price": 7999.00,
+        "sale": 0,
+        "stock": 1000,
+        "newStatus": 1,
+        "recommendStatus": null,
+        "promotionType": null,
+        "promotionPrice": null,
+        "originalPrice": null,
+        "sort": null,
+        "brandBigPic": null,
+        "attrs": [
+            {
+                "id": 370,
+                "attrId": 44,
+                "attrName": "容量",
+                "attrValue": "16g",
+                "attrType": 0
+            },
+            {
+                "id": 292,
+                "attrId": 48,
+                "attrName": "电池容量",
+                "attrValue": "4200mhA",
+                "attrType": 1
+            },
+            {
+                "id": 291,
+                "attrId": 47,
+                "attrName": "系统",
+                "attrValue": "Android",
+                "attrType": 1
+            },
+            {
+                "id": 290,
+                "attrId": 46,
+                "attrName": "网络",
+                "attrValue": "4G",
+                "attrType": 1
+            },
+            {
+                "id": 289,
+                "attrId": 45,
+                "attrName": "屏幕尺寸",
+                "attrValue": "6.4英寸",
+                "attrType": 1
+            },
+            {
+                "id": 288,
+                "attrId": 43,
+                "attrName": "颜色",
+                "attrValue": "深空灰",
+                "attrType": 0
+            }
+        ]
+    },
+    {
+        "id": 38,
+        "brandId": 3,
+        "brandName": "华为",
+        "brandImg": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20190129/17f2dd9756d9d333bee8e60ce8c03e4c_222_222.jpg",
+        "categoryId": 19,
+        "categoryName": "手机通讯",
+        "pic": "http://tuling-mall.oss-cn-shenzhen.aliyuncs.com/tulingmall/images/20200311/78_78_42B09549789695A42D621CF87DC53B5EBE9385772DC61FB9mp.png",
+        "name": null,
+        "subTitle": "华为nova6se 手机 绮境森林 全网通（8G+128G)",
+        "keywords": "",
+        "price": 2199.00,
+        "sale": 0,
+        "stock": 0,
+        "newStatus": 1,
+        "recommendStatus": null,
+        "promotionType": null,
+        "promotionPrice": null,
+        "originalPrice": null,
+        "sort": null,
+        "brandBigPic": null,
+        "attrs": [
+            {
+                "id": 371,
+                "attrId": 44,
+                "attrName": "容量",
+                "attrValue": "64g",
+                "attrType": 0
+            },
+            {
+                "id": 269,
+                "attrId": 48,
+                "attrName": "电池容量",
+                "attrValue": "4200mhA",
+                "attrType": 1
+            },
+            {
+                "id": 268,
+                "attrId": 47,
+                "attrName": "系统",
+                "attrValue": "Android",
+                "attrType": 1
+            },
+            {
+                "id": 267,
+                "attrId": 46,
+                "attrName": "网络",
+                "attrValue": "5G",
+                "attrType": 1
+            },
+            {
+                "id": 266,
+                "attrId": 45,
+                "attrName": "屏幕尺寸",
+                "attrValue": "6.4英寸",
+                "attrType": 1
+            },
+            {
+                "id": 265,
+                "attrId": 43,
+                "attrName": "颜色",
+                "attrValue": "幻夜黑,奇幻森林,樱雪晴空",
+                "attrType": 0
+            }
+        ]
+    },
+    {
+        "id": 39,
+        "brandId": 59,
+        "brandName": "朵唯",
+        "brandImg": "http://tuling-mall.oss-cn-shenzhen.aliyuncs.com/tulingmall/images/20200311/2b84746650fc122d67749a876c453619.png",
+        "categoryId": 30,
+        "categoryName": "手机配件",
+        "pic": "http://tuling-mall.oss-cn-shenzhen.aliyuncs.com/tulingmall/images/20200311/6df99dab78bb2014.jpg",
+        "name": null,
+        "subTitle": "iPhone7/6s/8钢化膜苹果8Plus全屏复盖抗蓝光防窥防偷看手机膜",
+        "keywords": "",
+        "price": 31.90,
+        "sale": 0,
+        "stock": 1000,
+        "newStatus": 1,
+        "recommendStatus": null,
+        "promotionType": null,
+        "promotionPrice": null,
+        "originalPrice": null,
+        "sort": null,
+        "brandBigPic": "http://tuling-mall.oss-cn-shenzhen.aliyuncs.com/tulingmall/images/20200311/2b84746650fc122d67749a876c453619.png",
+        "attrs": [
+            {
+                "id": 372,
+                "attrId": 49,
+                "attrName": "手机膜-材料",
+                "attrValue": "钢化",
+                "attrType": 0
+            },
+            {
+                "id": 271,
+                "attrId": 50,
+                "attrName": "手机膜-厚度",
+                "attrValue": "50mm",
+                "attrType": 1
+            },
+            {
+                "id": 270,
+                "attrId": 51,
+                "attrName": "手机膜-颜色",
+                "attrValue": "黑色",
+                "attrType": 0
+            }
+        ]
+    },
+    {
+        "id": 40,
+        "brandId": 49,
+        "brandName": "七匹狼",
+        "brandImg": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20190129/18d8bc3eb13533fab466d702a0d3fd1f40345bcd.jpg",
+        "categoryId": 8,
+        "categoryName": "T恤",
+        "pic": "http://tuling-mall.oss-cn-shenzhen.aliyuncs.com/tulingmall/images/20200311/19e846e727dff337.jpg",
+        "name": null,
+        "subTitle": "七匹狼短袖T恤男纯棉舒适春夏修身运动休闲短袖三条装 圆领3条装",
+        "keywords": "七匹狼短袖T恤",
+        "price": 139.00,
+        "sale": 0,
+        "stock": 1000,
+        "newStatus": 1,
+        "recommendStatus": null,
+        "promotionType": null,
+        "promotionPrice": null,
+        "originalPrice": null,
+        "sort": null,
+        "brandBigPic": null,
+        "attrs": [
+            {
+                "id": 277,
+                "attrId": 39,
+                "attrName": "袖长",
+                "attrValue": "短袖",
+                "attrType": 1
+            },
+            {
+                "id": 276,
+                "attrId": 38,
+                "attrName": "上市时间",
+                "attrValue": "2018年夏",
+                "attrType": 1
+            },
+            {
+                "id": 275,
+                "attrId": 37,
+                "attrName": "适用人群",
+                "attrValue": "青年",
+                "attrType": 1
+            },
+            {
+                "id": 274,
+                "attrId": 25,
+                "attrName": "适用季节",
+                "attrValue": "夏季",
+                "attrType": 1
+            },
+            {
+                "id": 273,
+                "attrId": 24,
+                "attrName": "商品编号",
+                "attrValue": "jack-ma0102937",
+                "attrType": 1
+            },
+            {
+                "id": 272,
+                "attrId": 7,
+                "attrName": "颜色",
+                "attrValue": "白色",
+                "attrType": 0
+            }
+        ]
+    },
+    {
+        "id": 41,
+        "brandId": 3,
+        "brandName": "华为",
+        "brandImg": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20190129/17f2dd9756d9d333bee8e60ce8c03e4c_222_222.jpg",
+        "categoryId": 19,
+        "categoryName": "手机通讯",
+        "pic": "http://tuling-mall.oss-cn-shenzhen.aliyuncs.com/tulingmall/images/20200327/1_DE7F785A7E0C276D3A1F40A5C6D82B07D2AED60CE1F73795mp.png",
+        "name": null,
+        "subTitle": "华为P40 Pro",
+        "keywords": "p40",
+        "price": 7999.00,
+        "sale": 0,
+        "stock": 100,
+        "newStatus": 0,
+        "recommendStatus": null,
+        "promotionType": null,
+        "promotionPrice": null,
+        "originalPrice": null,
+        "sort": null,
+        "brandBigPic": null,
+        "attrs": [
+            {
+                "id": 373,
+                "attrId": 44,
+                "attrName": "容量",
+                "attrValue": "128G",
+                "attrType": 0
+            },
+            {
+                "id": 298,
+                "attrId": 48,
+                "attrName": "电池容量",
+                "attrValue": "5500MA",
+                "attrType": 1
+            },
+            {
+                "id": 297,
+                "attrId": 47,
+                "attrName": "系统",
+                "attrValue": "Android",
+                "attrType": 1
+            },
+            {
+                "id": 296,
+                "attrId": 46,
+                "attrName": "网络",
+                "attrValue": "5G",
+                "attrType": 1
+            },
+            {
+                "id": 295,
+                "attrId": 45,
+                "attrName": "屏幕尺寸",
+                "attrValue": "6.4",
+                "attrType": 1
+            },
+            {
+                "id": 294,
+                "attrId": 43,
+                "attrName": "颜色",
+                "attrValue": "黑色,白色",
+                "attrType": 0
+            }
+        ]
+    },
+    {
+        "id": 42,
+        "brandId": 59,
+        "brandName": "朵唯",
+        "brandImg": "http://tuling-mall.oss-cn-shenzhen.aliyuncs.com/tulingmall/images/20200311/2b84746650fc122d67749a876c453619.png",
+        "categoryId": 19,
+        "categoryName": "手机通讯",
+        "pic": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180615/xiaomi.jpg",
+        "name": null,
+        "subTitle": "后置双摄，国产虎贲芯片！优化散热结构！浅薄机身！朵唯4月特惠！",
+        "keywords": "朵唯（DOOV）D11Pro 6GB+64GB 冰海兰 智能手机 ",
+        "price": 527.00,
+        "sale": 0,
+        "stock": 100,
+        "newStatus": 1,
+        "recommendStatus": null,
+        "promotionType": null,
+        "promotionPrice": null,
+        "originalPrice": null,
+        "sort": null,
+        "brandBigPic": "http://tuling-mall.oss-cn-shenzhen.aliyuncs.com/tulingmall/images/20200311/2b84746650fc122d67749a876c453619.png",
+        "attrs": [
+            {
+                "id": 374,
+                "attrId": 44,
+                "attrName": "容量",
+                "attrValue": "32G",
+                "attrType": 0
+            },
+            {
+                "id": 334,
+                "attrId": 48,
+                "attrName": "电池容量",
+                "attrValue": "4500ma",
+                "attrType": 1
+            },
+            {
+                "id": 333,
+                "attrId": 47,
+                "attrName": "系统",
+                "attrValue": "Android",
+                "attrType": 1
+            },
+            {
+                "id": 332,
+                "attrId": 46,
+                "attrName": "网络",
+                "attrValue": "4G",
+                "attrType": 1
+            },
+            {
+                "id": 331,
+                "attrId": 45,
+                "attrName": "屏幕尺寸",
+                "attrValue": "5.5",
+                "attrType": 1
+            },
+            {
+                "id": 330,
+                "attrId": 43,
+                "attrName": "颜色",
+                "attrValue": "蓝,金,绿",
+                "attrType": 0
+            }
+        ]
+    },
+    {
+        "id": 43,
+        "brandId": 6,
+        "brandName": "小米",
+        "brandImg": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20190129/1e34aef2a409119018a4c6258e39ecfb_222_222.png",
+        "categoryId": 19,
+        "categoryName": "手机通讯",
+        "pic": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180615/xiaomi.jpg",
+        "name": null,
+        "subTitle": "AI智慧全面屏 4GB +64GB 亮白色 全网通版 移动联通电信4G手机 双卡双待 双卡双待",
+        "keywords": "小米手机",
+        "price": 2999.00,
+        "sale": 0,
+        "stock": 100,
+        "newStatus": 0,
+        "recommendStatus": null,
+        "promotionType": null,
+        "promotionPrice": null,
+        "originalPrice": null,
+        "sort": null,
+        "brandBigPic": "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180518/5afd7778Nf7800b75.jpg",
+        "attrs": [
+            {
+                "id": 365,
+                "attrId": 52,
+                "attrName": "cpu",
+                "attrValue": "2核",
+                "attrType": null
+            },
+            {
+                "id": 359,
+                "attrId": 52,
+                "attrName": "cpu",
+                "attrValue": "4核",
+                "attrType": null
+            },
+            {
+                "id": 358,
+                "attrId": 48,
+                "attrName": "电池容量",
+                "attrValue": "3500ma",
+                "attrType": 1
+            },
+            {
+                "id": 355,
+                "attrId": 45,
+                "attrName": "屏幕尺寸",
+                "attrValue": "6.0",
+                "attrType": 1
+            },
+            {
+                "id": 354,
+                "attrId": 43,
+                "attrName": "颜色",
+                "attrValue": "白色",
+                "attrType": 0
+            },
+            {
+                "id": 308,
+                "attrId": 47,
+                "attrName": "系统",
+                "attrValue": "Android",
+                "attrType": 1
+            },
+            {
+                "id": 307,
+                "attrId": 46,
+                "attrName": "网络",
+                "attrValue": "4G",
+                "attrType": 1
+            }
+        ]
+    }
+]

@@ -1,0 +1,314 @@
+# 检索,这种搜索场景无法打分，而且自定义了排序方式，适合对搜索结果缓存
+POST /gw_es_product/_search
+{
+  "from": 0,
+  "size": 8,
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match": {
+            "name": {
+              "query": "华为手机"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "aggregations": {
+    "brand_agg": {
+      "terms": {
+        "field": "brandId",
+        "size": 50
+      },
+      "aggregations": {
+        "brand_name_agg": {
+          "terms": {
+            "field": "brandName"
+          }
+        },
+        "brand_img_agg": {
+          "terms": {
+            "field": "brandImg"
+          }
+        }
+      }
+    },
+    "category_agg": {
+      "terms": {
+        "field": "categoryId",
+        "size": 50,
+        "min_doc_count": 1
+      },
+      "aggregations": {
+        "category_name_agg": {
+          "terms": {
+            "field": "categoryName"
+          }
+        }
+      }
+    },
+    "attr_agg": {
+      "nested": {
+        "path": "attrs"
+      },
+      "aggregations": {
+        "attr_id_agg": {
+          "terms": {
+            "field": "attrs.attrId"
+          },
+          "aggregations": {
+            "attr_name_agg": {
+              "terms": {
+                "field": "attrs.attrName"
+              }
+            },
+            "attr_value_agg": {
+              "terms": {
+                "field": "attrs.attrValue"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "sort": {
+    "sale": "desc"
+  },
+  "highlight": {
+    "pre_tags": [
+      "<b style='color:red'>"
+    ],
+    "post_tags": [
+      "</b>"
+    ],
+    "fields": {
+      "name": {}
+    }
+  }
+}
+
+## 支持打分的检索场景
+POST /gw_es_product/_search
+{
+  "from": 0,
+  "size": 8,
+  "query": {
+    "multi_match": {
+      "query": "华为手机",
+      "fields": [
+        "name",
+        "keywords",
+        "subTitle"
+      ],
+      "type":"best_fields"
+    }
+  },
+  "post_filter": {
+    "term": {
+      "hasStock": "true"
+    }
+  },
+  "aggs": {
+    "brandId_aggs": {
+      "terms": {
+        "field": "brandId",
+        "size": 10
+      },
+      "aggs": {
+        "brandName_aggs": {
+          "terms": {
+            "field": "brandName"
+          },
+          "aggs": {
+            "brandImg_aggs": {
+              "terms": {
+                "field": "brandImg"
+              }
+            }
+          }
+        }
+      }
+    },
+    "attrs_aggs": {
+      "nested": {
+        "path": "attrs"
+      },
+      "aggs": {
+        "attrId_aggs": {
+          "terms": {
+            "field": "attrs.attrId",
+            "size": 10
+          },
+          "aggs": {
+            "attrName_aggs": {
+              "terms": {
+                "field": "attrs.attrName"
+              }
+            },
+            "attrValue_aggs": {
+              "terms": {
+                "field": "attrs.attrValue"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "highlight": {
+    "pre_tags": [
+      "<b style='color:red'>"
+    ],
+    "post_tags": [
+      "</b>"
+    ],
+    "fields": {
+      "*": {}
+    }
+  }
+}
+
+## 支持打分的检索，也支持filter过滤(各种场景)，不使用post_filter
+## 使用rescore 重算分，性能相对较慢
+GET /gw_es_product/_search
+{
+  "size": 10,
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "multi_match": {
+            "query": "手机",
+            "fields": [
+              "name",
+              "keywords",
+              "subTitle"
+            ],
+            "type": "best_fields"
+          }
+        }
+      ],
+      "filter": [
+        {
+          "term": {
+            "hasStock": "true"
+          }
+        },
+        {
+          "range": {
+            "price": {
+              "gte": 2000,
+              "lte": 5000
+            }
+          }
+        },
+        {
+          "term": {
+            "brandId": 59
+          }
+        },
+        {
+          "nested": {
+            "path": "attrs",
+            "query": {
+              "bool": {
+                "must": [
+                  {
+                    "term": {
+                      "attrs.attrId": 51
+                    }
+                  },
+                  {
+                    "term": {
+                      "attrs.attrValue": {
+                        "value": "黑色"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "rescore": [
+    {
+      "query": {
+        "rescore_query": {
+          "multi_match": {
+            "query": "华为手机",
+            "fields": [
+              "name",
+              "keywords",
+              "subTitle"
+            ],
+            "type": "best_fields"
+          }
+        }
+      }
+    }
+  ],
+  "aggs": {
+   "brandId_aggs": {
+        "terms": {
+          "field": "brandId",
+          "size": 10
+        },
+        "aggs": {
+          "brandName_aggs": {
+            "terms": {
+              "field": "brandName"
+            }
+          },
+          "brandImg_aggs": {
+            "terms": {
+              "field": "brandImg",
+              "size": 10
+            }
+          }
+        }
+      },
+    "attrs_aggs": {
+      "nested": {
+        "path": "attrs"
+      },
+      "aggs": {
+        "attrId_aggs": {
+          "terms": {
+            "field": "attrs.attrId",
+            "size": 10
+          },
+          "aggs": {
+            "attrName_aggs": {
+              "terms": {
+                "field": "attrs.attrName"
+              }
+            },
+            "attrValue_aggs": {
+              "terms": {
+                "field": "attrs.attrValue"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "highlight": {
+    "pre_tags": [
+      "<b style='color:red'>"
+    ],
+    "post_tags": [
+      "</b>"
+    ],
+    "fields": {
+      "*": {}
+    }
+  }
+}
+

@@ -1,0 +1,131 @@
+
+## 先创建pipeline，预处理上传数据
+PUT _ingest/pipeline/set_has_stock_pipeline_by_set
+{
+  "processors": [
+    {
+      "set": {
+        "description": "set hasStock=true if stock <= 0",
+        "if": "ctx.stock <= 0",
+        "field": "hasStock",
+        "value": "false"
+      }
+    },
+    {
+      "set": {
+        "description": "set hasStock=true if stock > 0",
+        "if": "ctx.stock > 0",
+        "field": "hasStock",
+        "value": "true"
+      }
+    },
+    {
+      "remove": {
+        "description": "remove field: _class ",
+        "field": "_class",
+        "if": "ctx._class != null"
+      }
+    }
+  ]
+}
+## 创建索引的默认pipeline
+PUT /gw_es_product/
+{
+  "settings": {
+    "index": {
+      "default_pipeline": "set_has_stock_pipeline_by_set"
+    }
+  }
+}
+## 创建索引mapping
+PUT /gw_es_product/_mapping
+{
+  "properties": {
+    "id": {
+      "type": "long"
+    },
+    "name": {
+      "type": "text",
+      "analyzer": "ik_max_word"
+    },
+    "keywords": {
+      "type": "text",
+      "analyzer": "ik_max_word"
+    },
+    "subTitle": {
+      "type": "text",
+      "analyzer": "ik_max_word"
+    },
+    "salecount": {
+      "type": "long"
+    },
+    "putawayDate": {
+      "type": "date"
+    },
+    "price": {
+      "type": "keyword"
+    },
+    "promotionPrice": {
+      "type": "keyword"
+    },
+    "originalPrice": {
+      "type": "keyword"
+    },
+    "promotionType": {
+      "type": "integer"
+    },
+    "newStatus": {
+      "type": "integer"
+    },
+    "recommendStatus": {
+      "type": "integer"
+    },
+    "pic": {
+      "type": "keyword"
+    },
+    "sale": {
+      "type": "long"
+    },
+    "hasStock": {
+      "type": "boolean"
+    },
+    "brandId": {
+      "type": "long"
+    },
+    "brandName": {
+      "type": "keyword"
+    },
+    "brandImg": {
+      "type": "keyword"
+    },
+    "brandBigPic": {
+      "type": "keyword"
+    },
+    "categoryId": {
+      "type": "long"
+    },
+    "categoryName": {
+      "type": "keyword"
+    },
+    "attrs": {
+      "type": "nested",
+      "properties": {
+        "id": {
+          "type": "long"
+        },
+        "attrId": {
+          "type": "long"
+        },
+        "attrName": {
+          "type": "keyword"
+        },
+        "attrValue": {
+          "type": "keyword"
+        },
+        "attrType": {
+          "type": "keyword"
+        }
+      }
+    }
+  }
+}
