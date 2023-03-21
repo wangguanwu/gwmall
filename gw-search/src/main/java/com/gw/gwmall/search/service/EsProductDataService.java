@@ -1,5 +1,6 @@
 package com.gw.gwmall.search.service;
 
+import com.gw.gwmall.common.vo.ESProductUpdateParam;
 import com.gw.gwmall.search.domain.EsProduct;
 import org.springframework.data.domain.Page;
 
@@ -37,4 +38,11 @@ public interface EsProductDataService {
      */
     List<EsProduct> uploadAllProduct();
 
+    /**
+     * 批量变更ES商品信息
+     * 变更包括: 新增，修改，删除
+     * @param productIdList
+     * @return
+     */
+    List<EsProduct> batchChangeEsProductListInfo(List<ESProductUpdateParam> productIdList);
 }

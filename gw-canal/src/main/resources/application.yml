@@ -29,6 +29,7 @@ spring:
       min-idle: 0 # 连接池中的最小空闲连接
       timeout: 3000ms # 连接超时时间（毫秒）
 
+
 canal:
   server:
     ip: 127.0.0.1
@@ -43,6 +44,9 @@ canal:
   seckill:
     destination: seckill
     batchSize: 1000
+  product:
+    destination: product
+    batchSize: 1000
 
 feign:
   client:
@@ -52,3 +56,21 @@ feign:
         readTimeout: 3000
         connectTimeout: 3000
 
+rocketmq:
+  name-server: 127.0.0.1:9876 #连接超时时间
+  consumer:
+    group: canal-group
+    topic: canal-topic
+
+  producer:
+    group: q
+
+  gwmall:
+    product-change-consumer-group: product-change-consumer-group #事务消息群组
+    product-change-topic: product-change-topic #
+
+    promotion-change-consumer-group: promotion-change-consumer-group
+    promotion-change-topic: product-change-topic
+
+    seckill-change-consumer-group: seckill-change-consumer-group
+    seckill-change-topic: seckill-change-topic

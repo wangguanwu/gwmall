@@ -94,4 +94,47 @@
                            on attribute_category.id = attribute.product_attribute_category_id
                 where delete_status = 0 and publish_status = 1
     </select>
+
+    <select id="getProductList" resultMap="esProductListMap">
+        SELECT product.id              as id,
+               product.name            as name,
+               product.keywords,
+               product.new_status,
+               product.pic pic,
+               product.sub_title sub_title,
+               product.price,
+               product.promotion_price as promotion_price,
+               product.original_price,
+               product.sale,
+               product.stock,
+               brand.id                as brand_id,
+               brand.name              as brand_name,
+               brand.logo              as brand_img,
+               product.product_category_id as
+                                          category_id,
+               category.name           as category_name,
+               brand.big_pic           as brand_big_pic,
+               attribute.id            as attribute_attr_id,
+               attribute.name          as attribute_attr_name,
+               attribute.type as attribute_attr_type,
+               attr_value.value        as attribute_attr_value,
+               attr_value.id           as attribute_id
+        FROM tl_mall_goods.pms_product product
+                 join
+             pms_brand brand on product.brand_id = brand.id
+                 join pms_product_category category on product.product_category_id = category.id
+                 left join pms_product_attribute_value attr_value on product.id = attr_value.product_id
+                 left join pms_product_attribute attribute on attribute.id = attr_value.product_attribute_id
+                 left join pms_product_attribute_category attribute_category
+                           on attribute_category.id = attribute.product_attribute_category_id
+        where delete_status = 0 and publish_status = 1
+        <if test="productIdList != null and productIdList.size() > 0">
+            AND product.id in
+            <foreach collection="productIdList" item="id" open="(" close=")" separator=",">
+                #{id}
+            </foreach>
+        </if>
+
+
+    </select>
 </mapper>

@@ -4,9 +4,8 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 
-/*往ES存取时的数据实体类*/
 @Data
-public class ProductESVo {
+public class EsProductResponse {
 
     private String name;
     private String keywords;
@@ -15,10 +14,11 @@ public class ProductESVo {
     private BigDecimal promotionPrice;
     private BigDecimal originalPrice;
     private String pic;
-    private Integer saleCount;
+    private Integer sale;
     private Long brandId;
     private String brandName;
     private Long categoryId;
     private String categoryName;
+    private Long id;
 
 }

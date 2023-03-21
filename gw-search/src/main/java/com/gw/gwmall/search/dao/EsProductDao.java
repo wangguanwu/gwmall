@@ -14,4 +14,11 @@ public interface EsProductDao {
 
     List<EsProduct> getAllProductList();
 
+    /**
+     * 查询给定商品id列表，
+     * @param idList
+     * @return
+     */
+    List<EsProduct> getProductList(@Param("productIdList") Iterable<Long> idList);
+
 }

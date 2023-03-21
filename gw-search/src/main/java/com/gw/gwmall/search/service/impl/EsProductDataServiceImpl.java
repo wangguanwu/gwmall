@@ -1,12 +1,12 @@
 package com.gw.gwmall.search.service.impl;
 
+import com.gw.gwmall.common.vo.ESProductUpdateParam;
 import com.gw.gwmall.search.dao.EsProductDao;
 import com.gw.gwmall.search.domain.EsProduct;
 import com.gw.gwmall.search.repository.EsProductRepository;
 import com.gw.gwmall.search.service.EsProductDataService;
+import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.client.RestHighLevelClient;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
@@ -16,17 +16,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 
 /**
  * 商品搜索管理Service实现类
  */
 @Service
+@Slf4j
 public class EsProductDataServiceImpl implements EsProductDataService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(EsProductDataServiceImpl.class);
 
     @Qualifier("restHighLevelClient")
     @Autowired
@@ -79,6 +80,33 @@ public class EsProductDataServiceImpl implements EsProductDataService {
         Iterable<EsProduct> esProducts = productRepository.saveAll(allProductList);
         List<EsProduct> res = new ArrayList<>();
         esProducts.forEach(res::add);
+        return res;
+    }
+
+    @Override
+    public List<EsProduct> batchChangeEsProductListInfo(List<ESProductUpdateParam> updateProductList) {
+        List<EsProduct> toBeDeleteProductIdList = updateProductList.stream()
+                .filter(e -> e.getType() == ESProductUpdateParam.CHANGE_TYPE_DELETE)
+                .map(ESProductUpdateParam::getId)
+                .distinct()
+                .map(id -> {
+                    EsProduct product = new EsProduct();
+                    product.setId(id);
+                    return product;
+                })
+                .collect(Collectors.toList());
+        //删除所有列表
+        productRepository.deleteAll(toBeDeleteProductIdList);
+
+        Set<Long> productIdSet = updateProductList.stream()
+                .filter(e -> e.getType() != ESProductUpdateParam.CHANGE_TYPE_DELETE)
+                .map(ESProductUpdateParam::getId)
+                .collect(Collectors.toSet());
+
+        List<EsProduct> productList = esProductDao.getProductList(productIdSet);
+        List<EsProduct> res = new ArrayList<>(productList.size());
+        Iterable<EsProduct> updatedResultList = productRepository.saveAll(productList);
+        updatedResultList.forEach(res::add);
         return res;
     }
 }

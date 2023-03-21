@@ -1,6 +1,9 @@
 package com.gw.gwmall.search.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.gw.gwmall.common.api.CommonResult;
+import com.gw.gwmall.common.util.JacksonUtils;
+import com.gw.gwmall.common.vo.ESProductUpdateParam;
 import com.gw.gwmall.search.domain.EsProduct;
 import com.gw.gwmall.search.service.EsProductDataService;
 import io.swagger.annotations.Api;
@@ -64,7 +67,16 @@ public class EsProductController {
     @ApiOperation(value = "上传商品信息")
     @RequestMapping(value = "/uploadAllProduct", method = RequestMethod.POST)
     @ResponseBody
-    public List<EsProduct> uploadAllProduct() {
-        return esProductDataService.uploadAllProduct();
+    public CommonResult<List<EsProduct>> uploadAllProduct() {
+        return CommonResult.success(esProductDataService.uploadAllProduct());
+    }
+
+    @ApiOperation(value = "批量变更ES商品信息")
+    @RequestMapping(value = "/batchChangeProductList", method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult<List<EsProduct>> batchUploadProductList(@RequestBody List<ESProductUpdateParam> updateParamList) {
+        CommonResult<List<EsProduct>> success = CommonResult.success(esProductDataService.batchChangeEsProductListInfo(updateParamList));
+        log.info("{}", JacksonUtils.toJson(success));
+        return success;
     }
 }

@@ -28,12 +28,19 @@ spring:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
-#  data:
-#    elasticsearch:
-#      rest:
-#        uris: 127.0.0.1:9300
-#        username: elastic
-#        password: 123456
+  data:
+    elasticsearch:
+      rest:
+        uris: 127.0.0.1:9200
+
+logging:
+  level:
+    com:
+      gw:
+        gwmall:
+          mapper: debug
+          dao: debug
+
 
 
 mybatis:
@@ -42,5 +49,15 @@ mybatis:
     - classpath*:com/**/mapper/*.xml
 
 
+rocketmq:
+  name-server: 127.0.0.1:9876 #连接超时时间
+  gwmall:
+    product-change-consumer-group: product-change-consumer-group #事务消息群组
+    product-change-topic: product-change-topic #
 
+    promotion-change-consumer-group: promotion-change-consumer-group
+    promotion-change-topic: product-change-topic
+
+    seckill-change-consumer-group: seckill-change-consumer-group
+    seckill-change-topic: seckill-change-topic
 

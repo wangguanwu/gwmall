@@ -24,7 +24,7 @@ import javax.annotation.PreDestroy;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-@Service
+//@Service
 @Slf4j
 public class SecKillData implements IProcessCanalData {
 
@@ -86,7 +86,7 @@ public class SecKillData implements IProcessCanalData {
                 long batchId = message.getId();
                 int size = message.getEntries().size();
                 if (batchId == -1 || size == 0) {
-                    log.info("本次[{}]没有检测到秒杀数据更新。", batchId);
+                    return;
                 } else {
                     log.info("本次[{}]秒杀数据本次共有[{}]次更新需要处理", batchId, size);
                     for (CanalEntry.Entry entry : message.getEntries()) {

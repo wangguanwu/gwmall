@@ -50,12 +50,15 @@ public class BloomFilterConfig implements InitializingBean{
     @Override
     public void afterPropertiesSet() throws Exception {
         //fixme 思考：此处如何优化？产品如何添加到布隆过滤器中？
+        //todo 构造延迟任务，避免影响项目启动速度
         //todo 布隆过滤器另一种实现方式: 使用redis的布隆插件实现
+        //todo 使用分布式锁实现单线程加载
         List<Long> list = productService.getAllProductId();
         log.info("加载产品到布隆过滤器当中,size:{}",list.size());
         if(!CollectionUtils.isEmpty(list)){
             list.forEach(item->{
                 //LocalBloomFilter.put(item);
+                //todo perf redis加入bloom模块优化加载商品过滤器性能，可以避免多次调用redis，提交效率
                 bloomRedisService().addByBloomFilter(RedisKeyPrefixConst.PRODUCT_REDIS_BLOOM_FILTER,item+"");
             });
         }
