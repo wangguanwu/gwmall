@@ -1,0 +1,94 @@
+worker_processes  7;        #nginx worker 数量
+error_log logs/error.log;   #指定错误日志文件路径
+events {
+    worker_connections 1024;
+}
+
+http {
+
+    include       mime.types;
+    # 这个将为打开文件指定缓存，默认是没有启用的，max 指定缓存数量，
+    # 建议和打开文件数一致，inactive 是指经过多长时间文件没被请求后删除缓存。
+    open_file_cache max=100 inactive=30s;
+
+    # open_file_cache 指令中的inactive 参数时间内文件的最少使用次数，
+    # 如果超过这个数字，文件描述符一直是在缓存中打开的，如上例，如果有一个
+    # 文件在inactive 时间内一次没被使用，它将被移除。
+    open_file_cache_min_uses 1;
+
+    # 这个是指多长时间检查一次缓存的有效信息
+    open_file_cache_valid 60s;
+
+    #开启高效文件传输模式
+    sendfile on;
+    #提高I/O性能
+    tcp_nodelay on;
+
+    access_log  logs/access.log;
+
+    #lua 模块
+    lua_package_path "/usr/local/openresty/lua/?.lua;/usr/local/openresty/lualib/?.lua;;";
+    #c模块
+    lua_package_cpath "/usr/local/openresty/lualib/?.so;;";
+    lua_code_cache on;
+
+    # 共享字典，也就是本地缓存，名称叫做：stock_cache，大小1m
+    lua_shared_dict stock_cache 1m;
+
+    #秒杀确认页相关负载均衡
+    upstream confirm {
+         server 192.168.65.155:8858;
+    }
+
+    #秒杀订单相关负载均衡
+    upstream order {
+         server 192.168.65.133:8848;
+    }
+
+    server {
+        #监听端口
+        listen 80;
+
+        charset utf-8;
+
+        set $template_root /usr/local/openresty/tpl;
+
+        location /test {
+            default_type text/html;
+            content_by_lua_block {
+                ngx.say("泰勒斯说万物充满了神明，是让我们把神明拉下神座，从此诸神迎来了他们的黄昏")
+            }
+        }
+
+        #产品静态模板化网页访问
+        location /product {
+            default_type text/html;
+            content_by_lua_file lua/product.lua;
+        }
+
+        #静态资源访问
+        location /static {
+            root /usr/local/openresty;
+            index index.html index.htm;
+        }
+
+        #秒杀确认页反向代理
+        location /skcart {
+            proxy_pass http://confirm;
+        }
+
+        #秒杀订单反向代理
+        location /seckillOrder {
+            proxy_pass http://order;
+        }
+
+        #秒杀产品当前库存
+        location /cache/stock {
+            # 默认的响应类型
+            default_type application/json;
+            # 响应结果由lua/stock.lua文件来处理
+            content_by_lua_file lua/stock.lua;
+        }
+
+    }
+}

@@ -2,7 +2,7 @@ package com.gw.gwmall.rediscomm.config;
 
 import cn.hutool.core.convert.Convert;
 import com.gw.gwmall.rediscomm.util.RedisSingleUtil;
-import com.gw.gwmall.rediscomm.util.TemplateUtil;
+import com.gw.gwmall.rediscomm.util.RedisCommonUtil;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -62,7 +62,7 @@ public class RedisSingleConfig {
     @Bean("redisSingleTemplate")
     public RedisTemplate<String, Object> redisSingleTemplate(
             @Qualifier("redisFactorySingle")LettuceConnectionFactory connectionFactory) {
-        return TemplateUtil.createRedisTemplate(connectionFactory);
+        return RedisCommonUtil.createRedisTemplate(connectionFactory);
     }
 
     @Bean

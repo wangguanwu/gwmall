@@ -19,14 +19,11 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 @RocketMQMessageListener(consumerGroup = "${rocketmq.gwmall.couponConsumerGroup}", topic = "${rocketmq.gwmember.transCouponTopic}")
-public class RocketMqCouponListener implements RocketMQListener {
-
-
+public class RocketMqCouponListener implements RocketMQListener<String> {
 
     @Override
-    public void onMessage(Object message) {
-        String msgStr = message.toString();
-        String messageArray[] = msgStr.split(",");
+    public void onMessage(String message) {
+        String[] messageArray = message.split(",");
         String userId = messageArray[0],
                 couponId = messageArray[1];
 

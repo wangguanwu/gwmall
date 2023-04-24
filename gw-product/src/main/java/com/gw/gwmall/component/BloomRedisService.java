@@ -7,7 +7,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 /**
  * @description: 布隆过滤器service
  **/
-public class BloomRedisService {
+public class BloomRedisService implements BloomFilterService {
 
     private RedisTemplate<String, Object> redisTemplate;
 
@@ -24,6 +24,7 @@ public class BloomRedisService {
     /**
      * 根据给定的布隆过滤器添加值
      */
+    @Override
     public <T> void addByBloomFilter(String key, T value) {
         Preconditions.checkArgument(bloomFilterHelper != null, "bloomFilterHelper不能为空");
         int[] offset = bloomFilterHelper.murmurHashOffset(value);
@@ -35,6 +36,7 @@ public class BloomRedisService {
     /**
      * 根据给定的布隆过滤器判断值是否存在
      */
+    @Override
     public <T> boolean includeByBloomFilter(String key, T value) {
         Preconditions.checkArgument(bloomFilterHelper != null, "bloomFilterHelper不能为空");
         int[] offset = bloomFilterHelper.murmurHashOffset(value);

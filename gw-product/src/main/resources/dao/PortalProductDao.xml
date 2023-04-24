@@ -101,7 +101,13 @@
         </collection>
         <collection property="productFullReductionList" columnPrefix="full_" resultMap="com.gw.gwmall.mapper.PmsProductFullReductionMapper.BaseResultMap">
         </collection>
-        <collection property="memberPriceList" columnPrefix="member_" resultMap="com.gw.gwmall.mapper.PmsMemberPriceMapper.BaseResultMap">
+        <collection property="memberPriceList" columnPrefix="member_" ofType="com.gw.gwmall.model.PmsMemberPrice" >
+                <id column="id" jdbcType="BIGINT" property="id" />
+
+                <result column="product_id" jdbcType="BIGINT" property="productId" />
+                <result column="member_level_id" jdbcType="BIGINT" property="memberLevelId" />
+                <result column="member_price" jdbcType="DECIMAL" property="memberPrice" />
+                <result column="member_level_name" jdbcType="VARCHAR" property="memberLevelName" />
         </collection>
         <collection property="skuStockList" columnPrefix="sku_" resultMap="com.gw.gwmall.mapper.PmsSkuStockMapper.BaseResultMap">
         </collection>

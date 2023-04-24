@@ -32,6 +32,10 @@
                     <groupId>com.github.pagehelper</groupId>
                     <artifactId>pagehelper-spring-boot-starter</artifactId>
                 </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-webmvc</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
         <dependency>
@@ -102,7 +106,14 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.12.0</version>
         </dependency>
-
+        <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

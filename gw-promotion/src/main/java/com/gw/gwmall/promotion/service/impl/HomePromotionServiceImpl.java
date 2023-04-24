@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import javax.annotation.Resource;
 import java.util.*;
 
 /**
@@ -44,7 +45,7 @@ public class HomePromotionServiceImpl implements HomePromotionService {
     private FlashPromotionProductDao flashPromotionProductDao;
     @Autowired
     private PromotionRedisKey promotionRedisKey;
-    @Autowired
+    @Resource
     private RedisOpsExtUtil redisOpsExtUtil;
     @Autowired
     private RedisDistrLock redisDistrLock;

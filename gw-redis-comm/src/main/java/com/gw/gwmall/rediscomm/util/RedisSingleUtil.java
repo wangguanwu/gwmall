@@ -18,7 +18,7 @@ public class RedisSingleUtil {
 
     @Autowired
     @Qualifier("redisSingleTemplate")
-    private RedisTemplate redisTemplate;
+    private RedisTemplate<String, Object> redisTemplate;
 
     @PostConstruct
     public void init(){
@@ -97,5 +97,7 @@ public class RedisSingleUtil {
     public void publish(String channel,Object message){
         redisTemplate.convertAndSend(channel,message);
     }
+
+
 
 }

@@ -1,0 +1,155 @@
+server:
+  port: 8898
+mybatis:
+  mapper-locations:
+    - classpath:dao/*.xml
+    - classpath:mapper/*.xml
+
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+
+  #分库分表配置
+  shardingsphere:
+    #数据源配置
+    datasource:
+      names: ds-master,ds-slave
+      ds-master:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://127.0.0.1:3306/tl_mall_order?serverTimezone=GMT%2b8&useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
+        initialSize: 5
+        minIdle: 10
+        maxActive: 30
+        validationQuery: SELECT 1 FROM DUAL
+        username: root
+        password: wu123
+      # 模拟从库
+      ds-slave:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://127.0.0.1:3306/tl_mall_order?serverTimezone=GMT%2b8&useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
+        initialSize: 5
+        minIdle: 10
+        maxActive: 30
+        validationQuery: SELECT 1 FROM DUAL
+        username: root
+        password: wu123
+    sharding:
+      default-data-source-name: ds-master
+      default-database-strategy:
+        none:
+      tables:
+        oms_order:
+          actual-data-nodes: ds_ms.oms_order_$->{0..31}
+          table-strategy:
+            complex:
+              sharding-columns: id,member_id
+              algorithm-class-name: com.gw.gwmall.ordercurrent.sharding.OmsOrderShardingAlgorithm
+        oms_order_item:
+          actual-data-nodes: ds_ms.oms_order_item_$->{0..31}
+          table-strategy:
+            complex:
+              sharding-columns: order_id
+              algorithm-class-name: com.gw.gwmall.ordercurrent.sharding.OmsOrderItemShardingAlgorithm
+      binding-tables:
+        - oms_order,oms_order_item
+      broadcastTables:
+        - oms_company_address
+        - oms_order_operate_history
+        - oms_order_return_apply
+        - oms_order_return_reason
+        - oms_order_setting
+      #读写分离配置
+      master-slave-rules:
+        ds_ms:
+          master-data-sourceName: ds-master
+          slave-data-sourceNames:
+            - ds-slave
+          load-balance-algorithmType: ROUND_ROBIN
+    props:
+      sql:
+        show: true
+  redis:
+    cluster:
+      nodes: 127.0.0.1:8001,127.0.0.1:8002,127.0.0.1:8003,127.0.0.1:8004,127.0.0.1:8005,127.0.0.1:8006
+    #      nodes: 192.168.65.153:6379,192.168.65.222:6379,192.168.65.218:6379,192.168.65.186:6379,192.168.65.111:6379,192.168.65.162:6379
+    lettuce:
+      pool:
+        max-active: 8 # 连接池最大连接数（使用负值表示没有限制）
+        max-wait: -1ms # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-idle: 8 # 连接池中的最大空闲连接
+        min-idle: 0 # 连接池中的最小空闲连接
+    timeout: 3000ms # 连接超时时间（毫秒）
+#    password: noop
+    single:
+      enable: true
+      host: 127.0.0.1
+      port: 6379
+      max-active: 8 # 连接池最大连接数（使用负值表示没有限制）
+      max-wait: -1 # 连接池最大阻塞等待时间（使用负值表示没有限制）
+      max-idle: 8 # 连接池中的最大空闲连接
+      min-idle: 0 # 连接池中的最小空闲连接
+      timeout: 3000ms # 连接超时时间（毫秒）
+
+  main:
+    allow-bean-definition-overriding: true
+
+logging:
+  level:
+    com:
+      gw:
+        gwmall:
+          ordercurrent:
+            service:
+              impl: debug
+          feignapi:
+            ums:
+              UmsMemberReceiveAddressFeignApi: debug
+# logging:
+#   config: classpath:logback-spring.xml
+
+
+rocketmq:
+#  name-server: 192.168.65.164:9876 #连接超时时间
+  name-server: 127.0.0.1:9876
+  producer:
+    send-message-timeout: 30000 #发送消息超时时间
+    group: order-group
+  gwmall:
+    asyncOrderTopicSk: sk-async-order-topic  #异步创建订单topic
+    asyncOrderGroupSk: sk-async-order-group  #异步创建订单消费组
+    cancelGroupSk: sk-cancel-consumer-group #取消订单消费者组
+    scheduleTopicSk: sk-schedule-topic #定时任务取消订单topic
+
+
+
+
+# seata配置
+seata:
+  application-id: ${spring.application.name}
+  tx-service-group: gw-order-group
+  registry:
+    type: nacos
+    nacos:
+      application: seata-server
+      server-addr: 127.0.0.1:8848
+      group: SEATA_GROUP
+      username:
+      password:
+
+
+  config:
+    type: nacos
+    nacos:
+      server-addr: 127.0.0.1:8848
+      namespace: seata-ns
+      group: SEATA_GROUP
+      data-id: seataServer.properties
+      username:
+      password:
+  #      关闭数据源自动代理，由sharding-jdbc代理
+  enable-auto-data-source-proxy: false
+

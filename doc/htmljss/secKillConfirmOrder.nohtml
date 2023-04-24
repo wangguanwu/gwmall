@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<!-- saved from url=(0040)http://localhost:8081/#/secKillDetail/26 -->
+<html lang="en">
+  
+<head>
+  <title>秒杀订单确认页</title>
+</head>
+  
+  <body>
+    <noscript>
+      <strong>We're sorry but mall doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript>
+    <div id="app">
+      <div id="showOrder">
+        <div>
+          <span><em>订单ID：</em></span>
+          <input id="orderId" type="text" readonly>
+        </div>
+        <div>
+          <span><em>购买商品：</em></span>
+          <input id="cartPromotionItemList" type="textarea" readonly  autoHeight="true">
+          <span><em>订单详情ID：</em></span>
+          <input id="orderItemId" type="text" readonly>
+        </div>
+        <div>
+          <span><em>用户地址：</em></span>
+          <input id="memberReceiveAddressList" type="textarea" readonly autoHeight="true">
+          <span><em>实际使用用户地址：</em></span>
+          <input id="factAddress" type="text" readonly>
+        </div>
+        <div>
+          <span><em>金额：</em></span>
+          <input id="calcAmount" type="text" readonly>
+        </div>
+      </div>
+      <div>
+        <a href="javascript:;" onclick="submitOrder()">提交订单</a>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="jquery-1.9.1.min.js"></script>
+    <script type="text/javascript">
+      var lProductId="";
+      var lFlashPromotionId="";
+      var lMemberId="";
+      var lmemberReceiveAddress;
+
+      function submitOrder(){
+        var data = {
+          orderId: $("#orderId").val(),
+          orderItemId: $("#orderItemId").val(),
+          flashPromotionId: lFlashPromotionId,
+          memberReceiveAddress: lmemberReceiveAddress,
+          payType: "1",
+          productId: lProductId
+        };
+        $.ajax({
+          type: "post",
+          headers: {"memberId": lMemberId},//设置请求头
+          url: "/seckillOrder/generateOrder",
+          contentType:"application/json",
+          dataType: "json",
+          data: JSON.stringify(data),
+          success: function(result){
+            if(result.code==200){
+              console.log("下订单成功！");
+              window.location.href = "secKillPay.html";
+            }else{
+              alert("下订单失败！");
+            }
+          },
+          error:function(result){
+            alert("下订单错误！");
+          }
+
+        });
+      }
+
+      function showConfirmOrder(){
+        lProductId=localStorage.getItem("productId");
+        lMemberId=localStorage.getItem("memberId");
+        lFlashPromotionId=localStorage.getItem("flashPromotionId");
+        $.ajax({
+          type: "post",
+          headers:{"memberId": lMemberId},//设置请求头
+          url:"/skcart/generateConfirmOrder?" +
+                  "productId="+lProductId
+                  +"&flashPromotionId="+lFlashPromotionId,
+          success:function(commonresult){
+            if(commonresult.code == 200){
+              console.log("成功获得秒杀确认单！");
+              var data = commonresult.data;
+              console.log(commonresult);
+              $("#orderId").val(data.orderId);
+              localStorage.setItem("orderId",data.orderId);
+              var calcAmount = data.calcAmount;
+              $("#calcAmount").val(calcAmount.totalAmount);
+              var cartPromotionItem = data.cartPromotionItemList;
+              var productN = "";
+              $.each(cartPromotionItem,function (i,item) {
+                productN = productN + item.productName + "&&";
+                $("#orderItemId").val(item.orderItemId);
+              });
+              $("#cartPromotionItemList").val(productN);
+              var umsMemberReceiveAddress = data.memberReceiveAddressList;
+              var addrs = "";
+              $.each(umsMemberReceiveAddress,function (i,item) {
+                addrs = addrs + item.detailAddress + "&&";
+                lmemberReceiveAddress = item;
+                $("#factAddress").val(item.detailAddress);
+              });
+              $("#memberReceiveAddressList").val(addrs);
+            }else{
+              console.log(commonresult);
+              alert("获得秒杀确认单失败！");
+            }
+          },
+          error:function(data){
+            console.log(data);
+            alert("获得秒杀确认单异常！");
+          }
+        });
+      }
+
+      showConfirmOrder();
+    </script>
+  </body>
+
+</html>

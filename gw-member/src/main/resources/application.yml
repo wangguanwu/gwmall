@@ -43,3 +43,11 @@ rocketmq:
   gwmall:
     couponConsumerGroup: coupon-give-away-consumer-group #事务消息群组
     transCouponTopic: trans-coupon-topic #
+
+spring:
+  # 选择redis为session存储
+  session:
+    store-type: redis
+  data:
+    mongodb:
+      uri: mongodb://gwmall:123456@127.0.0.1:28017,127.0.0.1:28018,127.0.0.1:28019/test?authSource=admin&replicaSet=gmrs0

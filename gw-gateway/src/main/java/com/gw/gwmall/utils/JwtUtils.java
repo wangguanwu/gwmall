@@ -41,7 +41,7 @@ public class JwtUtils {
     /**
      * 请求头中的 token的开始
      */
-    private static final String AUTH_HEADER = "bearer ";
+    private static final String AUTH_HEADER = "Bearer ";
 
     /**
      * 方法实现说明: 通过远程调用获取认证服务器颁发jwt的解析的key
@@ -69,7 +69,8 @@ public class JwtUtils {
 
         } catch (Exception e) {
 
-            log.error("远程调用认证服务器获取Token_Key失败:{}",e.getMessage());
+
+            log.error("远程调用认证服务器获取Token_Key失败:{}",e.getMessage(), e);
 
             throw new GateWayException(ResultCode.GET_TOKEN_KEY_ERROR);
         }

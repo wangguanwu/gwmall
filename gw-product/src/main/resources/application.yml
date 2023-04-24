@@ -99,3 +99,8 @@ rocketmq:
   gwmall:
     couponConsumerGroup: coupon-give-away-consumer-group #事务消息群组
     transCouponTopic: trans-coupon-topic #
+
+bloomfilter:
+  config:
+    type: redis-plugin
+#    type: guava

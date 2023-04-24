@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<!-- saved from url=(0040)http://localhost:8081/#/secKillDetail/26 -->
+<html lang="en">
+  
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"> 
+  <title>秒杀支付</title>
+  <link rel="stylesheet" type="text/css" href="order.css">
+  <link rel="stylesheet" type="text/css" href="common.css">
+</head>
+  
+  <body>
+    <noscript>
+      <strong>We're sorry but mall doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript>
+   
+
+    <div id="app">
+ 
+      <div class="header">
+        <div class="nav-topbar">
+          <div class="container">
+            <div class="topbar-menu">
+              <a href="javascript:;">图灵商城</a></div>
+            <div class="topbar-user">
+              <a href="javascript:;">admin</a>
+              <!---->
+              <a href="javascript:;">退出</a>
+              <a href="http://localhost:8081/#/order/list">我的订单</a>
+              <a href="javascript:;" class="my-cart">
+                <span class="icon-cart"></span>购物车</a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-header">
+          <div class="container">
+            <div class="header-logo">
+              <a href="http://localhost:8081/#/index"></a>
+            </div>
+            <div class="header-search">
+              <div class="wrapper">
+                <input type="text" name="keyword" placeholder="请输入产品关键字">
+                <a href="javascript:;" class="fa fa-search fa-2x"></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> 
+      
+      <div class="pay">
+        <div id="payImage"  hidden="true">
+          <h2>请扫码支付，以下为模拟演示图片</h2>
+          <img src="ewm.jpg" alt="">
+        </div>
+        <div id="showProgress">
+          <h2>请稍候，订单正在生成....</h2>
+        </div>
+      </div>
+  
+
+    <div data-v-b07fc4c4="" class="footer">
+      <div data-v-b07fc4c4="" class="footer-logo">
+        <p data-v-b07fc4c4="">图灵商城</p></div>
+      <div data-v-b07fc4c4="" class="footer-link">
+        <a data-v-b07fc4c4="" href="http://www.tulingxueyuan.cn/" target="_blank">图灵学院</a>
+        <span data-v-b07fc4c4="">|</span>
+        <a data-v-b07fc4c4="" href="https://ke.qq.com/course/231516?tuin=a6505b53" target="_blank">腾讯课堂java架构师培训</a>
+        <span data-v-b07fc4c4="">|</span>
+        <a data-v-b07fc4c4="" href="https://ke.qq.com/course/429988" target="_blank">数据结构与算法</a>
+        <span data-v-b07fc4c4="">|</span>
+        <a data-v-b07fc4c4="" href="https://tuling.ke.qq.com/" target="_blank">腾讯课堂图灵学院</a></div>
+      <div data-v-b07fc4c4="" class="copyright">Copyright ©2019
+        <span data-v-b07fc4c4="" class="domain">图灵学院</span>All Rights Reserved.</div></div>
+    
+  </div>
+
+    <script type="text/javascript" src="jquery-1.9.1.min.js"></script>
+    <script type="text/javascript">
+      var lProductId=localStorage.getItem("productId");
+      var lFlashPromotionId=localStorage.getItem("memberId");
+      var lMemberId=localStorage.getItem("flashPromotionId");
+      var orderId=localStorage.getItem("orderId");
+      var timer;
+      var checkCount = 0;
+
+      function checkOrder(){
+        if(checkCount == 10){
+          alert("检查秒杀订单生成情况已达最大次数，请稍后再试！");
+          clearInterval(timer);
+          return;
+        }
+
+        $.ajax({
+          type: "post",
+          headers:{"memberId": lMemberId},//设置请求头
+          url:"/seckillOrder/checkOrder?" + "orderId="+orderId,
+          success:function(commonresult){
+            if(commonresult.code==200){
+              console.log("秒杀订单已生成！");
+              $("payImage").attr("hidden",false);
+              $("showProgress").attr("hidden",true);
+            }else if(commonresult.code==202){
+              console.log("秒杀订单还未生成，继续检查！");
+              checkCount++;
+            }else{
+              alert("检查秒杀订单生成情况失败！");
+            }
+          },
+          error:function(data){
+            alert("检查秒杀订单生成情况异常！");
+          }
+        });
+      }
+
+      timer = setInterval(checkOrder,5000);
+    </script>
+  </body>
+
+</html>

@@ -28,7 +28,7 @@ public class GateWayExceptionHandlerAdvice {
         if(throwable instanceof GateWayException) {
             return handle((GateWayException) throwable);
         }else {
-            return CommonResult.failed();
+            return CommonResult.failed(throwable.getMessage());
         }
     }
 }

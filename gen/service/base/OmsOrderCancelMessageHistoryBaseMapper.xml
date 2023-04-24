@@ -1,0 +1,537 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="packageMapper.base.OmsOrderCancelMessageHistoryBaseMapper">
+
+
+    <insert id="insertOmsOrderCancelMessageHistory"  useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO `oms_order_cancel_message_history`
+        (
+        <trim suffixOverrides=",">
+                    <if test="id!=null">
+                        `id`,
+                    </if>
+                    <if test="orderId!=null">
+                        `order_id`,
+                    </if>
+                    <if test="flashPromotionRelationId!=null">
+                        `flashPromotionRelationId`,
+                    </if>
+                    <if test="productId!=null">
+                        `productId`,
+                    </if>
+                    <if test="status!=null">
+                        `status`,
+                    </if>
+                    <if test="gmtCreate!=null">
+                        `gmt_create`,
+                    </if>
+                    <if test="gmtModified!=null">
+                        `gmt_modified`,
+                    </if>
+        </trim>
+        )
+        VALUES
+        (
+        <trim suffixOverrides=",">
+                <if test="id!=null">
+                    #{id},
+                </if>
+                <if test="orderId!=null">
+                    #{orderId},
+                </if>
+                <if test="flashPromotionRelationId!=null">
+                    #{flashPromotionRelationId},
+                </if>
+                <if test="productId!=null">
+                    #{productId},
+                </if>
+                <if test="status!=null">
+                    #{status},
+                </if>
+                <if test="gmtCreate!=null">
+                    #{gmtCreate},
+                </if>
+                <if test="gmtModified!=null">
+                    #{gmtModified},
+                </if>
+        </trim>
+        )
+    </insert>
+
+
+
+
+    <update id="updateOmsOrderCancelMessageHistory">
+        UPDATE `oms_order_cancel_message_history`
+        SET
+        <trim suffixOverrides=",">
+            <if test="orderId != null">
+                `order_id` = #{orderId},
+            </if>
+            <if test="flashPromotionRelationId != null">
+                `flashPromotionRelationId` = #{flashPromotionRelationId},
+            </if>
+            <if test="productId != null">
+                `productId` = #{productId},
+            </if>
+            <if test="status != null">
+                `status` = #{status},
+            </if>
+            <if test="gmtCreate != null">
+                `gmt_create` = #{gmtCreate},
+            </if>
+            <if test="gmtModified != null">
+                `gmt_modified` = #{gmtModified},
+            </if>
+        </trim>
+        WHERE
+        <trim suffixOverrides="and">
+                `id` = #{id} and
+        </trim>
+    </update>
+
+    <update id="update">
+        UPDATE `oms_order_cancel_message_history`
+        SET
+        <trim suffixOverrides=",">
+        <if test="set.orderId != null">
+            `order_id` = #{set.orderId},
+        </if>
+        <if test="set.flashPromotionRelationId != null">
+            `flashPromotionRelationId` = #{set.flashPromotionRelationId},
+        </if>
+        <if test="set.productId != null">
+            `productId` = #{set.productId},
+        </if>
+        <if test="set.status != null">
+            `status` = #{set.status},
+        </if>
+        <if test="set.gmtCreate != null">
+            `gmt_create` = #{set.gmtCreate},
+        </if>
+        <if test="set.gmtModified != null">
+            `gmt_modified` = #{set.gmtModified},
+        </if>
+        </trim>
+        <trim prefix="where" suffixOverrides="and | or">
+                <if test="where.idList != null">
+                    `id` in
+                    <foreach collection="where.idList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.idSt !=null">
+                `id` >= #{where.idSt} and
+            </if>
+            <if test="where.idEd!=null">
+                `id` &lt;= #{where.idEd} and
+            </if>
+                <if test="where.orderIdList != null">
+                    `order_id` in
+                    <foreach collection="where.orderIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.orderIdSt !=null">
+                `order_id` >= #{where.orderIdSt} and
+            </if>
+            <if test="where.orderIdEd!=null">
+                `order_id` &lt;= #{where.orderIdEd} and
+            </if>
+                <if test="where.flashPromotionRelationIdList != null">
+                    `flashPromotionRelationId` in
+                    <foreach collection="where.flashPromotionRelationIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.flashPromotionRelationIdSt !=null">
+                `flashPromotionRelationId` >= #{where.flashPromotionRelationIdSt} and
+            </if>
+            <if test="where.flashPromotionRelationIdEd!=null">
+                `flashPromotionRelationId` &lt;= #{where.flashPromotionRelationIdEd} and
+            </if>
+                <if test="where.productIdList != null">
+                    `productId` in
+                    <foreach collection="where.productIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.productIdSt !=null">
+                `productId` >= #{where.productIdSt} and
+            </if>
+            <if test="where.productIdEd!=null">
+                `productId` &lt;= #{where.productIdEd} and
+            </if>
+                <if test="where.statusList != null">
+                    `status` in
+                    <foreach collection="where.statusList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.statusSt !=null">
+                `status` >= #{where.statusSt} and
+            </if>
+            <if test="where.statusEd!=null">
+                `status` &lt;= #{where.statusEd} and
+            </if>
+                <if test="where.gmtCreateList != null">
+                    `gmt_create` in
+                    <foreach collection="where.gmtCreateList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.gmtCreateSt !=null">
+                `gmt_create` >= #{where.gmtCreateSt} and
+            </if>
+            <if test="where.gmtCreateEd!=null">
+                `gmt_create` &lt;= #{where.gmtCreateEd} and
+            </if>
+                <if test="where.gmtModifiedList != null">
+                    `gmt_modified` in
+                    <foreach collection="where.gmtModifiedList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.gmtModifiedSt !=null">
+                `gmt_modified` >= #{where.gmtModifiedSt} and
+            </if>
+            <if test="where.gmtModifiedEd!=null">
+                `gmt_modified` &lt;= #{where.gmtModifiedEd} and
+            </if>
+        </trim>
+    </update>
+
+
+    <resultMap type="packageModel.OmsOrderCancelMessageHistory" id="OmsOrderCancelMessageHistoryMap">
+        <result property="id" column="id"/>
+        <result property="orderId" column="order_id"/>
+        <result property="flashPromotionRelationId" column="flashPromotionRelationId"/>
+        <result property="productId" column="productId"/>
+        <result property="status" column="status"/>
+        <result property="gmtCreate" column="gmt_create"/>
+        <result property="gmtModified" column="gmt_modified"/>
+    </resultMap>
+
+
+    <select id="queryOmsOrderCancelMessageHistory" resultMap="OmsOrderCancelMessageHistoryMap">
+        select
+        <include refid="baseResult"></include>
+        from  `oms_order_cancel_message_history`
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="id != null">
+                `id` = #{id} and
+            </if>
+            <if test="orderId != null">
+                `order_id` = #{orderId} and
+            </if>
+            <if test="flashPromotionRelationId != null">
+                `flashPromotionRelationId` = #{flashPromotionRelationId} and
+            </if>
+            <if test="productId != null">
+                `productId` = #{productId} and
+            </if>
+            <if test="status != null">
+                `status` = #{status} and
+            </if>
+            <if test="gmtCreate != null">
+                `gmt_create` = #{gmtCreate} and
+            </if>
+            <if test="gmtModified != null">
+                `gmt_modified` = #{gmtModified} and
+            </if>
+            <if test = "(_parameter instanceof packageModel.OmsOrderCancelMessageHistory$QueryBuilder) == true">
+                <if test="idList != null">
+                    `id` in
+                    <foreach collection="idList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="idSt !=null">
+                    `id` >= #{idSt} and
+                </if>
+                <if test="idEd!=null">
+                    `id` &lt;= #{idEd} and
+                </if>
+                <if test="orderIdList != null">
+                    `order_id` in
+                    <foreach collection="orderIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="orderIdSt !=null">
+                    `order_id` >= #{orderIdSt} and
+                </if>
+                <if test="orderIdEd!=null">
+                    `order_id` &lt;= #{orderIdEd} and
+                </if>
+                <if test="flashPromotionRelationIdList != null">
+                    `flashPromotionRelationId` in
+                    <foreach collection="flashPromotionRelationIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="flashPromotionRelationIdSt !=null">
+                    `flashPromotionRelationId` >= #{flashPromotionRelationIdSt} and
+                </if>
+                <if test="flashPromotionRelationIdEd!=null">
+                    `flashPromotionRelationId` &lt;= #{flashPromotionRelationIdEd} and
+                </if>
+                <if test="productIdList != null">
+                    `productId` in
+                    <foreach collection="productIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="productIdSt !=null">
+                    `productId` >= #{productIdSt} and
+                </if>
+                <if test="productIdEd!=null">
+                    `productId` &lt;= #{productIdEd} and
+                </if>
+                <if test="statusList != null">
+                    `status` in
+                    <foreach collection="statusList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="statusSt !=null">
+                    `status` >= #{statusSt} and
+                </if>
+                <if test="statusEd!=null">
+                    `status` &lt;= #{statusEd} and
+                </if>
+                <if test="gmtCreateList != null">
+                    `gmt_create` in
+                    <foreach collection="gmtCreateList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="gmtCreateSt !=null">
+                    `gmt_create` >= #{gmtCreateSt} and
+                </if>
+                <if test="gmtCreateEd!=null">
+                    `gmt_create` &lt;= #{gmtCreateEd} and
+                </if>
+                <if test="gmtModifiedList != null">
+                    `gmt_modified` in
+                    <foreach collection="gmtModifiedList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="gmtModifiedSt !=null">
+                    `gmt_modified` >= #{gmtModifiedSt} and
+                </if>
+                <if test="gmtModifiedEd!=null">
+                    `gmt_modified` &lt;= #{gmtModifiedEd} and
+                </if>
+            </if>
+        </trim>
+    </select>
+
+    <select id="queryOmsOrderCancelMessageHistoryLimit1" resultMap="OmsOrderCancelMessageHistoryMap">
+        select
+        <include refid="baseResult"></include>
+        from  `oms_order_cancel_message_history`
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="id != null">
+                `id` = #{id} and
+            </if>
+            <if test="orderId != null">
+                `order_id` = #{orderId} and
+            </if>
+            <if test="flashPromotionRelationId != null">
+                `flashPromotionRelationId` = #{flashPromotionRelationId} and
+            </if>
+            <if test="productId != null">
+                `productId` = #{productId} and
+            </if>
+            <if test="status != null">
+                `status` = #{status} and
+            </if>
+            <if test="gmtCreate != null">
+                `gmt_create` = #{gmtCreate} and
+            </if>
+            <if test="gmtModified != null">
+                `gmt_modified` = #{gmtModified} and
+            </if>
+            <if test = "(_parameter instanceof packageModel.OmsOrderCancelMessageHistory$QueryBuilder) == true">
+                    <if test="idList != null">
+                        `id` in
+                        <foreach collection="idList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="idSt !=null">
+                    `id` >= #{idSt} and
+                </if>
+                <if test="idEd!=null">
+                    `id` &lt;= #{idEd} and
+                </if>
+                    <if test="orderIdList != null">
+                        `order_id` in
+                        <foreach collection="orderIdList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="orderIdSt !=null">
+                    `order_id` >= #{orderIdSt} and
+                </if>
+                <if test="orderIdEd!=null">
+                    `order_id` &lt;= #{orderIdEd} and
+                </if>
+                    <if test="flashPromotionRelationIdList != null">
+                        `flashPromotionRelationId` in
+                        <foreach collection="flashPromotionRelationIdList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="flashPromotionRelationIdSt !=null">
+                    `flashPromotionRelationId` >= #{flashPromotionRelationIdSt} and
+                </if>
+                <if test="flashPromotionRelationIdEd!=null">
+                    `flashPromotionRelationId` &lt;= #{flashPromotionRelationIdEd} and
+                </if>
+                    <if test="productIdList != null">
+                        `productId` in
+                        <foreach collection="productIdList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="productIdSt !=null">
+                    `productId` >= #{productIdSt} and
+                </if>
+                <if test="productIdEd!=null">
+                    `productId` &lt;= #{productIdEd} and
+                </if>
+                    <if test="statusList != null">
+                        `status` in
+                        <foreach collection="statusList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="statusSt !=null">
+                    `status` >= #{statusSt} and
+                </if>
+                <if test="statusEd!=null">
+                    `status` &lt;= #{statusEd} and
+                </if>
+                    <if test="gmtCreateList != null">
+                        `gmt_create` in
+                        <foreach collection="gmtCreateList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="gmtCreateSt !=null">
+                    `gmt_create` >= #{gmtCreateSt} and
+                </if>
+                <if test="gmtCreateEd!=null">
+                    `gmt_create` &lt;= #{gmtCreateEd} and
+                </if>
+                    <if test="gmtModifiedList != null">
+                        `gmt_modified` in
+                        <foreach collection="gmtModifiedList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="gmtModifiedSt !=null">
+                    `gmt_modified` >= #{gmtModifiedSt} and
+                </if>
+                <if test="gmtModifiedEd!=null">
+                    `gmt_modified` &lt;= #{gmtModifiedEd} and
+                </if>
+            </if>
+        </trim>
+        limit 1
+    </select>
+
+    <sql id="allResult">
+        <trim suffixOverrides=",">
+        `id`,
+        `order_id`,
+        `flashPromotionRelationId`,
+        `productId`,
+        `status`,
+        `gmt_create`,
+        `gmt_modified`,
+        </trim>
+    </sql>
+
+
+
+    <sql id="baseResult">
+        <trim suffixOverrides=",">
+            <if test = "(_parameter instanceof packageModel.OmsOrderCancelMessageHistory$QueryBuilder) == true">
+
+                <if test="fetchFields==null">
+                    <include refid="allResult"></include>
+                </if>
+                <if test="fetchFields!=null">
+                    <if test="fetchFields.AllFields !=null">
+                        <include refid="allResult"></include>
+                    </if>
+                    <if test="fetchFields.AllFields ==null and fetchFields.fetchFields==null and fetchFields.excludeFields==null and fetchFields.otherFields==null">
+                        <include refid="allResult"></include>
+                    </if>
+                    <if test="fetchFields.AllFields==null and fetchFields.fetchFields!=null">
+                    <if test="fetchFields.fetchFields.id==true">
+                        `id`,
+                    </if>
+                    <if test="fetchFields.fetchFields.orderId==true">
+                        `order_id`,
+                    </if>
+                    <if test="fetchFields.fetchFields.flashPromotionRelationId==true">
+                        `flashPromotionRelationId`,
+                    </if>
+                    <if test="fetchFields.fetchFields.productId==true">
+                        `productId`,
+                    </if>
+                    <if test="fetchFields.fetchFields.status==true">
+                        `status`,
+                    </if>
+                    <if test="fetchFields.fetchFields.gmtCreate==true">
+                        `gmt_create`,
+                    </if>
+                    <if test="fetchFields.fetchFields.gmtModified==true">
+                        `gmt_modified`,
+                    </if>
+                    </if>
+                    <if test="fetchFields.AllFields==null and fetchFields.excludeFields!=null">
+                    <if test="fetchFields.excludeFields.id==null">
+                        `id`,
+                    </if>
+                    <if test="fetchFields.excludeFields.orderId==null">
+                        `order_id`,
+                    </if>
+                    <if test="fetchFields.excludeFields.flashPromotionRelationId==null">
+                        `flashPromotionRelationId`,
+                    </if>
+                    <if test="fetchFields.excludeFields.productId==null">
+                        `productId`,
+                    </if>
+                    <if test="fetchFields.excludeFields.status==null">
+                        `status`,
+                    </if>
+                    <if test="fetchFields.excludeFields.gmtCreate==null">
+                        `gmt_create`,
+                    </if>
+                    <if test="fetchFields.excludeFields.gmtModified==null">
+                        `gmt_modified`,
+                    </if>
+                    </if>
+                    <if test="fetchFields.otherFields!=null and fetchFields.otherFields.size>0">
+                        <foreach collection="fetchFields.otherFields" index="index" item="item" separator=",">
+                        `#{item}`
+                        </foreach>
+                    </if>
+                </if>
+            </if>
+            <if test="(_parameter instanceof packageModel.OmsOrderCancelMessageHistory$QueryBuilder) == false" >
+                <include refid="allResult"></include>
+            </if>
+
+        </trim>
+    </sql>
+
+
+</mapper>

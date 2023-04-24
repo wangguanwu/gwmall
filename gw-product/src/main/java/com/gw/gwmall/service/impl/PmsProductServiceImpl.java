@@ -98,10 +98,6 @@ public class PmsProductServiceImpl implements PmsProductService {
      * @return
      */
     public List<PmsProduct> getProductBatch(List<Long> productIdList){
-//        for(Long productId:productIdList){
-//            PmsProduct pmsProduct = pmsProductMapper.selectByPrimaryKey(productId);
-//            products.add(pmsProduct);
-//        }
         PmsProductExample pmsProductExample = new PmsProductExample();
         pmsProductExample.or().andIdIn(productIdList);
         return pmsProductMapper.selectByExample(pmsProductExample);

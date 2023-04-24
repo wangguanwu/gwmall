@@ -27,66 +27,18 @@ public class GatewayBlockExceptionHandler extends DefaultBlockRequestHandler {
 
     @Override
     public Mono<ServerResponse> handleRequest(ServerWebExchange exchange, Throwable ex) {
-//        if (acceptsHtml(exchange)) {
-//            return htmlErrorResponse(ex);
-//        }
-        // JSON result by default.
         return ServerResponse.status(HttpStatus.TOO_MANY_REQUESTS)
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(fromValue(buildErrorResult(ex)));
-//                .body(fromObject(buildErrorResult(ex)))
-    }
-
-    private Mono<ServerResponse> htmlErrorResponse(Throwable ex) {
-
-        return ServerResponse.status(HttpStatus.TOO_MANY_REQUESTS)
-                .contentType(MediaType.APPLICATION_JSON)
-//                .contentType(MediaType.TEXT_PLAIN)
-                .bodyValue(JSON.toJSONString(buildErrorResult(ex)));
-//                .syncBody(new String(JSON.toJSONString(buildErrorResult(ex))));
-
     }
 
     private CommonResult buildErrorResult(Throwable ex) {
-        if(ex instanceof ParamFlowException) {
+        if (ex instanceof ParamFlowException) {
             return  CommonResult.failed(ResultCode.TOMANY_REQUEST_ERROR);
-        }else if (ex instanceof DegradeException) {
+        } else if (ex instanceof DegradeException) {
             return CommonResult.failed(ResultCode.BACKGROUD_DEGRADE_ERROR);
-        }else{
+        } else {
             return CommonResult.failed(ResultCode.BAD_GATEWAY);
-        }
-    }
-
-    /**
-     * Reference from {@code DefaultErrorWebExceptionHandler} of Spring Boot.
-     */
-    private boolean acceptsHtml(ServerWebExchange exchange) {
-        try {
-            List<MediaType> acceptedMediaTypes = exchange.getRequest().getHeaders().getAccept();
-            acceptedMediaTypes.remove(MediaType.ALL);
-            MediaType.sortBySpecificityAndQuality(acceptedMediaTypes);
-            return acceptedMediaTypes.stream()
-                    .anyMatch(MediaType.TEXT_HTML::isCompatibleWith);
-        } catch (InvalidMediaTypeException ex) {
-            return false;
-        }
-    }
-
-    private static class ErrorResult {
-        private final int code;
-        private final String message;
-
-        ErrorResult(int code, String message) {
-            this.code = code;
-            this.message = message;
-        }
-
-        public int getCode() {
-            return code;
-        }
-
-        public String getMessage() {
-            return message;
         }
     }
 }

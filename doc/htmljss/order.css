@@ -1,0 +1,136 @@
+.order-pay .wrapper {
+    background-color: #F5F5F5;
+    padding-top: 30px;
+    padding-bottom: 61px;
+  }
+  .order-pay .wrapper .order-wrap {
+    padding: 62px 50px;
+    background-color: #fff;
+    font-size: 14px;
+    margin-bottom: 30px;
+    width: 1028px;
+    margin: 0px auto;
+  }
+  .order-pay .wrapper .order-wrap .item-order {
+    display: flex;
+    align-items: center;
+  }
+  .order-pay .wrapper .order-wrap .item-order .icon-succ {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: url("/imgs/icon-gou.png") #80c58a no-repeat center;
+    background-size: 60px;
+    margin-right: 40px;
+  }
+  .order-pay .wrapper .order-wrap .item-order .order-info {
+    margin-right: 248px;
+  }
+  .order-pay .wrapper .order-wrap .item-order .order-info h2 {
+    font-size: 24px;
+    color: #333333;
+    margin-bottom: 20px;
+  }
+  .order-pay .wrapper .order-wrap .item-order .order-info p {
+    color: #666666;
+  }
+  .order-pay .wrapper .order-wrap .item-order .order-info p span {
+    color: #FF6700;
+  }
+  .order-pay .wrapper .order-wrap .item-order .order-total > p:first-child {
+    margin-bottom: 30px;
+  }
+  .order-pay .wrapper .order-wrap .item-order .order-total span {
+    font-size: 28px;
+    color: #FF6700;
+  }
+  .order-pay .wrapper .order-wrap .item-order .order-total .icon-down {
+    display: inline-block;
+    width: 14px;
+    height: 10px;
+    background: url("/imgs/icon-down.png") no-repeat center;
+    background-size: contain;
+    margin-left: 9px;
+    transition: all 0.5s;
+    cursor: pointer;
+  }
+  .order-pay .wrapper .order-wrap .item-order .order-total .icon-down.up {
+    transform: rotate(180deg);
+  }
+  .order-pay .wrapper .order-wrap .item-order .order-total .icon-up {
+    transform: rotate(180deg);
+  }
+  .order-pay .wrapper .order-wrap .item-detail {
+    border-top: 1px solid #D7D7D7;
+    padding-top: 47px;
+    padding-left: 130px;
+    font-size: 14px;
+    margin-top: 45px;
+  }
+  .order-pay .wrapper .order-wrap .item-detail .item {
+    margin-bottom: 19px;
+  }
+  .order-pay .wrapper .order-wrap .item-detail .item .detail-title {
+    float: left;
+    width: 100px;
+  }
+  .order-pay .wrapper .order-wrap .item-detail .item .detail-info {
+    display: inline-block;
+  }
+  .order-pay .wrapper .order-wrap .item-detail .item .detail-info img {
+    width: 30px;
+    vertical-align: middle;
+  }
+  .order-pay .wrapper .item-pay {
+    padding: 26px 50px 72px;
+    background-color: #ffffff;
+    color: #333333;
+  }
+  .order-pay .wrapper .item-pay h3 {
+    font-size: 20px;
+    font-weight: 200;
+    color: #333333;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #D7D7D7;
+    margin-bottom: 26px;
+  }
+  .order-pay .wrapper .item-pay .pay-way {
+    font-size: 18px;
+  }
+  .order-pay .wrapper .item-pay .pay-way .pay {
+    display: inline-block;
+    width: 188px;
+    height: 64px;
+    border: 1px solid #D7D7D7;
+    cursor: pointer;
+  }
+  .order-pay .wrapper .item-pay .pay-way .pay:last-child {
+    margin-left: 20px;
+  }
+  .order-pay .wrapper .item-pay .pay-way .pay.checked {
+    border: 1px solid #FF6700;
+  }
+  .order-pay .wrapper .item-pay .pay-way .pay-ali {
+    background: url("/imgs/pay/icon-ali.png") no-repeat center;
+    background-size: 103px 38px;
+    margin-top: 19px;
+  }
+  .order-pay .wrapper .item-pay .pay-way .pay-wechat {
+    background: url("/imgs/pay/icon-wechat.png") no-repeat center;
+    background-size: 103px 38px;
+  }
+
+  .subpay{
+    text-align: center;
+    margin: 20px;
+  }
+
+  .pay {
+    padding: 62px 50px;
+    background-color: #fff;
+    font-size: 14px;
+    margin-bottom: 30px;
+    width: 1028px;
+    margin: 0px auto;
+    height: 400px;
+  }

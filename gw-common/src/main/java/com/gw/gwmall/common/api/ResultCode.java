@@ -19,7 +19,8 @@ public enum ResultCode implements IErrorCode {
     BAD_GATEWAY(502,"网关服务异常"),
     FORBIDDEN(403, "没有相关权限"),
 
-    COUPON_SEND_FAILED(700, "赠送优惠券失败");
+    COUPON_SEND_FAILED(700, "赠送优惠券失败"),
+    ILLEGAL_STATE_ERROR(800, "非法状态异常");
     private long code;
     private String message;
 

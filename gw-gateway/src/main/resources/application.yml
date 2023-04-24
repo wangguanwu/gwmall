@@ -21,25 +21,50 @@ spring:
 
     gateway:
       routes:
-        - id: member   #路由ID，全局唯一
-          uri: lb://gw-member
-          predicates:
-            - Path=/member/**,/sso/**
-        - id: promotion
-          uri: lb://gw-promotion
-          predicates:
-            - Path=/coupon/**
-        - id: authcenter
+        - id: gw-authcenter
           uri: lb://gw-authcenter
           predicates:
             - Path=/oauth/**
+        - id: gw-member
+          uri: lb://gw-member
+          predicates:
+            - Path=/sso/**,/member/**
+        - id: gw-order-current
+          uri: lb://gw-order-current
+          predicates:
+            - Path=/order/**
+        - id: gw-cart
+          uri: lb://gw-cart
+          predicates:
+            - Path=/cart/**
+        - id: gw-product
+          uri: lb://gw-product
+          predicates:
+            - Path=/pms/**
+        - id: gw-promotion
+          uri: lb://gw-promotion
+          predicates:
+            - Path=/coupon/**
+        - id: gw-portal
+          uri: lb://gw-portal
+          predicates:
+            - Path=/home/**,/portal/**
+
+    sentinel:
+      transport:
+        dashboard: 127.0.0.1:8080
 
 logging:
   level:
-    org.springframework.cloud.gateway: debug
+    org.springframework.cloud.gateway: info
 
 gw:
   gateway:
     shouldSkipUrls:
       - /oauth/**
       - /sso/**
+      - /home/**
+      - /portal/commentlist/**
+      - /order/paySuccess/**
+      - /pms/**
+      - /static/qrcode/**

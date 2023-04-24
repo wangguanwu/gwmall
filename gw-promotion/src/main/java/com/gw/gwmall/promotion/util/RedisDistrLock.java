@@ -1,5 +1,6 @@
 package com.gw.gwmall.promotion.util;
 
+import com.gw.gwmall.rediscomm.util.RedisCommonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -35,29 +36,10 @@ public class RedisDistrLock {
         if(isLoadScript.get()) return;
         redisScript.setScriptText(UNLOCK_LUA);
         redisScript.setResultType(Long.class);
-        loadRedisScript(redisScript,UNLOCK_LUA_NAME);
+        RedisCommonUtil.loadRedisScript(redisTemplate, redisScript, UNLOCK_LUA_NAME);
         isLoadScript.set(true);
     }
 
-    /**
-     * 加载lua脚本到redis服务器
-     * @param redisScript
-     * @param luaName
-     */
-    private void loadRedisScript(DefaultRedisScript<Long> redisScript, String luaName) {
-        try {
-            List<Boolean> results = Objects.requireNonNull(redisTemplate.getConnectionFactory()).getConnection()
-                    .scriptExists(redisScript.getSha1());
-            assert results != null;
-            if (Boolean.FALSE.equals(results.get(0))) {
-                String sha = redisTemplate.getConnectionFactory().getConnection()
-                        .scriptLoad(redisScript.getScriptAsString().getBytes(StandardCharsets.UTF_8));
-                log.info("预加载lua脚本成功：{}, sha=[{}]", luaName, sha);
-            }
-        } catch (Exception e) {
-            log.error("预加载lua脚本异常：{}", luaName, e);
-        }
-    }
 
     /**
      * 尝试获取锁
@@ -76,6 +58,7 @@ public class RedisDistrLock {
             // 将新生成的值放入集合中
             values.get().put(key, value);
         }
+
         if (redisTemplate.opsForValue().setIfAbsent(key, value, Duration.ofSeconds(timeout))) {
             return true;
         }
@@ -105,10 +88,8 @@ public class RedisDistrLock {
      * @return 是否成功释放锁
      */
     private boolean tryRelease(String key) {
-        String[] keys = new String[]{key};
-        String[] args = new String[]{getValueByKey(key)};
         // 释放锁
-        Long result = (Long)redisTemplate.execute(redisScript, Collections.singletonList(key),getValueByKey(key));
+        Long result = redisTemplate.execute(redisScript, Collections.singletonList(key),getValueByKey(key));
         return result != null;
     }
 

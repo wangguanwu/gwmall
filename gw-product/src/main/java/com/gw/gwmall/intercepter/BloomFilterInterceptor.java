@@ -30,7 +30,8 @@ public class BloomFilterInterceptor implements HandlerInterceptor {
         //解析出pathvariable
         Map<String, String> pathVariable = matcher.extractUriTemplateVariables("/pms/productInfo/{id}", currentUrl);
         //布隆过滤器存储在redis中
-        if(bloomRedisService.includeByBloomFilter(RedisKeyPrefixConst.PRODUCT_REDIS_BLOOM_FILTER,pathVariable.get("id"))){
+        if(bloomRedisService.includeByBloomFilter(RedisKeyPrefixConst.PRODUCT_REDIS_BLOOM_FILTER,
+                pathVariable.get("id"))){
             return true;
         }
 

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!-- 引入配置文件 -->
+    <properties resource="mybatis/generatorConfig.properties"/>
+
+    <!-- 需要驱动：1、加入驱动路径 2、在plugin里直接加入依赖 -->
+    <!-- <classPathEntry location="/Program Files/IBM/SQLLIB/java/db2java.zip"/>-->
+
+    <!-- targetRuntime属性推荐MyBatis3和MyBatis3Simple -->
+    <!-- 必须按context的顺序配置 -->
+    <context id="MySQL" targetRuntime="MyBatis3">
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+        <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin" />
+
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+            <!-- 是否输出表和列的comment信息 -->
+            <property name="addRemarkComments" value="true"/>
+        </commentGenerator>
+
+        <!-- 数据源连接信息 -->
+        <jdbcConnection
+                driverClass="${datasource.driver}"
+                connectionURL="${datasource.url}"
+                userId="${datasource.username}"
+                password="${datasource.password}">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <!-- 如果为true，所有数字属性被强制使用BigDecimal类型表示 -->
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!-- 生成模型的包名和位置 -->
+        <javaModelGenerator
+                targetPackage="com.gw.gwmall.ordercurrent.model"
+                targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <!-- 生成的映射文件包名和位置 -->
+        <sqlMapGenerator
+                targetPackage="mybatis/mapper"
+                targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!-- 生成DAO的包名和位置 -->
+        <javaClientGenerator
+                targetPackage="com.gw.gwmall.ordercurrent.mapper"
+                targetProject="src/main/java"
+                type="XMLMAPPER">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <table tableName="oms_order_cancel_message_history"
+               domainObjectName="OmsOrderCancelMessageHistory"
+               mapperName="OmsOrderCancelMessageHistoryMapper">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+    </context>
+</generatorConfiguration>

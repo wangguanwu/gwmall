@@ -71,7 +71,7 @@ public class SecKillStaticHtmlServiceImpl implements ISecKillStaticHtmlService {
     private String toStatic(FlashPromotionProduct flashPromotionProduct) throws IOException, TemplateException {
         String outPath = "";
         // 第一步：创建一个Configuration对象，直接new一个对象。构造方法的参数就是freemarker对于的版本号。
-        Configuration configuration = new Configuration(Configuration.getVersion());
+        Configuration configuration = new Configuration(Configuration.DEFAULT_INCOMPATIBLE_IMPROVEMENTS);
         // 第二步：设置模板文件所在的路径。
         configuration.setDirectoryForTemplateLoading(new File(templateDir));
         // 第三步：设置模板文件使用的字符集。一般就是utf-8.
@@ -79,7 +79,7 @@ public class SecKillStaticHtmlServiceImpl implements ISecKillStaticHtmlService {
         // 第四步：加载一个模板，创建一个模板对象。
         Template template = configuration.getTemplate(templateName);
         // 第五步：创建一个模板使用的数据集，可以是pojo也可以是map。一般是Map。
-        Map dataModel = new HashMap();
+        Map<String, Object> dataModel = new HashMap<>();
         // 向数据集中添加数据
         dataModel.put("fpp", flashPromotionProduct);
 
@@ -91,9 +91,10 @@ public class SecKillStaticHtmlServiceImpl implements ISecKillStaticHtmlService {
         }
         // 第六步：创建一个Writer对象，一般创建一FileWriter对象，指定生成的文件名。
         // 文件名命名规则  seckill_+秒杀活动id + "_" + 秒杀产品ID，如 seckill_1_3.html
-        String fileName = "seckill_" + flashPromotionProduct.getFlashPromotionId() + "_" + flashPromotionProduct.getId() + ".html";
+        String fileName = "seckill_" + flashPromotionProduct.getFlashPromotionId()
+                + "_" + flashPromotionProduct.getId() + ".html";
         outPath = htmlDir + "/" + fileName;
-        Writer out = new FileWriter(new File(outPath));
+        Writer out = new FileWriter(outPath);
         // 第七步：调用模板对象的process方法输出文件。
         template.process(dataModel, out);
         // 第八步：关闭流。
@@ -111,7 +112,7 @@ public class SecKillStaticHtmlServiceImpl implements ISecKillStaticHtmlService {
                 homePromotionService.secKillContent(secKillId,ConstantPromotion.SECKILL_OPEN);
         List<String> result = new ArrayList<>();
         if(CollectionUtils.isEmpty(flashPromotionProducts)){
-            log.warn("没有秒杀活动{[]}对应的产品信息，请检查DB中的秒杀数据",secKillId);
+            log.warn("没有秒杀活动{}对应的产品信息，请检查DB中的秒杀数据",secKillId);
         }else{
             for(FlashPromotionProduct flashPromotionProduct : flashPromotionProducts){
                 result.add(toStatic(flashPromotionProduct));
@@ -127,7 +128,7 @@ public class SecKillStaticHtmlServiceImpl implements ISecKillStaticHtmlService {
             for(String host : nginxServerList){
                 ChannelSftp channel = sftpUploadService.getChannel(host, userName, port, password);
                 String path = rootPath + "/";
-                sftpUploadService.createDir(path,channel);
+                SftpUploadService.createDir(path,channel);
                 for(String fileName : result){
                     sftpUploadService.putFile(channel,new FileInputStream(htmlDir + "/" + fileName),path,fileName);
                 }

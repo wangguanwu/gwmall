@@ -3,12 +3,15 @@ package com.gw.gwmall.config;
 import com.google.common.base.Charsets;
 import com.google.common.hash.Funnel;
 import com.gw.gwmall.common.constant.RedisKeyPrefixConst;
+import com.gw.gwmall.component.BloomFilterService;
 import com.gw.gwmall.component.BloomRedisService;
+import com.gw.gwmall.component.BloomRedisServiceOpt;
 import com.gw.gwmall.service.PmsProductService;
 import com.gw.gwmall.util.BloomFilterHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -21,10 +24,9 @@ import java.util.List;
  **/
 @Slf4j
 @Configuration
-public class BloomFilterConfig implements InitializingBean{
+public class BloomFilterConfig{
 
-    @Autowired
-    private PmsProductService productService;
+
 
     @Autowired
     private RedisTemplate<String, Object> template;
@@ -39,28 +41,19 @@ public class BloomFilterConfig implements InitializingBean{
      * 布隆过滤器bean注入
      * @return
      */
+
+    @ConditionalOnProperty(prefix = "bloomfilter.config", name = "type", havingValue = "guava", matchIfMissing = true)
     @Bean
-    public BloomRedisService bloomRedisService(){
+    public BloomFilterService guavaBloomRedisService(){
         BloomRedisService bloomRedisService = new BloomRedisService();
         bloomRedisService.setBloomFilterHelper(initBloomFilterHelper());
         bloomRedisService.setRedisTemplate(template);
         return bloomRedisService;
     }
 
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        //fixme 思考：此处如何优化？产品如何添加到布隆过滤器中？
-        //todo 构造延迟任务，避免影响项目启动速度
-        //todo 布隆过滤器另一种实现方式: 使用redis的布隆插件实现
-        //todo 使用分布式锁实现单线程加载
-        List<Long> list = productService.getAllProductId();
-        log.info("加载产品到布隆过滤器当中,size:{}",list.size());
-        if(!CollectionUtils.isEmpty(list)){
-            list.forEach(item->{
-                //LocalBloomFilter.put(item);
-                //todo perf redis加入bloom模块优化加载商品过滤器性能，可以避免多次调用redis，提交效率
-                bloomRedisService().addByBloomFilter(RedisKeyPrefixConst.PRODUCT_REDIS_BLOOM_FILTER,item+"");
-            });
-        }
+    @ConditionalOnProperty(prefix = "bloomfilter.config", name = "type", havingValue = "redis-plugin")
+    @Bean
+    public BloomFilterService redisPluginBloomRedisService(){
+        return new BloomRedisServiceOpt(template);
     }
 }

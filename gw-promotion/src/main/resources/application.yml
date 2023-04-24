@@ -25,7 +25,19 @@ rocketmq:
     couponConsumerGroup: coupon-give-away-consumer-group #事务消息群组
     transCouponTopic: trans-coupon-topic #
 
-
+secKillServerList:
+  http://127.0.0.1
+seckill:
+  templateDir: /seckill/template/ftl
+  templateName: product.ftl
+  htmlDir: /seckill/template/html
+  serverList:
+    127.0.0.1
+  sftp:
+    port: 22
+    userName: guanwu
+    password: wu123
+    rootPath: /usr/local/openresty/tpl
 
 
 

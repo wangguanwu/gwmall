@@ -16,7 +16,7 @@ spring:
       ds-master:
         type: com.alibaba.druid.pool.DruidDataSource
         driver-class-name: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://127.0.0.1:3306/tl_mall_order?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
+        url: jdbc:mysql://127.0.0.1:3306/tl_mall_order?serverTimezone=GMT%2b8&useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
         initialSize: 5
         minIdle: 10
         maxActive: 30
@@ -26,7 +26,7 @@ spring:
       ds-slave:
         type: com.alibaba.druid.pool.DruidDataSource
         driver-class-name: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://127.0.0.1:3306/tl_mall_order?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
+        url: jdbc:mysql://127.0.0.1:3306/tl_mall_order?serverTimezone=GMT%2b8&useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
         initialSize: 5
         minIdle: 10
         maxActive: 30

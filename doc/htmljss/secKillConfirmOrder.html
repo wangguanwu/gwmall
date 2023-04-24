@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<!-- saved from url=(0040)http://localhost:8081/#/secKillDetail/26 -->
+<html lang="en">
+  
+<head> 
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+  <title>秒杀订单确认页</title>
+  <link rel="stylesheet" type="text/css" href="order.css">
+  <link rel="stylesheet" type="text/css" href="common.css">
+</head>
+  
+  <body>
+    <noscript>
+      <strong>We're sorry but mall doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript>
+    <div id="app">
+ 
+        <div class="header">
+          <div class="nav-topbar">
+            <div class="container">
+              <div class="topbar-menu">
+                <a href="javascript:;">图灵商城</a></div>
+              <div class="topbar-user">
+                <a href="javascript:;">admin</a>
+                <!---->
+                <a href="javascript:;">退出</a>
+                <a href="http://localhost:8081/#/order/list">我的订单</a>
+                <a href="javascript:;" class="my-cart">
+                  <span class="icon-cart"></span>购物车</a>
+              </div>
+            </div>
+          </div>
+          <div class="nav-header">
+            <div class="container">
+              <div class="header-logo">
+                <a href="http://localhost:8081/#/index"></a>
+              </div>
+              <div class="header-search">
+                <div class="wrapper">
+                  <input type="text" name="keyword" placeholder="请输入产品关键字">
+                  <a href="javascript:;" class="fa fa-search fa-2x"></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> 
+<div class="order-pay">
+  <div class="wrapper">
+    <div class="order-wrap">
+      <div class="item-order">
+        <div class="icon-succ"></div>
+        <div class="order-info">
+          <h4>订单号：{{orderSn}}</h4>
+          <h2>秒杀成功！去付款咯～</h2>
+          <p>请在<span>30分</span>内完成支付, 超时后将取消订单</p>
+          <p>收货信息：{{addressInfo}}</p>
+        </div>
+
+        <div class="order-total">
+          <p>应付总额：</p>
+          <input id="calcAmount" type="text" readonly>
+          <p>订单详情<em class="icon-down" :class="{'up':showDetail}" @click="showDetail=!showDetail"></em></p>
+          <input id="cartPromotionItemList" type="textarea" readonly  autoHeight="true">
+          <span><em>订单详情ID：</em></span>
+          <input id="orderItemId" type="text" readonly>
+        </div>
+      </div>
+      <div class="item-detail" v-if="showDetail">
+        <div class="item">
+          <div class="detail-title">订单号：</div>
+          <div class="detail-info theme-color">
+            <input id="orderId" type="text" readonly>
+          </div>
+        </div>
+        <div class="item">
+          <div class="detail-title">收货信息：</div>
+          <div class="detail-info">
+            <input id="memberReceiveAddressList" type="textarea" readonly autoHeight="true">
+            <span><em>实际使用用户地址：</em></span>
+            <input id="factAddress" type="text" readonly>
+          </div>
+        </div>
+        <div class="item good">
+          <div class="detail-title">商品名称：</div>
+          <div class="detail-info">
+            <ul>
+              <li v-for="(item,index) in orderDetail" :key="index">
+                <img v-lazy="item.productImage" />{{item.productName}}
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="item">
+          <div class="detail-title">发票信息：</div>
+          <div class="detail-info">电子发票 个人</div>
+        </div>
+      </div>
+      
+    </div>
+    <div class="subpay">
+      <a href="javascript:;"  class="btn btn-large " onclick="submitOrder()">提交订单</a>
+    </div>
+    
+  </div>
+</div>
+
+      <!-- <div id="showOrder">
+        <div>
+          <span><em>订单ID：</em></span>
+          <input id="orderId" type="text" readonly>
+        </div>
+        <div>
+          <span><em>购买商品：</em></span>
+          <input id="cartPromotionItemList" type="textarea" readonly  autoHeight="true">
+          <span><em>订单详情ID：</em></span>
+          <input id="orderItemId" type="text" readonly>
+        </div>
+        <div>
+          <span><em>用户地址：</em></span>
+          <input id="memberReceiveAddressList" type="textarea" readonly autoHeight="true">
+          <span><em>实际使用用户地址：</em></span>
+          <input id="factAddress" type="text" readonly>
+        </div>
+        <div>
+          <span><em>金额：</em></span>
+          <input id="calcAmount" type="text" readonly>
+        </div>
+      </div> -->
+
+
+      <div data-v-b07fc4c4="" class="footer">
+        <div data-v-b07fc4c4="" class="footer-logo">
+          <p data-v-b07fc4c4="">图灵商城</p></div>
+        <div data-v-b07fc4c4="" class="footer-link">
+          <a data-v-b07fc4c4="" href="http://www.tulingxueyuan.cn/" target="_blank">图灵学院</a>
+          <span data-v-b07fc4c4="">|</span>
+          <a data-v-b07fc4c4="" href="https://ke.qq.com/course/231516?tuin=a6505b53" target="_blank">腾讯课堂java架构师培训</a>
+          <span data-v-b07fc4c4="">|</span>
+          <a data-v-b07fc4c4="" href="https://ke.qq.com/course/429988" target="_blank">数据结构与算法</a>
+          <span data-v-b07fc4c4="">|</span>
+          <a data-v-b07fc4c4="" href="https://tuling.ke.qq.com/" target="_blank">腾讯课堂图灵学院</a></div>
+        <div data-v-b07fc4c4="" class="copyright">Copyright ©2019
+          <span data-v-b07fc4c4="" class="domain">图灵学院</span>All Rights Reserved.</div></div>
+      
+    </div>
+
+    <script type="text/javascript" src="jquery-1.9.1.min.js"></script>
+    <script type="text/javascript">
+      var lProductId="";
+      var lFlashPromotionId="";
+      var lMemberId="";
+      var lmemberReceiveAddress;
+
+      function submitOrder(){
+        var data = {
+          orderId: $("#orderId").val(),
+          orderItemId: $("#orderItemId").val(),
+          flashPromotionId: lFlashPromotionId,
+          memberReceiveAddress: lmemberReceiveAddress,
+          payType: "1",
+          productId: lProductId
+        };
+        $.ajax({
+          type: "post",
+          headers: {"memberId": lMemberId},//设置请求头
+          url: "/seckillOrder/generateOrder",
+          contentType:"application/json",
+          dataType: "json",
+          data: JSON.stringify(data),
+          success: function(result){
+            if(result.code==200){
+              console.log("下订单成功！");
+              window.location.href = "secKillPay.html";
+            }else{
+              alert("下订单失败！");
+            }
+          },
+          error:function(result){
+            alert("下订单错误！");
+          }
+
+        });
+      }
+
+      function showConfirmOrder(){
+        lProductId=localStorage.getItem("productId");
+        lMemberId=localStorage.getItem("memberId");
+        lFlashPromotionId=localStorage.getItem("flashPromotionId");
+        $.ajax({
+          type: "post",
+          headers:{"memberId": lMemberId},//设置请求头
+          url:"/skcart/generateConfirmOrder?" +
+                  "productId="+lProductId
+                  +"&flashPromotionId="+lFlashPromotionId,
+          success:function(commonresult){
+            if(commonresult.code == 200){
+              console.log("成功获得秒杀确认单！");
+              var data = commonresult.data;
+              console.log(commonresult);
+              $("#orderId").val(data.orderId);
+              localStorage.setItem("orderId",data.orderId);
+              var calcAmount = data.calcAmount;
+              $("#calcAmount").val(calcAmount.totalAmount);
+              var cartPromotionItem = data.cartPromotionItemList;
+              var productN = "";
+              $.each(cartPromotionItem,function (i,item) {
+                productN = productN + item.productName + "&&";
+                $("#orderItemId").val(item.orderItemId);
+              });
+              $("#cartPromotionItemList").val(productN);
+              var umsMemberReceiveAddress = data.memberReceiveAddressList;
+              var addrs = "";
+              $.each(umsMemberReceiveAddress,function (i,item) {
+                addrs = addrs + item.detailAddress + "&&";
+                lmemberReceiveAddress = item;
+                $("#factAddress").val(item.detailAddress);
+              });
+              $("#memberReceiveAddressList").val(addrs);
+            }else{
+              console.log(commonresult);
+              alert("获得秒杀确认单失败！");
+            }
+          },
+          error:function(data){
+            console.log(data);
+            alert("获得秒杀确认单异常！");
+          }
+        });
+      }
+
+      showConfirmOrder();
+    </script>
+  </body>
+
+</html>
