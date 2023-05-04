@@ -1,8 +1,25 @@
 ## gw商城是什么
 ---
-gw商城是一个基于SpringBoot,Spring Cloud,Spring Alibaba的微服务商城，实现了电商基本的功能：**电商门户页面**、**用户登录功能**、**商品搜索功能**、**购物车功能**、**下单功能**、**支付功能（支付宝沙箱）**
+gw商城(英文全称GWMALL)是一个基于SpringBoot,Spring Cloud,Spring Alibaba的微服务商城，实现了电商基本的功能：**电商门户页面**、**用户登录功能**、**商品搜索功能**、**购物车功能**、**下单功能**、**支付功能（支付宝沙箱）**
 
+## gw商城系统微服务基本架构
+---
+
+  ![架构图](./doc/reference/img/gwmall-logo.png)
+
+## gw商城后端基本组件和技术栈
+---
+1. Spring和微服务组件:SpringSecurity + OAuth2.0 、SpringBoot、Spring Cloud Gateway、Spring Alibaba Cloud、Nacos、 Sentinel
+2. 分布式事务组件：Seata
+3. 分库分表组件: ShardingJDBC
+4. 缓存组件: Redis、Caffine(JVM级)、Canal
+5. ELK组件: ElasticSearch(用于搜索，日志上报),logstash、filebeat
+6. 数据库：MySQL、MongoDB用于存储历史订单数据
+7. 反向代理: OpenResty(用于秒杀，提供限流、验证码功能等)
+8. 其他开源组件与技术: 美团leaf算法（分布式ID生成）、JWT、
+9. MQ组件： RocketMQ(异步下单)
 ## gw商城模块划分
+---
 gw商城微服务模块主要分为:
 * **认证中心(gw-authcenter)**: 认证中心接入**Spring Security OAtuh2**主统一负责用户登录验证、提供JWT公钥服务
 * **门户服务(gw-portal)**: 门户网站提供首页商品展示、推荐商品、商品分类、分类专题、商品评论功能
