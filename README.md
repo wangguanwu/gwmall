@@ -1,8 +1,22 @@
+<div  id="imgdiv">
+<img src="./doc/reference/img/gwlogo.png" alt="图片名称" align="center" />
+</div>
+<style>
+    #imgdiv {
+        height:200px;
+        width:100%;
+        top: -60px;
+        display: flex;
+        justify-content:center;
+        align-items:center;
+    }
+    #imgdiv img {
+        width: 200px;
+        height: 200px;
+        display:inline-block;
+    }
+</style>
 
-`![商城](./doc/reference/img/gwlogo.png "商城logo")`
-
-<img src="./doc/reference/img/gwlogo.png" width = "300" height = "200" alt="图片名称" align=center /><br>
-# GWMALL: 基于微服务的商城
 ## gw商城是什么
 ---
 gw商城(英文全称GWMALL)是一个基于SpringBoot,Spring Cloud,Spring Alibaba的微服务商城，实现了电商基本的功能：**电商门户页面**、**用户登录功能**、**商品搜索功能**、**购物车功能**、**下单功能**、**支付功能（支付宝沙箱）**
