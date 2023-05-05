@@ -1,21 +1,12 @@
-<div  id="imgdiv">
-<img src="./doc/reference/img/gwlogo.png" alt="图片名称" align="center" />
-
-<style>
-    #imgdiv {
-        height:200px;
+<div  id="imgdiv" style="height:200px;
         width:100%;
         top: -60px;
         display: flex;
         justify-content:center;
-        align-items:center;
-    }
-    #imgdiv img {
-        width: 200px;
+        align-items:center;">
+<img src="./doc/reference/img/gwlogo.png" alt="图片名称" style=" width: 200px;
         height: 200px;
-        display:inline-block;
-    }
-</style>
+        display:inline-block;"  />
 </div>
 
 ## gw商城是什么
