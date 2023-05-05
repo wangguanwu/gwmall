@@ -1,3 +1,6 @@
+
+![商城](./doc/reference/img/gwlogo.png "商城logo")
+# GWMALL: 基于微服务的商城
 ## gw商城是什么
 ---
 gw商城(英文全称GWMALL)是一个基于SpringBoot,Spring Cloud,Spring Alibaba的微服务商城，实现了电商基本的功能：**电商门户页面**、**用户登录功能**、**商品搜索功能**、**购物车功能**、**下单功能**、**支付功能（支付宝沙箱）**
