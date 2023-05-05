@@ -3,6 +3,7 @@ package com.gw.gwmall.intercepter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gw.gwmall.common.api.CommonResult;
 import com.gw.gwmall.common.constant.RedisKeyPrefixConst;
+import com.gw.gwmall.component.BloomFilterService;
 import com.gw.gwmall.component.BloomRedisService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ import java.util.Map;
 public class BloomFilterInterceptor implements HandlerInterceptor {
 
     @Autowired
-    private BloomRedisService bloomRedisService;
+    private BloomFilterService bloomFilterService;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -30,7 +31,7 @@ public class BloomFilterInterceptor implements HandlerInterceptor {
         //解析出pathvariable
         Map<String, String> pathVariable = matcher.extractUriTemplateVariables("/pms/productInfo/{id}", currentUrl);
         //布隆过滤器存储在redis中
-        if(bloomRedisService.includeByBloomFilter(RedisKeyPrefixConst.PRODUCT_REDIS_BLOOM_FILTER,
+        if(bloomFilterService.includeByBloomFilter(RedisKeyPrefixConst.PRODUCT_REDIS_BLOOM_FILTER,
                 pathVariable.get("id"))){
             return true;
         }

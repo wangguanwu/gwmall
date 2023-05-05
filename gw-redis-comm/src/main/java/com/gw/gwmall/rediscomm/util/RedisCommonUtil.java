@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
@@ -42,6 +43,12 @@ public class RedisCommonUtil {
         return template;
     }
 
+    public static StringRedisTemplate createStrRedisTemplate(RedisConnectionFactory factory) {
+        StringRedisTemplate stringRedisTemplate = new StringRedisTemplate(factory);
+        stringRedisTemplate.afterPropertiesSet();
+        return stringRedisTemplate;
+    }
+
     /**
      * 加载lua脚本到redis服务器
      * @param redisScript
@@ -51,7 +58,7 @@ public class RedisCommonUtil {
         try {
             List<Boolean> results = Objects.requireNonNull(redisTemplate.getConnectionFactory()).getConnection()
                     .scriptExists(redisScript.getSha1());
-            log.info("脚本sha1值为{}", redisScript.getSha1());
+            log.info("脚本sha1值为{}, 脚本名称:{}", redisScript.getSha1(), luaName);
             assert results != null;
             if (Boolean.FALSE.equals(results.get(0))) {
                 String sha = redisTemplate.getConnectionFactory().getConnection()

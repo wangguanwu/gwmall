@@ -61,9 +61,7 @@ public class InitBloomFilterApplicationRunner implements ApplicationRunner {
         List<Long> list = productService.getAllProductId();
         log.info("加载产品到布隆过滤器当中,size:{}", list.size());
         if (!CollectionUtils.isEmpty(list)) {
-            list.forEach(item -> {
-                bloomFilterService.addByBloomFilter(RedisKeyPrefixConst.PRODUCT_REDIS_BLOOM_FILTER, item + "");
-            });
+            list.forEach(item -> bloomFilterService.addByBloomFilter(RedisKeyPrefixConst.PRODUCT_REDIS_BLOOM_FILTER, item + ""));
         }
     }
 }

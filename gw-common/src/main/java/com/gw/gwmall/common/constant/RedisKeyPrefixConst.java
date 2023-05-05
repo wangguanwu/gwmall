@@ -42,7 +42,10 @@ public interface RedisKeyPrefixConst {
     String STOCK_REFRESHED_MESSAGE_PREFIX = "stock:refreshed:message:";
 
     /*redis布隆过滤器key*/
-    String PRODUCT_REDIS_BLOOM_FILTER = "product:redis:bloom:filter";
+    String PRODUCT_REDIS_BLOOM_FILTER = "gw:product:redis:bloom:filter";
+
+    String REDIS_OPERATION_SUCCESS = "OK";
+
 
     String SECKILL_PRODUCT_PREFIX = "sk:prdt:";
 

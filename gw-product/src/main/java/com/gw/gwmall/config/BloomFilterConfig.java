@@ -2,22 +2,16 @@ package com.gw.gwmall.config;
 
 import com.google.common.base.Charsets;
 import com.google.common.hash.Funnel;
-import com.gw.gwmall.common.constant.RedisKeyPrefixConst;
 import com.gw.gwmall.component.BloomFilterService;
 import com.gw.gwmall.component.BloomRedisService;
 import com.gw.gwmall.component.BloomRedisServiceOpt;
-import com.gw.gwmall.service.PmsProductService;
 import com.gw.gwmall.util.BloomFilterHelper;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.util.CollectionUtils;
-
-import java.util.List;
 
 /**
  * 布隆过滤器配置
@@ -29,7 +23,7 @@ public class BloomFilterConfig{
 
 
     @Autowired
-    private RedisTemplate<String, Object> template;
+    private RedisTemplate<String, Object> redisTemplate;
 
     @Bean
     public BloomFilterHelper<String> initBloomFilterHelper() {
@@ -47,13 +41,13 @@ public class BloomFilterConfig{
     public BloomFilterService guavaBloomRedisService(){
         BloomRedisService bloomRedisService = new BloomRedisService();
         bloomRedisService.setBloomFilterHelper(initBloomFilterHelper());
-        bloomRedisService.setRedisTemplate(template);
+        bloomRedisService.setRedisTemplate(redisTemplate);
         return bloomRedisService;
     }
 
     @ConditionalOnProperty(prefix = "bloomfilter.config", name = "type", havingValue = "redis-plugin")
     @Bean
-    public BloomFilterService redisPluginBloomRedisService(){
-        return new BloomRedisServiceOpt(template);
+    public BloomFilterService redisPluginBloomRedisService(RedisTemplate<String, String> strRedisTemplate){
+        return new BloomRedisServiceOpt(strRedisTemplate);
     }
 }

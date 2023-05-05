@@ -23,6 +23,7 @@ import org.springframework.data.redis.connection.lettuce.LettuceClientConfigurat
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.connection.lettuce.LettucePoolingClientConfiguration;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -45,6 +46,12 @@ public class RedisExtConifg {
     @Primary
     public RedisTemplate<String,Object> redisTemplate(LettuceConnectionFactory redisFactoryCluster){
         return RedisCommonUtil.createRedisTemplate(redisFactoryCluster);
+    }
+
+    @Bean("strRedisTemplate")
+    @ConditionalOnProperty(prefix = "spring.redis.custom.string.redistemplate", name = {"enable"}, havingValue = "true")
+    public StringRedisTemplate strRedisTemplate(LettuceConnectionFactory redisFactoryCluster){
+        return RedisCommonUtil.createStrRedisTemplate(redisFactoryCluster);
     }
 
     @Bean("redisClusterConfig")
