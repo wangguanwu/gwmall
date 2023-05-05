@@ -1,6 +1,6 @@
 <div  id="imgdiv">
 <img src="./doc/reference/img/gwlogo.png" alt="图片名称" align="center" />
-</div>
+
 <style>
     #imgdiv {
         height:200px;
@@ -16,6 +16,7 @@
         display:inline-block;
     }
 </style>
+</div>
 
 ## gw商城是什么
 ---
