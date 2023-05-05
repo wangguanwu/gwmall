@@ -1,5 +1,7 @@
 
-![商城](./doc/reference/img/gwlogo.png "商城logo")
+`![商城](./doc/reference/img/gwlogo.png "商城logo")`
+
+<img src="./doc/reference/img/gwlogo.png" width = "300" height = "200" alt="图片名称" align=center /><br>
 # GWMALL: 基于微服务的商城
 ## gw商城是什么
 ---
