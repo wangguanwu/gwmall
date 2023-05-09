@@ -16,7 +16,7 @@ gw商城(英文全称GWMALL)是一个基于SpringBoot,Spring Cloud,Spring Alibab
 ## gw商城系统微服务基本架构
 ---
 
-  ![架构图](./doc/reference/img/gwmall-logo.png)
+  ![架构图](./doc/reference/img/gwmall-架构图.png)
 
 ## gw商城后端基本组件和技术栈
 ---
