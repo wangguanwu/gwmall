@@ -137,7 +137,7 @@ public class BloomRedisServiceOpt implements BloomFilterService {
     @Override
     public <T> boolean includeByBloomFilter(String key, T value) {
         Long execute = strRedisTemplate.execute(bloomExistScript, Collections.singletonList(key),
-                Collections.singletonList(value));
+                value);
         return execute != null && execute == 1;
     }
 }

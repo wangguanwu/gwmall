@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "trade.zhifu.qrcode.storePath",
+      "type": "java.lang.String",
+      "description": "Description for trade.zhifu.qrcode.storePath."
+  }
+] }

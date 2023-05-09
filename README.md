@@ -4,7 +4,7 @@
         display: flex;
         justify-content:center;
         align-items:center;">
-<img src="./doc/reference/img/gwlogo.png" alt="图片名称" style=" width: 200px;
+<img src="./doc/reference/img/gwlogo-hd.png" alt="图片名称" style=" width: 200px;
         height: 200px;
         display:inline-block;"  />
 </div>
