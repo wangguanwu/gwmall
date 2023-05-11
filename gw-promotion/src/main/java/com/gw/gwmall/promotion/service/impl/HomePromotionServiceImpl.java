@@ -194,7 +194,7 @@ public class HomePromotionServiceImpl implements HomePromotionService {
                 example.or().andRecommendStatusEqualTo(ConstantPromotion.HOME_PRODUCT_RECOMMEND_YES);
                 List<Long> newProductIds = smsHomeNewProductMapper.selectProductIdByExample(example);
                 newProducts = pmsProductClientApi.getProductBatch(newProductIds);
-                redisOpsExtUtil.putListAllRight(newProductKey,newProducts);
+                redisOpsExtUtil. putListAllRight(newProductKey,newProducts);
             } finally {
                 redisDistrLock.unlock(promotionRedisKey.getDlNewProductKey());
             }

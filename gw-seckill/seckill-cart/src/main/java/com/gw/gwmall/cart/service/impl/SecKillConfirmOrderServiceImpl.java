@@ -149,7 +149,8 @@ public class SecKillConfirmOrderServiceImpl implements SecKillConfirmOrderServic
         promotionItem.setProductPic(product.getPic());//产品主图
         promotionItem.setProductBrand(product.getBrandName());//品牌
         promotionItem.setQuantity(1);//购买数量,一次只能秒杀一件
-        Integer stock = redisStockUtil.get(RedisKeyPrefixConst.MIAOSHA_STOCK_CACHE_PREFIX + productId,Integer.class);
+        Integer stock = redisStockUtil.get(String.format(RedisKeyPrefixConst.MIAOSHA_STOCK_CACHE_PREFIX +"{}",
+                productId.toString()),Integer.class);
         promotionItem.setRealStock(stock);//库存
         promotionItem.setProductCategoryId(product.getProductCategoryId());//产品类目ID
         promotionItem.setReduceAmount(product.getPrice().subtract(product.getFlashPromotionPrice()));//计算秒杀优惠价格

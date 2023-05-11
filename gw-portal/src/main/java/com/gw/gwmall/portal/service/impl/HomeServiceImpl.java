@@ -110,10 +110,20 @@ public class HomeServiceImpl implements HomeService {
             }
         }
         assert result != null;
-        result.setHomeFlashPromotion(secKills);
+        result.setHomeFlashPromotion(extractFromSeckillProductList(secKills));
         // fixme CMS本次不予实现，设置空集合
         result.setSubjectList(new ArrayList<>());
         return result;
+    }
+
+    private List<FlashPromotionProduct> extractFromSeckillProductList(List<?> seckillProductList) {
+        if (null != seckillProductList && !seckillProductList.isEmpty()) {
+            final Object o = seckillProductList.get(0);
+            if (o instanceof List) {
+                return (List<FlashPromotionProduct>) o;
+            }
+        }
+        return (List<FlashPromotionProduct>) seckillProductList;
     }
 
     public List<FlashPromotionProduct> getSecKillFromRemote(){

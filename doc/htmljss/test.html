@@ -1,0 +1,171 @@
+<html>
+<head>
+    <style>
+
+        #addressInfo {
+            border: 2px solid #FF6600;
+            width: 800px;
+            margin: 10px;
+            border: 2px solid #FF6600;
+        }
+
+        .address-list {
+            width: 800px;
+            /*margin: 10px;*/
+            border-top: 2px solid #FF6600;
+            /*border: 2px solid #FF6600;*/
+        }
+
+        .address-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .address-item input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .name-province {
+            display: inline-block;
+            align-items: center;
+            font-size: 16px;
+            font-weight: bold;
+            color: gray;
+            margin-right: 10px;
+        }
+
+        .name {
+            margin-right: 10px;
+        }
+
+        .province {
+            margin-right: 10px;
+        }
+
+        .address {
+            display: inline-block;
+            font-size: 14px;
+            color: gray;
+            white-space: nowrap;
+        }
+
+        .address-text {
+            margin-right: 5px;
+            margin-left: 5px;
+            color: gray;
+        }
+
+        .divider {
+            margin: 0 5px;
+            color: gray;
+        }
+
+
+    </style>
+</head>
+<body>
+<div id="addressInfo">
+    <h1>收货地址</h1>
+    <div class="address-list" id="addressList"></div>
+</div>
+
+<script>
+    const addressList = document.getElementById("addressList");
+
+    // 模拟接口返回的地址数据
+    const addressData = [
+        {
+            id: 1,
+            memberId: 123,
+            name: "张三",
+            province: "广东省",
+            city: "深圳市",
+            region: "南山区",
+            addressDetail: "科技路123号",
+            phone: "13800138000"
+        },
+        {
+            id: 2,
+            memberId: 123,
+            name: "李四",
+            province: "北京市",
+            city: "海淀区",
+            region: "中关村",
+            addressDetail: "清华大学",
+            phone: "13900139000"
+        },
+        {
+            id: 3,
+            memberId: 123,
+            name: "王五",
+            province: "上海市",
+            city: "浦东新区",
+            region: "世纪大道",
+            addressDetail: "100号",
+            phone: "13700137000"
+        }
+    ];
+
+    // 动态渲染地址列表
+    addressData.forEach((address, index) => {
+        const addressItem = document.createElement("div");
+        addressItem.className = "address-item";
+
+        const label = document.createElement("label");
+        const radio = document.createElement("input");
+        radio.type = "radio";
+        radio.name = "address";
+        if (index === 0) {
+            radio.checked = true;
+        }
+        label.appendChild(radio);
+
+        const nameProvince = document.createElement("div");
+        nameProvince.className = "name-province";
+
+        const name = document.createElement("span");
+        name.className = "name";
+        name.textContent = address.name;
+        nameProvince.appendChild(name);
+
+        const province = document.createElement("span");
+        province.className = "province";
+        province.textContent = address.province;
+        nameProvince.appendChild(province);
+
+        label.appendChild(nameProvince);
+
+        const addressTexts = [
+            address.city,
+            address.region,
+            address.addressDetail,
+            address.phone
+        ];
+
+        const addressDiv = document.createElement("div");
+        addressDiv.className = "address";
+
+        addressTexts.forEach((text, index) => {
+            const span = document.createElement("span");
+            span.className = "address-text";
+            span.textContent = text;
+            addressDiv.appendChild(span);
+
+            if (index !== addressTexts.length - 1) {
+                const divider = document.createElement("span");
+                divider.className = "divider";
+                divider.textContent = "-";
+                addressDiv.appendChild(divider);
+            }
+        });
+
+        label.appendChild(addressDiv);
+
+        addressItem.appendChild(label);
+        addressList.appendChild(addressItem);
+    });
+</script>
+</body>
+</html>

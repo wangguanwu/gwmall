@@ -31,14 +31,15 @@ for k, v in ipairs(val) do
     break
 end
 ngx.req.read_body()
-local reqUriParams = ngx.req.get_post_args()
-ngx.log(ngx.ERR, "verifyCode ", reqUriParams['verifyCode'])
-local verifyCode = reqUriParams['verifyCode']
-local params = ""
-for k, v in ipairs(reqUriParams) do
-    params = k .. ':' .. v .. ','
-end
+local verifyCode = ngx.var.arg_verifyCode;
+ngx.log(ngx.ERR, "verifyCode ", verifyCode)
+--local verifyCode = reqUriParams['verifyCode']
+--local params = ""
+--for k, v in ipairs(reqUriParams) do
+--    params = k .. ':' .. v .. ','
+--end
 local redisCode = string.match(verifyCodeStr, '[-]*%d+')
+ngx.log(ngx.ERR, "redis get verifyCode: ",  redisCode)
 local res = {}
 if (verifyCode == redisCode) then
     ngx.status = 200

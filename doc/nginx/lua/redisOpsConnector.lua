@@ -1,34 +1,32 @@
--- 导入redis的Lua模块
+local rc = require("resty.connector").new({
+    connect_timeout = 150,
+    send_timeout = 1000,
+    read_timeout = 1000,
+    keepalive_timeout = 10000,
+    keepalive_poolsize = 100,
+    host = "127.0.0.1",
+    port = 6379,
 
+})
 
 -- 关闭redis连接的工具方法，其实是放入连接池
-local function close_redis(red)
-    local pool_max_idle_time = 10000 -- 连接的空闲时间，单位是毫秒
-    local pool_size = 100 --连接池大小
-    local ok, err = red:set_keepalive(pool_max_idle_time, pool_size)
+local function close_redis(redis)
+    local ok, err = rc:set_keepalive(redis)
     if not ok then
-        ngx.log(ngx.ERR, "放入redis连接池失败: ", err)
+        ngx.log(ngx.ERR, "放入连接池失败 : ", err)
     end
 end
 
-local function loadRedis()
-    local redis = require('resty.redis')
-    -- 初始化redis
-    local red = redis:new()
-    red:set_timeouts(1000, 1000, 1000)
-    return red
-end
 -- 查询redis的方法 ip和port是redis地址，key是查询的key
 local function read_redis(ip, port, key)
     -- 获取一个连接
-    red = loadRedis()
-    local ok, err = red:connect(ip, port)
-    if not ok then
+    local redis, err = rc:connect()
+    if  err then
         ngx.log(ngx.ERR, "连接redis失败 : ", err)
         return nil
     end
     -- 查询redis
-    local resp, commandErr = red:get(key)
+    local resp, commandErr = redis:get(key)
     -- 查询失败处理
     if not resp then
         ngx.log(ngx.ERR, "查询Redis失败: ", commandErr, ", key = " , key)
@@ -38,7 +36,7 @@ local function read_redis(ip, port, key)
         resp = nil
         ngx.log(ngx.ERR, "查询Redis数据为空, key = ", key)
     end
-    close_redis(red)
+    close_redis(redis)
     return resp
 end
 

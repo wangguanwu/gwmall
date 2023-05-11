@@ -33,6 +33,16 @@ public class RedisOpsExtUtil {
     }
 
 
+    public <V> void batchPutListRight(String key, Collection<V> values){
+        if(CollectionUtils.isEmpty(values)){
+            log.warn("{}没有数据可放入Redis",key);
+        }else{
+            for (V value : values) {
+                redisTemplate.opsForList().rightPush(key,value);
+            }
+        }
+    }
+
     public <T> List<T> getListAll(String key,Class<?> T){
         Object s = redisTemplate.opsForList().range(key,0,-1);
         return (List<T>)s;
