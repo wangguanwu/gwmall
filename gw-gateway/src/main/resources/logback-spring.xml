@@ -24,42 +24,42 @@
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>debug</level>
         </filter>
-<!--        <encoder>-->
-<!--            <Pattern>${CONSOLE_LOG_PATTERN}</Pattern>-->
-<!--            &lt;!&ndash; 设置字符集 &ndash;&gt;-->
-<!--            <charset>UTF-8</charset>-->
-<!--        </encoder>-->
-
-        <encoder charset="UTF-8" class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
-            <providers>
-                <pattern>
-                    <pattern>
-                        {
-                        <!--服务名称-->
-                        "appName": "${appName}",
-                        <!--打印时间-->
-                        "time": "%date{yyyy-MM-dd HH:mm:ss.SSS}",
-                        <!--日志级别-->
-                        "level": "%level",
-                        <!--进程ID-->
-                        "pid": "${PID:-}",
-                        <!--线程名-->
-                        "thread": "%thread",
-                        <!--全限定类名-->
-                        "class": "%logger",
-                        <!--类中的哪个方法-->
-                        "method": "%method",
-                        <!--类中的第几行-->
-                        "codeLine": "%line",
-                        <!--日志打印的信息-->
-                        "msg": "%message",
-                        <!--堆栈异常信息-->
-                        "statck_trace":"%xEx"
-                        }
-                    </pattern>
-                </pattern>
-            </providers>
+        <encoder>
+            <Pattern>${CONSOLE_LOG_PATTERN}</Pattern>
+            <!-- 设置字符集 -->
+            <charset>UTF-8</charset>
         </encoder>
+
+<!--        <encoder charset="UTF-8" class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">-->
+<!--            <providers>-->
+<!--                <pattern>-->
+<!--                    <pattern>-->
+<!--                        {-->
+<!--                        &lt;!&ndash;服务名称&ndash;&gt;-->
+<!--                        "appName": "${appName}",-->
+<!--                        &lt;!&ndash;打印时间&ndash;&gt;-->
+<!--                        "time": "%date{yyyy-MM-dd HH:mm:ss.SSS}",-->
+<!--                        &lt;!&ndash;日志级别&ndash;&gt;-->
+<!--                        "level": "%level",-->
+<!--                        &lt;!&ndash;进程ID&ndash;&gt;-->
+<!--                        "pid": "${PID:-}",-->
+<!--                        &lt;!&ndash;线程名&ndash;&gt;-->
+<!--                        "thread": "%thread",-->
+<!--                        &lt;!&ndash;全限定类名&ndash;&gt;-->
+<!--                        "class": "%logger",-->
+<!--                        &lt;!&ndash;类中的哪个方法&ndash;&gt;-->
+<!--                        "method": "%method",-->
+<!--                        &lt;!&ndash;类中的第几行&ndash;&gt;-->
+<!--                        "codeLine": "%line",-->
+<!--                        &lt;!&ndash;日志打印的信息&ndash;&gt;-->
+<!--                        "msg": "%message",-->
+<!--                        &lt;!&ndash;堆栈异常信息&ndash;&gt;-->
+<!--                        "statck_trace":"%xEx"-->
+<!--                        }-->
+<!--                    </pattern>-->
+<!--                </pattern>-->
+<!--            </providers>-->
+<!--        </encoder>-->
     </appender>
 
     <!--输出到文件-->
@@ -315,7 +315,7 @@
         <logger name="com.tuling.tulingmall.ordercurr" level="debug"/>
     </springProfile>
 -->
-    <root level="info">
+    <root level="debug">
         <appender-ref ref="CONSOLE" />
         <appender-ref ref="INFO_FILE"/>
         <appender-ref ref="DEBUG_FILE"/>

@@ -97,6 +97,7 @@ public class UmsMemberController {
         UmsMember memberInfo = umsMemberCenterService.getMemberInfo(Long.valueOf(memberId));
         redisOpsUtil.set(RedisMemberPrefix.MEMBER_INFO_PREFIX+memberIdStr,memberInfo,60*60*12, TimeUnit.SECONDS);
         List<UmsMemberReceiveAddress> addressList = memberReceiveAddressService.list(memberId);
+        redisOpsUtil.delete(RedisMemberPrefix.MEMBER_ADDRESS_PREFIX+memberIdStr);
         redisOpsUtil.batchPutListRight(RedisMemberPrefix.MEMBER_ADDRESS_PREFIX+memberIdStr,addressList);
         redisOpsUtil.expire(RedisMemberPrefix.MEMBER_ADDRESS_PREFIX+memberIdStr,60*60*12, TimeUnit.SECONDS);
 

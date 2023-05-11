@@ -18,6 +18,8 @@ import com.gw.gwmall.rediscomm.util.RedisOpsExtUtil;
 import com.gw.gwmall.rediscomm.util.RedisSingleUtil;
 import com.gw.gwmall.cart.service.SecKillConfirmOrderService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -38,7 +40,7 @@ import static com.gw.gwmall.cart.service.impl.RefreshIdListTask.LEAF_ORDER_ITEM_
  **/
 @Slf4j
 @Service
-public class SecKillConfirmOrderServiceImpl implements SecKillConfirmOrderService {
+public class SecKillConfirmOrderServiceImpl implements SecKillConfirmOrderService , ApplicationRunner {
 
     @Resource
     private RedisOpsExtUtil redisOpsUtil;
@@ -62,16 +64,6 @@ public class SecKillConfirmOrderServiceImpl implements SecKillConfirmOrderServic
     public static final int ORDER_COUNT_LIMIT_SECOND = 2000;
     public static final int FETCH_PERIOD = 100;
     private final ScheduledExecutorService refreshService = Executors.newSingleThreadScheduledExecutor();
-
-    @PostConstruct
-    public void init(){
-        List<String> segmentIdList = unqidFeignApi.getSegmentIdList(LEAF_ORDER_ID_KEY, ORDER_COUNT_LIMIT_SECOND);
-        orderIdQueue.addAll(segmentIdList);
-        List<String> segmentItemIdList = unqidFeignApi.getSegmentIdList(LEAF_ORDER_ITEM_ID_KEY, ORDER_COUNT_LIMIT_SECOND);
-        orderItemIdQueue.addAll(segmentItemIdList);
-        refreshService.scheduleAtFixedRate(new RefreshIdListTask(orderIdQueue,unqidFeignApi, orderItemIdQueue),
-                0, FETCH_PERIOD, TimeUnit.MILLISECONDS);
-    }
 
     @PreDestroy
     public void close(){
@@ -233,4 +225,13 @@ public class SecKillConfirmOrderServiceImpl implements SecKillConfirmOrderServic
         return CommonResult.success(null);
     }
 
+    @Override
+    public void run(ApplicationArguments args) throws Exception {
+        List<String> segmentIdList = unqidFeignApi.getSegmentIdList(LEAF_ORDER_ID_KEY, ORDER_COUNT_LIMIT_SECOND);
+        orderIdQueue.addAll(segmentIdList);
+        List<String> segmentItemIdList = unqidFeignApi.getSegmentIdList(LEAF_ORDER_ITEM_ID_KEY, ORDER_COUNT_LIMIT_SECOND);
+        orderItemIdQueue.addAll(segmentItemIdList);
+        refreshService.scheduleAtFixedRate(new RefreshIdListTask(orderIdQueue,unqidFeignApi, orderItemIdQueue),
+                0, FETCH_PERIOD, TimeUnit.MILLISECONDS);
+    }
 }
