@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1.0"> 
   <title>秒杀支付</title>
-  <link rel="stylesheet" type="text/css" href="order.css">
+  <link rel="stylesheet" type="text/css" href="skorder.css">
   <link rel="stylesheet" type="text/css" href="common.css">
 </head>
   
@@ -49,7 +49,7 @@
       </div> 
       
       <div class="pay">
-        <div id="payImage"  hidden="true">
+        <div id="payImage" hidden = "true">
           <h2>请扫码支付，以下为模拟演示图片</h2>
           <img src="ewm.jpg" alt="">
         </div>
@@ -77,7 +77,7 @@
       var checkCount = 0;
 
       function checkOrder(){
-        if(checkCount == 10){
+        if(checkCount === 10){
           alert("检查秒杀订单生成情况已达最大次数，请稍后再试！");
           clearInterval(timer);
           return;
@@ -86,21 +86,24 @@
         $.ajax({
           type: "post",
           headers:{"memberId": lMemberId},//设置请求头
-          url:"/seckillOrder/checkOrder?" + "orderId="+orderId,
-          success:function(result){
-            if(result.code==200){
+          url:"/seckill/seckillOrder/checkOrder?" + "orderId="+orderId,
+          success: function(result) {
+            if (result.code === 200) {
               console.log("秒杀订单已生成！");
-              $("payImage").attr("hidden",false);
-              $("showProgress").attr("hidden",true);
-            }else if(result.code==202){
+              $("#payImage").removeAttr("hidden");
+              $("#showProgress").attr("hidden", "hidden");
+              clearInterval(timer);
+            } else if (result.code === 202) {
               console.log("秒杀订单还未生成，继续检查！");
+              $("#payImage").attr("hidden","hidden");
+              $("#showProgress").removeAttr("hidden");
               checkCount++;
             }else{
-              alert("检查秒杀订单生成情况失败！");
+              console.log("检查秒杀订单生成情况失败！");
             }
           },
-          error:function(data){
-            alert("检查秒杀订单生成情况异常！");
+          error: function(data) {
+            console.log("检查秒杀订单生成情况异常！");
           }
         });
       }
