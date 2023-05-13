@@ -114,7 +114,7 @@ trade:
       httpBasePath: /static/qrcode
       #      这个回调地址需要自己弄 Ngrok了解一下
 #      paySuccessCallBack: http://218.76.8.107:8844/order/paySuccess
-      paySuccessCallBack: http://e740-202-104-136-68.ngrok-free.app/order/paySuccess
+      paySuccessCallBack: http://59c5-113-92-159-76.ngrok-free.app/order/paySuccess
       #paySuccessCallBack: http://roykingw.free.idcfengye.com/order/paySuccess
 
 rocketmq:
