@@ -160,7 +160,7 @@ gw商城微服务模块主要分为:
     ![sentinel](./doc/reference/img/sentinel/%E9%99%90%E6%B5%81%E9%A6%96%E9%A1%B5.png)
     商品详情接口限流,配置限流规则为1qps
     ![sentinel](./doc/reference/img/sentinel/productDetail_1qps.png)
-    限流规则持久化到1ps
+    限流规则持久化到nacos
     ![sentinel](./doc/reference/img/sentinel/nacos-persistence.png)
     限流为1ps接口效果
     ![sentinel](./doc/reference/img/sentinel/%E9%99%90%E6%B5%811qps%E6%95%88%E6%9E%9C.png)
