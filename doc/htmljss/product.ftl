@@ -61,7 +61,7 @@
             <div class="container clearfix">
               <div class="swiper">
                 <div class="swiper-container swiper-container-initialized swiper-container-horizontal">
-                  <div class="swiper-wrapper" style="transform: translate3d(-1284px, 0px, 0px); transition-duration: 0ms;">
+                  <div class="swiper-wrapper" style="transform: translate3d(-0px, 0px, 0px); transition-duration: 0ms;">
                     <#list imageList as image>
                     <img src="${image}"/><br>
                   </#list>
@@ -151,16 +151,6 @@
           </div>
         </div>
         <div data-v-b07fc4c4="" class="footer">
-          <div data-v-b07fc4c4="" class="footer-logo">
-            <p data-v-b07fc4c4="">gw商城</p></div>
-          <div data-v-b07fc4c4="" class="footer-link">
-            <a data-v-b07fc4c4="" href="http://www.tulingxueyuan.cn/" target="_blank">gw商城</a>
-            <span data-v-b07fc4c4="">|</span>
-            <a data-v-b07fc4c4="" href="https://ke.qq.com/course/231516?tuin=a6505b53" target="_blank">gw商城项目</a>
-            <span data-v-b07fc4c4="">|</span>
-            <a data-v-b07fc4c4="" href="https://ke.qq.com/course/429988" target="_blank">项目</a>
-            <span data-v-b07fc4c4="">|</span>
-            <a data-v-b07fc4c4="" href="https://tuling.ke.qq.com/" target="_blank">gw商城</a></div>
           <div data-v-b07fc4c4="" class="copyright">Copyright ©2023
             <span data-v-b07fc4c4="" class="domain">gw商城</span>All Rights Reserved.</div></div>
       </div>

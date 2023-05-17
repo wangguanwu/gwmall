@@ -11,6 +11,47 @@ spring:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
+    sentinel:
+      transport:
+        dashboard: 127.0.0.1:9191
+      datasource:
+        flow-rules:
+          nacos:
+            serverAddr: ${spring.cloud.nacos.discovery.server-addr}
+            dataId: ${spring.application.name}-flow-rules
+            groupId: SENTINEL_GROUP
+            dataType: json
+            ruleType: flow
+        degrade-rules:
+          nacos:
+            serverAddr: 127.0.0.1:8848
+            dataId: ${spring.application.name}-degrade-rules
+            groupId: SENTINEL_GROUP
+            dataType: json
+            ruleType: degrade
+        param-flow-rules:
+          nacos:
+            serverAddr: 127.0.0.1:8848
+            dataId: ${spring.application.name}-param-flow-rules
+            groupId: SENTINEL_GROUP
+            dataType: json
+            ruleType: param-flow
+        authority-rules:
+          nacos:
+            serverAddr: 127.0.0.1:8848
+            dataId: ${spring.application.name}-authority-rules
+            groupId: SENTINEL_GROUP
+            dataType: json
+            ruleType: authority
+        system-rules:
+          nacos:
+            serverAddr: 127.0.0.1:8848
+            dataId: ${spring.application.name}-system-rules
+            groupId: SENTINEL_GROUP
+            dataType: json
+            ruleType: system
+
+
 
   #分库分表配置
   shardingsphere:
@@ -89,6 +130,9 @@ spring:
 
   main:
     allow-bean-definition-overriding: true
+
+
+
 
 logging:
   level:

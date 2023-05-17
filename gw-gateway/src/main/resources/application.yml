@@ -52,7 +52,23 @@ spring:
 
     sentinel:
       transport:
-        dashboard: 127.0.0.1:8080
+        dashboard: 127.0.0.1:9191
+      datasource:
+        gateway-flow-rules:
+          nacos:
+            server-addr: 127.0.0.1:8848
+            dataId: ${spring.application.name}-flow-rules
+            groupId: SENTINEL_GROUP
+            data-type: json
+            rule-type: gw-flow
+        gateway-api-rules:
+          nacos:
+            server-addr: 127.0.0.1:8848
+            dataId: ${spring.application.name}-api-rules
+            groupId: SENTINEL_GROUP
+            data-type: json
+            rule-type: gw-api-group
+
 
 logging:
   level:

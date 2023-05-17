@@ -315,7 +315,7 @@
         <logger name="com.tuling.tulingmall.ordercurr" level="debug"/>
     </springProfile>
 -->
-    <root level="debug">
+    <root level="INFO">
         <appender-ref ref="CONSOLE" />
         <appender-ref ref="INFO_FILE"/>
         <appender-ref ref="DEBUG_FILE"/>

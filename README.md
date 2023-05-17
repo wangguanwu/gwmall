@@ -94,6 +94,8 @@ gw商城微服务模块主要分为:
         ![Sentinel持久化](./doc/reference/img/sentinel%E9%99%90%E6%B5%81.png)
 
         ![Sentinel持久化](./doc/reference/img/Sentinel%E6%8C%81%E4%B9%85%E5%8C%96-2.png)
+    * OpenResty服务(承担秒杀服务反向代理、缓存、应用服务功能)
+        ![OpenResty](./doc/reference/img/seckill/openresty.png)
 2. 登陆
 ![登陆](./doc/reference/img/login/login.png)
 
@@ -138,7 +140,193 @@ gw商城微服务模块主要分为:
 
 6. 秒杀功能
 
+    **注意:** 秒杀功能依赖OpenResty,要先启动OpenResty
+    促销服务开启秒杀功能，需要进行页面静态化
+
+     ![开启秒杀](./doc/reference/img/seckill/%E7%A7%92%E6%9D%80%E5%BC%80%E5%90%AF.png)
+    点击首页的秒杀商品
+    ![seckill](./doc/reference/img/seckill/%E7%A7%92%E6%9D%80%E4%B8%BB%E9%A1%B5.png)
+    秒杀详情-静态页面
+    ![seckillDetail](./doc/reference/img/seckill/%E7%A7%92%E6%9D%80%E8%AF%A6%E6%83%85.png)
+    确认订单
+    ![orderConfirm](./doc/reference/img/seckill/%E8%AE%A2%E5%8D%95%E7%94%9F%E6%88%90.png)
+    扫描支付
+    ![pay](./doc/reference/img/seckill/%E6%89%AB%E6%8F%8F%E6%94%AF%E4%BB%98.png)
+
 7. 限流功能
+ 启动sentinel后，打开locahost:9191(端口可以自己指定:java -jar xxx.jar --server.port=9191)
+  * 微服务限流
+
+    ![sentinel](./doc/reference/img/sentinel/%E9%99%90%E6%B5%81%E9%A6%96%E9%A1%B5.png)
+    商品详情接口限流,配置限流规则为1qps
+    ![sentinel](./doc/reference/img/sentinel/productDetail_1qps.png)
+    限流规则持久化到1ps
+    ![sentinel](./doc/reference/img/sentinel/nacos-persistence.png)
+    限流为1ps接口效果
+    ![sentinel](./doc/reference/img/sentinel/%E9%99%90%E6%B5%811qps%E6%95%88%E6%9E%9C.png)
+    限流10qps,需要使用压测工具Jmeter
+    ![sentinel](./doc/reference/img/sentinel/product_info_10.png)
+    ![sentinel](./doc/reference/img/sentinel/productInfo10ps.png)
+    ![sentinel](./doc/reference/img/sentinel/%E9%99%90%E6%B5%81%E6%97%B6%E9%97%B4%E7%AA%97%E5%8F%A3.PNG)
+    * 秒杀限流
+    而秒杀下单服务链路则做了较多优化:商品秒杀页面静态化、创建秒杀订单前对获取对orderId进行限速（对生成的orderId的速率进行限速)，基于redis进行库存扣减，异步MQ下单。
+        1. OpenResty可以基于Nginx的HttpLimitRequest模块限流,主要对秒杀下单，获取库存等接口进行限流,如下图设置每个ip每秒允许放行1个请求, "burst=2 nodelay" 表示每秒突发请求最大qps为2，超过2后，不再排队直接返回503
+        ![OpenResty](./doc/reference/img/sentinel/nginx%E9%99%90%E6%B5%81%E9%85%8D%E7%BD%AE.png)
+        2. jmeter测试获取库存接口，限流效果如下图，可以看到限流后，会返回503错误码
+        ![OpenResty](./doc/reference/img/sentinel/OpenResty%E9%99%90%E6%B5%81.png)
 
 7. 统一日志上报（ELK）
+    1. 需要将微服务INFO,ERROR等日志文件的输出格式设为json，以logback为例
+        ```xml
+        <appender name="INFO_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+                <!-- 正在记录的日志文件的路径及文件名 -->
+                <file>${log.path}/log_info.log</file>
+                <!--日志文件输出格式-->
+                <encoder charset="UTF-8" class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+                    <providers>
+                        <pattern>
+                            <pattern>
+                                {
+                                <!--服务名称-->
+                                "appName": "${appName}",
+                                <!--打印时间-->
+                                "time": "%date{yyyy-MM-dd HH:mm:ss.SSS}",
+                                <!--日志级别-->
+                                "level": "%level",
+                                <!--进程ID-->
+                                "pid": "${PID:-}",
+                                <!--线程名-->
+                                "thread": "%thread",
+                                <!--全限定类名-->
+                                "class": "%logger",
+                                <!--类中的哪个方法-->
+                                "method": "%method",
+                                <!--类中的第几行-->
+                                "codeLine": "%line",
+                                <!--日志打印的信息-->
+                                "msg": "%message",
+                                <!--堆栈异常信息-->
+                                "statck_trace":"%xEx"
+                                }
+                            </pattern>
+                        </pattern>
+                    </providers>
+                </encoder>
+                <!-- 日志记录器的滚动策略，按日期，按大小记录 -->
+                <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                    <!-- 每天日志归档路径以及格式 -->
+                    <fileNamePattern>${log.path}/info/log-info-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+                    <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                        <maxFileSize>100MB</maxFileSize>
+                    </timeBasedFileNamingAndTriggeringPolicy>
+                    <!--日志文件保留天数-->
+                    <maxHistory>15</maxHistory>
+                </rollingPolicy>
+                <!-- 此日志文件只记录info级别的 -->
+                <filter class="ch.qos.logback.classic.filter.LevelFilter">
+                    <level>info</level>
+                    <onMatch>ACCEPT</onMatch>
+                    <onMismatch>DENY</onMismatch>
+                </filter>
+            </appender>
+        ```
+    2. 启动ES,LogStash,Filebeat。
+        1. LogStash配置:
+            ```conf
+                    # Sample Logstash configuration for creating a simple
+                    # Beats -> Logstash -> Elasticsearch pipeline.
 
+                    input {
+                    beats { #从filebeat输入
+                        port => 5044
+                    }
+                    }
+
+                    filter {
+
+                    }
+
+                    output {
+
+                        elasticsearch {
+                            hosts => ["127.0.0.1:9200"]
+                            index => "%{[appName]}-log-%{+YYYY.MM.dd}"
+                        }
+
+                    #  elasticsearch {
+                    #    hosts => ["http://localhost:9200"]
+                    #    index => "%{[@metadata][beat]}-%{[@metadata][version]}-%{+YYYY.MM.dd}"
+                        #user => "elastic"
+                        #password => "changeme"
+                    #  }
+                    }
+            ```
+        2. filebeat配置
+            ```yaml
+            filebeat.inputs:
+            - type: log
+            enabled: true
+            paths:
+                - /var/log/gwmall/gw-unqid/*.log
+            tags: ["gw-unqid"]
+
+            - type: log
+            enabled: true
+            paths:
+                - /var/log/gwmall/gw-gateway/*.log
+            tags: ["gw-gateway"]
+
+            - type: log
+            enabled: true
+            paths:
+                - /var/log/gwmall/gw-member/*.log
+            tags: ["gw-member"]
+
+            - type: log
+            enabled: true
+            paths:
+                - /var/log/gwmall/gw-order-current/*.log
+            tags: ["gw-order-current"]
+
+            - type: log
+            enabled: true
+            paths:
+                - /var/log/gwmall/gw-portal/*.log
+            tags: ["gw-portal"]
+
+
+            - type: log
+            enabled: true
+            paths:
+                - /var/log/gwmall/gw-authcenter/*.log
+            tags: ["gw-authcenter"]
+
+
+            processors:
+                - decode_json_fields:
+                    fields: ['message']
+                    target: ''
+                    overwrite_keys: true
+
+                - timestamp:
+                    field: time
+                    timezone: Asia/Shanghai
+                    layouts:
+                        - '2006-01-02 15:04:05'
+                        - '2006-01-02 15:04:05.999'
+                    test:
+                        - '2019-06-22 16:33:51'
+                        - '2019-11-18 04:59:51.123'
+
+                - drop_fields:
+                    fields: ["message", "ecs", "agent", "log", "time"]
+
+
+
+            output.logstash:
+                hosts: ["127.0.0.1:5044"]
+                compression_level: 3
+                loadbalance: true
+            ```
+        3. 效果
+        ![微服务日志](./doc/reference/img/elk-log/es%E6%97%A5%E5%BF%97.png)
